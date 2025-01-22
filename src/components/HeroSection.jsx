@@ -22,7 +22,7 @@ const Title = styled.h1`
   color: white;
 
   span {
-    color: #f36100;
+    color: #af1e1e;
   }
 `;
 
@@ -36,7 +36,7 @@ const StartButton = styled.button`
   padding: 1.5vh 3vh; /* 15px 30px */
   font-size: 2vh; /* 20px */
   color: black;
-  background: #f36100;
+  background: #af1e1e;
   border: none;
   border-radius: 0.5vh; /* 5px */
   font-weight: bold;
@@ -47,7 +47,7 @@ const StartButton = styled.button`
   transition: background 0.3s ease;
 
   &:hover {
-    background: #f36100;
+    background: #9c4f55;
   }
 
   i {

@@ -14,7 +14,7 @@ const Header = styled.header`
   color: white; /* Match the text color in HeroSection */
 
   span {
-    color: #f36100 ; /* Match the yellow color in HeroSection */
+    color: #af1e1e ; /* Match the yellow color in HeroSection */
     font-weight: bold; /* Ensure normal weight for the span */
     display: block; /* Keep the span on a separate line */
     font-size: 4vh; /* Slightly smaller than the main title */
@@ -53,7 +53,7 @@ const VideoItem = styled.div`
   align-items: center;
   gap: 1rem;
   padding: 0.5rem;
-  border: ${({ isActive }) => (isActive ? "1px solid #f36100" : "2px solid transparent")};
+  border: ${({ isActive }) => (isActive ? "1px solid #af1e1e" : "2px solid transparent")};
   border-radius: 10px;
   cursor: pointer;
   background: ${({ isActive }) => (isActive ? "rgba(243, 97, 0, 0.2)" : "rgba(255, 255, 255, 0.1)")}; /* Orange transparent for active video */

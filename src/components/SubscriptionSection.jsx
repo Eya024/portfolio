@@ -10,7 +10,7 @@ const Section = styled.section`
 
 const Title = styled.h1`
   font-size: 2.5rem;
-  color: #f36100;
+  color: #af1e1e;
   margin-bottom: 10px;
 `;
 
@@ -24,7 +24,7 @@ const CurrencySwitcher = styled.div`
 `;
 
 const CurrencyButton = styled.button`
-  background-color: ${({ active }) => (active ? '#f36100' : '#333')};
+  background-color: ${({ active }) => (active ? '#af1e1e' : '#333')};
   color: ${({ active }) => (active ? '#111' : '#fff')};
   border: none;
   padding: 10px 20px;
@@ -35,7 +35,7 @@ const CurrencyButton = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: #f36100;
+    background-color: #af1e1e;
     color: #111;
   }
 `;
@@ -60,7 +60,7 @@ const PlanCard = styled.div`
 
 const PlanTitle = styled.h3`
   font-size: 1.5rem;
-  color: #f36100;
+  color: #af1e1e;
   margin-bottom: 10px;
 `;
 
@@ -87,11 +87,12 @@ const Feature = styled.li`
 `;
 
 const BookButton = styled.button`
-  background-color: #f36100;
+  background-color: #af1e1e;
   color: #111;
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
+  font-weight: bold; /* Makes the text bold */
   cursor: pointer;
   border-radius: 5px;
   transition: all 0.3s ease;
@@ -101,6 +102,7 @@ const BookButton = styled.button`
     color: #111;
   }
 `;
+
 
 
 

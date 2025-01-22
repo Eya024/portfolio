@@ -46,7 +46,7 @@ const Section = styled.section`
   }
 
   button {
-    background: #f36100;
+    background: #af1e1e;
     border: none;
     color: #000;
     padding: 15px 30px;
@@ -57,7 +57,7 @@ const Section = styled.section`
     transition: background 0.3s ease;
 
     &:hover {
-      background:rgba(243, 97, 0, 0.81);
+      background: #9c4f55;
     }
   }
 `;
