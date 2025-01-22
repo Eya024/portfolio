@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeroSectionContainer = styled.section`
@@ -69,28 +70,34 @@ const ImageContainer = styled.div`
 `;
 
 const HeroSection = () => {
-    return (
-        <HeroSectionContainer>
-            <Content>
-                <Title>
-                    Transform Your <span>Body</span> <br />
-                    Your <span>Life</span>
-                </Title>
-                <Subtitle>
-                    Discover your best version with personalized programs and professional guidance.
-                </Subtitle>
-                <StartButton>
-                    Start Now <i className="fas fa-arrow-right"></i>
-                </StartButton>
-            </Content>
-            <ImageContainer>
-                <img
-                    src="/img/hero/hero-1.jpg"
-                    alt="Body Transformation"
-                />
-            </ImageContainer>
-        </HeroSectionContainer>
-    );
+  const navigate = useNavigate(); // React Router's hook to navigate
+
+  const handleButtonClick = () => {
+    navigate('/inscription'); // Navigate to /inscription
+  };
+
+  return (
+    <HeroSectionContainer>
+      <Content>
+        <Title>
+          Transform Your <span>Body</span> <br />
+          Your <span>Life</span>
+        </Title>
+        <Subtitle>
+          Discover your best version with personalized programs and professional guidance.
+        </Subtitle>
+        <StartButton onClick={handleButtonClick}>
+          Start Now <i className="fas fa-arrow-right"></i>
+        </StartButton>
+      </Content>
+      <ImageContainer>
+        <img
+          src="/img/hero/hero-1.jpg"
+          alt="Body Transformation"
+        />
+      </ImageContainer>
+    </HeroSectionContainer>
+  );
 };
 
 export default HeroSection;

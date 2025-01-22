@@ -3,6 +3,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
+import Step5 from "./Step5";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -24,7 +25,9 @@ const MultiStepForm = () => {
   };
 
   const prevStep = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
+    if (currentStep > 1) {
+      setCurrentStep((prevStep) => prevStep - 1);
+    }
   };
 
   const handleObjectiveSelection = (objectiveIndex) => {
@@ -67,17 +70,12 @@ const MultiStepForm = () => {
         return (
           <Step4
             onFinish={handleAvailabilitySelection}
-            onBack={prevStep}
           />
         );
+      case 5:
+        return <Step5 formData={formData} />;
       default:
-        return (
-          <div>
-            <h1>Form Submitted</h1>
-            <p>Thank you for completing the form!</p>
-            <pre>{JSON.stringify(formData, null, 2)}</pre>
-          </div>
-        );
+        return <div>Unknown Step</div>;
     }
   };
 
