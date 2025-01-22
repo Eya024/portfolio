@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -68,6 +68,12 @@ const Input = styled.input`
   }
 `;
 
+const ErrorMessage = styled.p`
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+`;
+
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
@@ -92,44 +98,73 @@ const Button = styled.button`
 `;
 
 const Step2 = ({ formData = {}, updateFormData, nextStep, prevStep }) => {
-    const { height = "", weight = "" } = formData; // Default to empty strings if properties are missing
-  
-    return (
-      <Container>
-        <FormContainer>
-          <Header>
-            Intake Form <span>Please fill out the form</span>
-          </Header>
-          <SubHeader>Provide your personal information to proceed.</SubHeader>
-          <form>
-            <Label>
-              <span>Measurements</span>
-            </Label>
-            <Input
-              type="number"
-              placeholder="Height (cm)"
-              value={height}
-              onChange={(e) => updateFormData("height", e.target.value)}
-            />
-            <Input
-              type="number"
-              placeholder="Weight (kg)"
-              value={weight}
-              onChange={(e) => updateFormData("weight", e.target.value)}
-            />
-            <ButtonGroup>
-              <Button type="button" onClick={prevStep}>
-                Retour
-              </Button>
-              <Button type="button" primary onClick={nextStep}>
-                Next
-              </Button>
-            </ButtonGroup>
-          </form>
-        </FormContainer>
-      </Container>
-    );
+  const { height = "", weight = "" } = formData;
+
+  const [errors, setErrors] = useState({ height: "", weight: "" });
+
+  const validateField = (fieldName, value) => {
+    let error = "";
+    if (!value || isNaN(value) || value <= 0) {
+      error = `Please enter a valid ${fieldName} (positive number).`;
+    }
+    setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error }));
   };
-  
-  export default Step2;
-  
+
+  const validateFields = () => {
+    validateField("height", height);
+    validateField("weight", weight);
+
+    return !errors.height && !errors.weight;
+  };
+
+  const handleNext = () => {
+    if (validateFields()) {
+      nextStep();
+    }
+  };
+
+  return (
+    <Container>
+      <Header>
+        Intake Form <span>Please fill out the form</span>
+      </Header>
+      <SubHeader>Provide your personal information to proceed.</SubHeader>
+
+      <FormContainer>
+        <form>
+          <Label>
+            <span>Measurements</span>
+          </Label>
+          <Input
+            type="number"
+            placeholder="Height (cm)"
+            value={height}
+            onChange={(e) => updateFormData("height", e.target.value)}
+            onBlur={() => validateField("height", height)}
+          />
+          {errors.height && <ErrorMessage>{errors.height}</ErrorMessage>}
+
+          <Input
+            type="number"
+            placeholder="Weight (kg)"
+            value={weight}
+            onChange={(e) => updateFormData("weight", e.target.value)}
+            onBlur={() => validateField("weight", weight)}
+          />
+          {errors.weight && <ErrorMessage>{errors.weight}</ErrorMessage>}
+
+          <ButtonGroup>
+            <Button type="button" onClick={prevStep}>
+              Retour
+            </Button>
+            <Button type="button" primary onClick={handleNext}>
+              Next
+            </Button>
+          </ButtonGroup>
+        </form>
+      </FormContainer>
+    </Container>
+  );
+};
+
+export default Step2;

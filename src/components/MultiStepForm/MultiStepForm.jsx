@@ -1,33 +1,40 @@
 import React, { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
+import Step3 from "./Step3";
+import Step4 from "./Step4";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
-    age: "",
-    gender: "",
     email: "",
-    phone: "",
-    location: "",
     height: "",
     weight: "",
+    objective: null, // Selected objective index
+    availability: null, // Selected availability index
   });
 
   const updateFormData = (field, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    setFormData((prevData) => ({ ...prevData, [field]: value }));
   };
 
   const nextStep = () => {
-    if (currentStep < 2) setCurrentStep((prev) => prev + 1);
+    setCurrentStep((prevStep) => prevStep + 1);
   };
 
   const prevStep = () => {
-    if (currentStep > 1) setCurrentStep((prev) => prev - 1);
+    setCurrentStep((prevStep) => prevStep - 1);
+  };
+
+  const handleObjectiveSelection = (objectiveIndex) => {
+    updateFormData("objective", objectiveIndex);
+    nextStep();
+  };
+
+  const handleAvailabilitySelection = (availabilityIndex) => {
+    updateFormData("availability", availabilityIndex);
+    nextStep();
   };
 
   const renderStep = () => {
@@ -49,8 +56,28 @@ const MultiStepForm = () => {
             prevStep={prevStep}
           />
         );
+      case 3:
+        return (
+          <Step3
+            onNext={handleObjectiveSelection}
+            onBack={prevStep}
+          />
+        );
+      case 4:
+        return (
+          <Step4
+            onFinish={handleAvailabilitySelection}
+            onBack={prevStep}
+          />
+        );
       default:
-        return null;
+        return (
+          <div>
+            <h1>Form Submitted</h1>
+            <p>Thank you for completing the form!</p>
+            <pre>{JSON.stringify(formData, null, 2)}</pre>
+          </div>
+        );
     }
   };
 
