@@ -6,15 +6,19 @@ import Step4 from "./Step4";
 import Step5 from "./Step5";
 
 const MultiStepForm = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    height: "",
-    weight: "",
-    objective: null, // Selected objective index
-    availability: null, // Selected availability index
-  });
+    const [currentStep, setCurrentStep] = useState(1);
+    const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      age: "", // Add missing fields
+      phone: "",
+      location: "",
+      gender: "", // Add gender field
+      height: "",
+      weight: "",
+      objective: null,
+      availability: null,
+    });
 
   const updateFormData = (field, value) => {
     setFormData((prevData) => ({ ...prevData, [field]: value }));

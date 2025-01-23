@@ -1,12 +1,13 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { useTranslation } from "react-i18next"; // Import the useTranslation hook
 
 const HeroSectionContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4vh 8vh; /* 40px 80px */
+  padding: 4vh 8vh;
   height: 100vh;
   color: white;
 `;
@@ -16,10 +17,10 @@ const Content = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 6vh; /* 60px */
+  font-size: 6vh;
   font-weight: bold;
   line-height: 1.2;
-  margin-bottom: 2vh; /* 20px */
+  margin-bottom: 2vh;
   color: white;
 
   span {
@@ -28,23 +29,23 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.p`
-  font-size: 2.2vh; /* 22px */
+  font-size: 2.2vh;
   color: #d3d3d3;
-  margin-bottom: 3vh; /* 30px */
+  margin-bottom: 3vh;
 `;
 
 const StartButton = styled.button`
-  padding: 1.5vh 3vh; /* 15px 30px */
-  font-size: 2vh; /* 20px */
+  padding: 1.5vh 3vh;
+  font-size: 2vh;
   color: black;
   background: #af1e1e;
   border: none;
-  border-radius: 0.5vh; /* 5px */
+  border-radius: 0.5vh;
   font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 1vh; /* 10px */
+  gap: 1vh;
   transition: background 0.3s ease;
 
   &:hover {
@@ -52,13 +53,13 @@ const StartButton = styled.button`
   }
 
   i {
-    font-size: 1.8vh; /* 18px */
+    font-size: 1.8vh;
   }
 `;
 
 const ImageContainer = styled.div`
   max-width: 40%;
-  border-radius: 1vh; /* 10px */
+  border-radius: 1vh;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 
@@ -71,30 +72,24 @@ const ImageContainer = styled.div`
 
 const HeroSection = () => {
   const navigate = useNavigate(); // React Router's hook to navigate
+  const { t } = useTranslation(); // Initialize the useTranslation hook
 
   const handleButtonClick = () => {
-    navigate('/inscription'); // Navigate to /inscription
+    navigate("/inscription"); // Navigate to /inscription
   };
 
   return (
     <HeroSectionContainer>
       <Content>
-        <Title>
-          Transform Your <span>Body</span> <br />
-          Your <span>Life</span>
-        </Title>
-        <Subtitle>
-          Discover your best version with personalized programs and professional guidance.
-        </Subtitle>
+        {/* Use translation keys for title and subtitle */}
+        <Title dangerouslySetInnerHTML={{ __html: t("heroSection.title") }} />
+        <Subtitle>{t("heroSection.subtitle")}</Subtitle>
         <StartButton onClick={handleButtonClick}>
-          Start Now <i className="fas fa-arrow-right"></i>
+          {t("heroSection.startButton")} <i className="fas fa-arrow-right"></i>
         </StartButton>
       </Content>
       <ImageContainer>
-        <img
-          src="/img/hero/hero-1.jpg"
-          alt="Body Transformation"
-        />
+        <img src="/img/hero/hero-1.jpg" alt={t("heroSection.title")} />
       </ImageContainer>
     </HeroSectionContainer>
   );

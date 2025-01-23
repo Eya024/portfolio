@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from "react-i18next";
 
 // Styled Components
 const Section = styled.section`
@@ -107,48 +108,98 @@ const BookButton = styled.button`
 
 
 const SubscriptionSection = () => {
-  const [currency, setCurrency] = useState('TND');
+    const { t } = useTranslation();
+    const [currency, setCurrency] = useState("TND");
   
-  const plans = [
-    { duration: '1 Mois', price: 150, features: ['Personalized program', 'Nutritional guidance', '24/7 WhatsApp support', 'Access to exclusive videos'] },
-    { duration: '2 Mois', price: 250, features: ['Personalized program', 'Nutritional guidance', '24/7 WhatsApp support', 'Access to exclusive videos'] },
-    { duration: '3 Mois', price: 350, features: ['Personalized program', 'Nutritional guidance', '24/7 WhatsApp support', 'Access to exclusive videos'] },
-    { duration: '6 Mois', price: 650, features: ['Personalized program', 'Nutritional guidance', '24/7 WhatsApp support', 'Access to exclusive videos'] }
-  ];
-
-  const handleCurrencyChange = (selectedCurrency) => {
-    setCurrency(selectedCurrency);
-    // Implement conversion logic if needed
+    const plans = [
+      {
+        duration: t("subscriptionSection.plans.1Month"),
+        price: 150,
+        features: [
+          t("subscriptionSection.features.personalizedProgram"),
+          t("subscriptionSection.features.nutritionalGuidance"),
+          t("subscriptionSection.features.whatsappSupport"),
+          t("subscriptionSection.features.exclusiveVideos"),
+        ],
+      },
+      {
+        duration: t("subscriptionSection.plans.2Months"),
+        price: 250,
+        features: [
+          t("subscriptionSection.features.personalizedProgram"),
+          t("subscriptionSection.features.nutritionalGuidance"),
+          t("subscriptionSection.features.whatsappSupport"),
+          t("subscriptionSection.features.exclusiveVideos"),
+        ],
+      },
+      {
+        duration: t("subscriptionSection.plans.3Months"),
+        price: 350,
+        features: [
+          t("subscriptionSection.features.personalizedProgram"),
+          t("subscriptionSection.features.nutritionalGuidance"),
+          t("subscriptionSection.features.whatsappSupport"),
+          t("subscriptionSection.features.exclusiveVideos"),
+        ],
+      },
+      {
+        duration: t("subscriptionSection.plans.6Months"),
+        price: 650,
+        features: [
+          t("subscriptionSection.features.personalizedProgram"),
+          t("subscriptionSection.features.nutritionalGuidance"),
+          t("subscriptionSection.features.whatsappSupport"),
+          t("subscriptionSection.features.exclusiveVideos"),
+        ],
+      },
+    ];
+  
+    const handleCurrencyChange = (selectedCurrency) => {
+      setCurrency(selectedCurrency);
+    };
+  
+    return (
+      <Section>
+        <Title>{t("subscriptionSection.title")}</Title>
+        <Subtitle>{t("subscriptionSection.subtitle")}</Subtitle>
+        <CurrencySwitcher>
+          <CurrencyButton
+            active={currency === "TND"}
+            onClick={() => handleCurrencyChange("TND")}
+          >
+            {t("subscriptionSection.currency.tnd")}
+          </CurrencyButton>
+          <CurrencyButton
+            active={currency === "EUR"}
+            onClick={() => handleCurrencyChange("EUR")}
+          >
+            {t("subscriptionSection.currency.eur")}
+          </CurrencyButton>
+          <CurrencyButton
+            active={currency === "USD"}
+            onClick={() => handleCurrencyChange("USD")}
+          >
+            {t("subscriptionSection.currency.usd")}
+          </CurrencyButton>
+        </CurrencySwitcher>
+        <PlansContainer>
+          {plans.map((plan, index) => (
+            <PlanCard key={index}>
+              <PlanTitle>{plan.duration}</PlanTitle>
+              <PlanPrice>
+                {plan.price}.00 <Currency>{currency}</Currency>
+              </PlanPrice>
+              <FeatureList>
+                {plan.features.map((feature, i) => (
+                  <Feature key={i}>✔️ {feature}</Feature>
+                ))}
+              </FeatureList>
+              <BookButton>{t("subscriptionSection.bookNow")}</BookButton>
+            </PlanCard>
+          ))}
+        </PlansContainer>
+      </Section>
+    );
   };
-
-  return (
-    <Section>
-      <Title>Mes Formules</Title>
-      <Subtitle>Choisissez le programme qui correspond le mieux à vos objectifs. Tous les prix incluent un suivi personnalisé et un accès illimité au support.</Subtitle>
-      <CurrencySwitcher>
-        <CurrencyButton active={currency === 'TND'} onClick={() => handleCurrencyChange('TND')}>TND</CurrencyButton>
-        <CurrencyButton active={currency === 'EUR'} onClick={() => handleCurrencyChange('EUR')}>EUR</CurrencyButton>
-        <CurrencyButton active={currency === 'USD'} onClick={() => handleCurrencyChange('USD')}>USD</CurrencyButton>
-      </CurrencySwitcher>
-      <PlansContainer>
-        {plans.map((plan, index) => (
-          <PlanCard key={index}>
-            <PlanTitle>{plan.duration}</PlanTitle>
-            <PlanPrice>
-              {plan.price}.00 <Currency>{currency}</Currency>
-            </PlanPrice>
-            <FeatureList>
-              {plan.features.map((feature, i) => (
-                <Feature key={i}>✔️ {feature}</Feature>
-              ))}
-            </FeatureList>
-            <BookButton>Book Now</BookButton>
-          </PlanCard>
-        ))}
-      </PlansContainer>
-    </Section>
-  );
-};
-
-export default SubscriptionSection;
-
+  
+  export default SubscriptionSection;

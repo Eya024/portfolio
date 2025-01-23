@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+
 
 const Container = styled.div`
   display: flex;
@@ -102,13 +104,13 @@ const GenderContainer = styled.div`
 
 const GenderButton = styled.button`
   flex: 1;
-  padding: 10px; /* Reduced button size */
+  padding: 10px;
   margin: 0 6px;
-  border: 1px solid ${(props) => (props.active ? "#ffc107" : "#555")};
-  background: ${(props) => (props.active ? "#ffc107" : "#333")};
-  color: ${(props) => (props.active ? "#000" : "#fff")};
-  border-radius: 8px; /* Smaller border radius */
-  font-size: 1rem; /* Reduced font size */
+  border: 1px solid ${(props) => (props.active === "true" ? "#ffc107" : "#555")}; /* Fix here */
+  background: ${(props) => (props.active === "true" ? "#ffc107" : "#333")}; /* Fix here */
+  color: ${(props) => (props.active === "true" ? "#000" : "#fff")}; /* Fix here */
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
 
@@ -136,21 +138,19 @@ const Button = styled.button`
 `;
 
 const Step1 = ({ formData, updateFormData, nextStep }) => {
-    const [gender, setGender] = useState("");
-    const [genderTouched, setGenderTouched] = useState(false); // Track if gender is touched
+    const { t } = useTranslation();
+    const [gender, setGender] = useState(formData.gender || ""); // Initialize gender with formData.gender
+
     const [formState, setFormState] = useState({
-        name: { value: "", touched: false },
-        age: { value: "", touched: false },
-        email: { value: "", touched: false },
-        phone: { value: "", touched: false },
-        location: { value: "", touched: false },
+        name: { touched: false },
+        age: { touched: false },
+        email: { touched: false },
+        phone: { touched: false },
+        location: { touched: false },
     });
 
     const handleInputChange = (field, value) => {
-        setFormState((prev) => ({
-            ...prev,
-            [field]: { ...prev[field], value },
-        }));
+        updateFormData(field, value); // Directly update formData in the parent
     };
 
     const handleBlur = (field) => {
@@ -161,175 +161,162 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
     };
 
     const handleGenderClick = (selectedGender) => {
-        setGender(selectedGender);
-        setGenderTouched(true); // Mark gender as touched
+        setGender(selectedGender); // Update local gender state
+        updateFormData("gender", selectedGender); // Update formData in the parent component
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        // Mark gender as touched
-        setGenderTouched(true);
-    
-        // Check if the entire form, including gender, is valid
-        const formIsValid =
-            Object.values(formState).every((field) => field.value.trim() !== "") &&
-            gender !== "";
-    
+
+        // Validate only the fields relevant for Step 1
+        const requiredFields = ["name", "email", "age", "phone", "location", "gender"];
+        const formIsValid = requiredFields.every(
+            (field) => formData[field] && formData[field].trim() !== ""
+        );
+
         if (formIsValid) {
-            // Update the parent formData state
-            updateFormData("name", formState.name.value);
-            updateFormData("age", formState.age.value);
-            updateFormData("email", formState.email.value);
-            updateFormData("phone", formState.phone.value);
-            updateFormData("location", formState.location.value);
-            updateFormData("gender", gender);
-    
-            // Move to the next step
-            nextStep();
+            nextStep(); // Proceed to the next step
         } else {
-            // Mark all fields as touched to show validation errors
+            // Show validation errors
             setFormState((prev) => {
                 const updatedState = {};
-                for (let key in prev) {
-                    updatedState[key] = { ...prev[key], touched: true };
+                for (let key of requiredFields) {
+                    updatedState[key] = { touched: true };
                 }
                 return updatedState;
             });
         }
     };
+    
+    
+    
+
     return (
         <Container>
             <Header>
-                Intake Form <span>Please fill out the form</span>
+                {t("step1.header")} <span>{t("step1.subheader")}</span>
             </Header>
             <SubHeader>Provide your personal information to proceed.</SubHeader>
             <FormContainer>
                 <form noValidate onSubmit={handleSubmit}>
                     <Label>
-                        <span>Personal Information</span>
+                        <span>{t("step1.personalInfo")}</span>
                     </Label>
                     <div className="mb-3">
                         <Input
                             type="text"
-                            placeholder="Name"
-                            value={formState.name.value}
+                            placeholder={t("step1.placeholders.name")}
+                            value={formData.name}
                             onChange={(e) => handleInputChange("name", e.target.value)}
                             onBlur={() => handleBlur("name")}
                             required
                             className={
-                                formState.name.touched && !formState.name.value.trim()
+                                formState.name.touched && !formData.name.trim()
                                     ? "is-invalid"
                                     : ""
                             }
                         />
-                        {formState.name.touched && !formState.name.value.trim() && (
-                            <div className="invalid-feedback">Please enter your name.</div>
+                        {formState.name.touched && !formData.name.trim() && (
+                            <div className="invalid-feedback">{t("step1.validationErrors.name")}</div>
                         )}
                     </div>
                     <div className="mb-3">
                         <Input
                             type="number"
-                            placeholder="Age"
-                            value={formState.age.value}
+                            placeholder={t("step1.placeholders.age")}
+                            value={formData.age}
                             onChange={(e) => handleInputChange("age", e.target.value)}
                             onBlur={() => handleBlur("age")}
                             required
                             className={
-                                formState.age.touched && !formState.age.value.trim()
+                                formState.age.touched && !formData.age.trim()
                                     ? "is-invalid"
                                     : ""
                             }
                         />
-                        {formState.age.touched && !formState.age.value.trim() && (
-                            <div className="invalid-feedback">Please enter your age.</div>
+                        {formState.age.touched && !formData.age.trim() && (
+                            <div className="invalid-feedback">{t("step1.validationErrors.age")}</div>
                         )}
                     </div>
                     <GenderContainer>
                         <GenderButton
                             type="button"
-                            active={gender === "Male"}
-                            onClick={() => handleGenderClick("Male")}
+                            active={gender === t("step1.gender.male") ? "true" : "false"}
+                            onClick={() => handleGenderClick(t("step1.gender.male"))}
                         >
-                            Male
+                            {t("step1.gender.male")}
                         </GenderButton>
                         <GenderButton
                             type="button"
-                            active={gender === "Female"}
-                            onClick={() => handleGenderClick("Female")}
+                            active={gender === t("step1.gender.female") ? "true" : "false"}
+                            onClick={() => handleGenderClick(t("step1.gender.female"))}
                         >
-                            Female
+                            {t("step1.gender.female")}
                         </GenderButton>
                     </GenderContainer>
-                    {genderTouched && gender === "" && (
+                    { gender === "" && (
                         <div className="invalid-feedback" style={{ color: "#dc3545", marginBottom: "10px" }}>
-                            Please select your gender.
+                            {t("step1.gender.error")}
                         </div>
                     )}
                     <div className="mb-3">
                         <Input
                             type="email"
-                            placeholder="Email"
-                            value={formState.email.value}
+                            placeholder={t("step1.placeholders.email")}
+                            value={formData.email}
                             onChange={(e) => handleInputChange("email", e.target.value)}
                             onBlur={() => handleBlur("email")}
                             required
                             className={
-                                formState.email.touched && !formState.email.value.trim()
+                                formState.email.touched && !formData.email.trim()
                                     ? "is-invalid"
                                     : ""
                             }
                         />
-                        {formState.email.touched && !formState.email.value.trim() && (
-                            <div className="invalid-feedback">
-                                Please enter a valid email address.
-                            </div>
+                        {formState.email.touched && !formData.email.trim() && (
+                            <div className="invalid-feedback">{t("step1.validationErrors.email")}</div>
                         )}
                     </div>
                     <div className="mb-3">
                         <Input
                             type="tel"
-                            placeholder="Phone"
-                            value={formState.phone.value}
+                            placeholder={t("step1.placeholders.phone")}
+                            value={formData.phone}
                             onChange={(e) => handleInputChange("phone", e.target.value)}
                             onBlur={() => handleBlur("phone")}
                             required
                             className={
-                                formState.phone.touched && !formState.phone.value.trim()
+                                formState.phone.touched && !formData.phone.trim()
                                     ? "is-invalid"
                                     : ""
                             }
                         />
-                        {formState.phone.touched && !formState.phone.value.trim() && (
-                            <div className="invalid-feedback">
-                                Please enter a valid phone number.
-                            </div>
+                        {formState.phone.touched && !formData.phone.trim() && (
+                            <div className="invalid-feedback">{t("step1.validationErrors.phone")}</div>
                         )}
                     </div>
                     <div className="mb-3">
                         <Input
                             type="text"
-                            placeholder="Location"
-                            value={formState.location.value}
+                            placeholder={t("step1.placeholders.location")}
+                            value={formData.location}
                             onChange={(e) => handleInputChange("location", e.target.value)}
                             onBlur={() => handleBlur("location")}
                             required
                             className={
-                                formState.location.touched && !formState.location.value.trim()
+                                formState.location.touched && !formData.location.trim()
                                     ? "is-invalid"
                                     : ""
                             }
                         />
-                        {formState.location.touched && !formState.location.value.trim() && (
-                            <div className="invalid-feedback">Please enter your location.</div>
+                        {formState.location.touched && !formData.location.trim() && (
+                            <div className="invalid-feedback">{t("step1.validationErrors.location")}</div>
                         )}
                     </div>
-                    <Button type="submit">Next</Button>
+                    <Button type="submit">{t("step1.next")}</Button>
                 </form>
             </FormContainer>
         </Container>
     );
-    
 };
-
 export default Step1;

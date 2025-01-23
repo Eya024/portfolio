@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+
 
 const Container = styled.div`
   display: flex;
@@ -110,77 +112,78 @@ const Button = styled.button`
 `;
 
 const Step3 = ({ onNext, onBack }) => {
-  const [selectedObjective, setSelectedObjective] = useState(null);
-  const [error, setError] = useState("");
-
-  const objectives = [
-    {
-      title: "Get Stronger",
-      description: "Improve your strength and endurance.",
-      img: "path-to-image-1.jpg",
-    },
-    {
-      title: "Healthy Lifestyle",
-      description: "Adopt a healthier lifestyle.",
-      img: "path-to-image-2.jpg",
-    },
-    {
-      title: "Weight Loss",
-      description: "Achieve your weight loss goals.",
-      img: "path-to-image-3.jpg",
-    },
-    {
-      title: "Competition",
-      description: "Prepare for competition.",
-      img: "path-to-image-4.jpg",
-    },
-  ];
-
-  const handleSelect = (index) => {
-    setSelectedObjective(index);
-    setError(""); // Clear any existing error when a selection is made
-  };
-
-  const handleNext = () => {
-    if (selectedObjective !== null) {
-      onNext(selectedObjective); // Pass the selected objective index to the next step
-    } else {
-      setError("Please select an objective before proceeding.");
-    }
-  };
-
-  return (
-    <Container>
-      <FormContainer>
+    const { t } = useTranslation();
+    const [selectedObjective, setSelectedObjective] = useState(null);
+    const [error, setError] = useState("");
+  
+    const objectives = [
+      {
+        title: t("step3.objectives.0.title"),
+        description: t("step3.objectives.0.description"),
+        img: "path-to-image-1.jpg",
+      },
+      {
+        title: t("step3.objectives.1.title"),
+        description: t("step3.objectives.1.description"),
+        img: "path-to-image-2.jpg",
+      },
+      {
+        title: t("step3.objectives.2.title"),
+        description: t("step3.objectives.2.description"),
+        img: "path-to-image-3.jpg",
+      },
+      {
+        title: t("step3.objectives.3.title"),
+        description: t("step3.objectives.3.description"),
+        img: "path-to-image-4.jpg",
+      },
+    ];
+  
+    const handleSelect = (index) => {
+      setSelectedObjective(index);
+      setError(""); // Clear any existing error when a selection is made
+    };
+  
+    const handleNext = () => {
+      if (selectedObjective !== null) {
+        onNext(selectedObjective); // Pass the selected objective index to the next step
+      } else {
+        setError(t("step3.error"));
+      }
+    };
+  
+    return (
+      <Container>
         <Header>
-          Intake Form <span>Please fill out the form</span>
-        </Header>
-        <SubHeader>Provide your personal information to proceed.</SubHeader>
-        <ObjectiveGrid>
-          {objectives.map((objective, index) => (
-            <ObjectiveCard
-              key={index}
-              selected={selectedObjective === index}
-              onClick={() => handleSelect(index)}
-            >
-              <Image src={objective.img} alt={objective.title} />
-              <Title>{objective.title}</Title>
-              <Description selected={selectedObjective === index}>
-                {objective.description}
-              </Description>
-            </ObjectiveCard>
-          ))}
-        </ObjectiveGrid>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        <ButtonGroup>
-          <Button onClick={onBack}>Retour</Button>
-          <Button primary onClick={handleNext}>
-            Next
-          </Button>
-        </ButtonGroup>
-      </FormContainer>
-    </Container>
-  );
-};
-
-export default Step3;
+            {t("step3.header")} <span>{t("step3.subheader")}</span>
+          </Header>
+        <FormContainer>
+          
+          <ObjectiveGrid>
+            {objectives.map((objective, index) => (
+              <ObjectiveCard
+                key={index}
+                selected={selectedObjective === index}
+                onClick={() => handleSelect(index)}
+              >
+                <Image src={objective.img} alt={objective.title} />
+                <Title>{objective.title}</Title>
+                <Description selected={selectedObjective === index}>
+                  {objective.description}
+                </Description>
+              </ObjectiveCard>
+            ))}
+          </ObjectiveGrid>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          <ButtonGroup>
+            <Button onClick={onBack}>{t("step3.back")}</Button>
+            <Button primary onClick={handleNext}>
+              {t("step3.next")}
+            </Button>
+          </ButtonGroup>
+        </FormContainer>
+      </Container>
+    );
+  };
+  
+  export default Step3;

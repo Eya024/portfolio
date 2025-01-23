@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
+// Styled components
 const Step5Container = styled.div`
   display: flex;
   justify-content: center;
@@ -47,6 +49,8 @@ const Subtitle = styled.p`
 `;
 
 const Step5 = ({ formData }) => {
+    const { t } = useTranslation();
+    
     useEffect(() => {
         const phoneNumber = "+21695404825"; // Replace with your WhatsApp phone number
         const whatsappUrl = generateWhatsAppUrl(formData, phoneNumber);
@@ -59,18 +63,18 @@ const Step5 = ({ formData }) => {
         <Step5Container>
             <Modal>
                 <SuccessIcon>✔️</SuccessIcon>
-                <Title>Thank you for registering!</Title>
-                <Subtitle>Redirecting to WhatsApp...</Subtitle>
+                <Title>{t("step5.thankYou")}</Title>
+                <Subtitle>{t("step5.redirecting")}</Subtitle>
             </Modal>
         </Step5Container>
     );
 };
 
 // Helper Functions
-const formatMessage = (formData) => {
+const formatMessage = (formData, t) => {
     const { name, email, height, weight, objective, availability } = formData;
-    const objectives = ["Lose Weight", "Build Muscle", "Improve Endurance"];
-    const availabilities = ["6am-12pm", "12pm-6pm", "6pm-10pm"];
+    const objectives = [t("step5.objective1"), t("step5.objective2"), t("step5.objective3")];
+    const availabilities = [t("step5.availability1"), t("step5.availability2"), t("step5.availability3")];
 
     return `
 Hello! Here is the information submitted by the user:
@@ -83,8 +87,9 @@ Objective: ${objectives[objective]}
 Availability: ${availabilities[availability]}
 Thank you! `.trim();
 };
-const generateWhatsAppUrl = (formData, phoneNumber) => {
-    const message = formatMessage(formData);
+
+const generateWhatsAppUrl = (formData, phoneNumber, t) => {
+    const message = formatMessage(formData, t);
     const encodedMessage = encodeURIComponent(message);
     return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 };

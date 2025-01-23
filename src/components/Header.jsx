@@ -1,42 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3vh 6vh; /* Increased padding for a wider header */
+  padding: 3vh 6vh;
   color: white;
 `;
 
 const Logo = styled.div`
   img {
-    width: 100px; /* Adjust the width of the logo as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 100px;
+    height: auto;
   }
 `;
 
 const NavIcons = styled.div`
   display: flex;
   align-items: center;
-  gap: 3vh; /* Increased spacing between icons */
-`;
-
-const SearchButton = styled.button`
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2.6vh; /* Increased icon size */
-  cursor: pointer;
+  gap: 3vh;
 `;
 
 const SocialIcons = styled.div`
   display: flex;
-  gap: 2vh; /* Increased spacing between social icons */
+  gap: 2vh;
 
   a {
     color: white;
-    font-size: 2.4vh; /* Increased social icon size */
+    font-size: 2.4vh;
     transition: color 0.3s;
 
     &:hover {
@@ -45,7 +38,91 @@ const SocialIcons = styled.div`
   }
 `;
 
+const LanguageDropdownContainer = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
+
+const DropdownButton = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8vh;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.2vh;
+  cursor: pointer;
+
+  i {
+    font-size: 2.2vh;
+  }
+`;
+
+const DropdownMenu = styled.ul`
+  position: absolute;
+  top: calc(100% + 0.5vh);
+  right: 0;
+  background: #333;
+  border-radius: 0.5vh;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  z-index: 10;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 12vh;
+
+  li {
+    padding: 1.5vh 2vh;
+    font-size: 2vh;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+      background: #444;
+    }
+
+    &.selected {
+      color: orange;
+
+      i {
+        margin-left: 1vh;
+      }
+    }
+  }
+`;
+
 const Header = () => {
+  const { i18n } = useTranslation();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const languages = [
+    { code: 'fr', label: 'Français' },
+    { code: 'en', label: 'English' },
+    { code: 'ar', label: 'العربية' },
+  ];
+
+  // Retrieve the stored language or default to English
+  const storedLanguage = localStorage.getItem('language') || 'fr';
+  const [selectedLanguage, setSelectedLanguage] = useState(storedLanguage);
+
+  useEffect(() => {
+    i18n.changeLanguage(selectedLanguage); // Change the language dynamically
+    localStorage.setItem('language', selectedLanguage); // Persist the language in localStorage
+  }, [selectedLanguage, i18n]);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleLanguageSelect = (code) => {
+    setSelectedLanguage(code);
+    setIsDropdownOpen(false);
+  };
+
   return (
     <Navbar>
       <Logo>
@@ -61,6 +138,27 @@ const Header = () => {
             <i className="fab fa-whatsapp"></i>
           </a>
         </SocialIcons>
+
+        <LanguageDropdownContainer>
+          <DropdownButton onClick={toggleDropdown}>
+            <i className="fas fa-globe"></i>
+            {languages.find((lang) => lang.code === selectedLanguage)?.label}
+          </DropdownButton>
+          {isDropdownOpen && (
+            <DropdownMenu>
+              {languages.map((lang) => (
+                <li
+                  key={lang.code}
+                  className={selectedLanguage === lang.code ? 'selected' : ''}
+                  onClick={() => handleLanguageSelect(lang.code)}
+                >
+                  {lang.label}
+                  {selectedLanguage === lang.code && <i className="fas fa-check"></i>}
+                </li>
+              ))}
+            </DropdownMenu>
+          )}
+        </LanguageDropdownContainer>
       </NavIcons>
     </Navbar>
   );

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+
 
 const GridContainer = styled.div`
   display: grid;
@@ -63,29 +65,27 @@ const Section = styled.section`
 `;
 
 const GridSection = () => {
-  return (
-    <>
-      <GridContainer>
-        <GridItem>
-          <h3>Personalized Program</h3>
-          <p>A training plan adapted to your goals and level</p>
-        </GridItem>
-        <GridItem>
-          <h3>Nutritional Guidance</h3>
-          <p>Nutritional advice to optimize your results</p>
-        </GridItem>
-        <GridItem>
-          <h3>Continuous Support</h3>
-          <p>Direct access to your coach for regular follow-up</p>
-        </GridItem>
-      </GridContainer>
-      <Section>
-        <h2>Ready to Start Your Transformation?</h2>
-        <p>Join our community and begin your journey to a better version of yourself.</p>
-        <button>Start Now</button>
-      </Section>
-    </>
-  );
-};
-
-export default GridSection;
+    const { t } = useTranslation();
+  
+    const gridItems = t("gridSection.gridItems", { returnObjects: true });
+  
+    return (
+      <>
+        <GridContainer>
+          {gridItems.map((item, index) => (
+            <GridItem key={index}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </GridItem>
+          ))}
+        </GridContainer>
+        <Section>
+          <h2>{t("gridSection.section.heading")}</h2>
+          <p>{t("gridSection.section.description")}</p>
+          <button>{t("gridSection.section.button")}</button>
+        </Section>
+      </>
+    );
+  };
+  
+  export default GridSection;

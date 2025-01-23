@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import Modal from 'react-modal';
+import React, { useState } from "react";
+import styled from "styled-components";
+import Modal from "react-modal";
+import { useTranslation } from "react-i18next";
 
 // Styled Components
 const GallerySection = styled.section`
@@ -47,21 +48,16 @@ const ModalImage = styled.img`
   object-fit: contain;
 `;
 
-// Sample images (Replace these paths with your actual image paths)
-const images = [
-  '/img/video/gym1thumb.jpg',
-  '/img/video/gym1thumb.jpg',
-  '/img/video/gym1thumb.jpg',
-  '/img/video/gym1thumb.jpg',
-  '/img/video/gym1thumb.jpg',
-  '/img/video/gym1thumb.jpg',
-];
-
-Modal.setAppElement('#root'); // Important for accessibility
+// Modal Accessibility
+Modal.setAppElement("#root");
 
 const GalleryPhotos = () => {
+  const { t } = useTranslation();
+  const title = t("galleryPhotos.title");
+  const images = t("galleryPhotos.images", { returnObjects: true });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState('');
+  const [currentImage, setCurrentImage] = useState("");
 
   const openModal = (image) => {
     setCurrentImage(image);
@@ -70,12 +66,12 @@ const GalleryPhotos = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setCurrentImage('');
+    setCurrentImage("");
   };
 
   return (
     <GallerySection>
-      <GalleryTitle>My Transformations</GalleryTitle>
+      <GalleryTitle>{title}</GalleryTitle>
       <GalleryGrid>
         {images.map((image, index) => (
           <GalleryItem key={index} onClick={() => openModal(image)}>
@@ -89,18 +85,18 @@ const GalleryPhotos = () => {
         onRequestClose={closeModal}
         style={{
           overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
             zIndex: 1000,
           },
           content: {
-            background: 'transparent',
-            border: 'none',
+            background: "transparent",
+            border: "none",
             padding: 0,
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            transform: 'translate(-50%, -50%)',
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            transform: "translate(-50%, -50%)",
           },
         }}
       >

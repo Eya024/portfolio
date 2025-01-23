@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+
 
 const Container = styled.div`
   display: flex;
@@ -98,52 +100,53 @@ const Button = styled.button`
 `;
 
 const Step4 = ({ onFinish, onBack }) => {
-  const [selectedAvailability, setSelectedAvailability] = useState(null);
-  const [error, setError] = useState("");
-
-  const availabilities = ["6am-12pm", "12pm-6pm", "6pm-10pm"];
-
-  const handleSelect = (index) => {
-    setSelectedAvailability(index);
-    setError(""); // Clear error on selection
-  };
-
-  const handleFinish = () => {
-    if (selectedAvailability !== null) {
-      onFinish(selectedAvailability); // Pass the selected availability index
-    } else {
-      setError("Please select an availability before proceeding.");
-    }
-  };
-
-  return (
-    <Container>
-      <FormContainer>
+    const { t } = useTranslation();
+    const [selectedAvailability, setSelectedAvailability] = useState(null);
+    const [error, setError] = useState("");
+  
+    const availabilities = t("step4.availabilities", { returnObjects: true });
+  
+    const handleSelect = (index) => {
+      setSelectedAvailability(index);
+      setError(""); // Clear error on selection
+    };
+  
+    const handleFinish = () => {
+      if (selectedAvailability !== null) {
+        onFinish(selectedAvailability); // Pass the selected availability index
+      } else {
+        setError(t("step4.error"));
+      }
+    };
+  
+    return (
+      <Container>
         <Header>
-          Intake Form <span>Please fill out the form</span>
-        </Header>
-        <SubHeader>Select your preferred availability time slot.</SubHeader>
-        <AvailabilityContainer>
-          {availabilities.map((time, index) => (
-            <AvailabilityCard
-              key={index}
-              selected={selectedAvailability === index}
-              onClick={() => handleSelect(index)}
-            >
-              <TimeSlot>{time}</TimeSlot>
-            </AvailabilityCard>
-          ))}
-        </AvailabilityContainer>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        <ButtonGroup>
-          <Button onClick={onBack}>Retour</Button>
-          <Button primary onClick={handleFinish}>
-            Finish
-          </Button>
-        </ButtonGroup>
-      </FormContainer>
-    </Container>
-  );
-};
-
-export default Step4;
+            {t("step4.header")} <span>{t("step4.subheader")}</span>
+          </Header>
+        <FormContainer>
+          
+          <AvailabilityContainer>
+            {availabilities.map((time, index) => (
+              <AvailabilityCard
+                key={index}
+                selected={selectedAvailability === index}
+                onClick={() => handleSelect(index)}
+              >
+                <TimeSlot>{time}</TimeSlot>
+              </AvailabilityCard>
+            ))}
+          </AvailabilityContainer>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          <ButtonGroup>
+            <Button onClick={onBack}>{t("step4.back")}</Button>
+            <Button primary onClick={handleFinish}>
+              {t("step4.finish")}
+            </Button>
+          </ButtonGroup>
+        </FormContainer>
+      </Container>
+    );
+  };
+  
+  export default Step4;

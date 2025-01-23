@@ -1,0 +1,176 @@
+{
+    "heroSection": {
+      "title": "حوّل <span>جسمك</span> <br /> وحياتك <span>إلى الأفضل</span>",
+      "subtitle": "اكتشف أفضل نسخة منك مع برامج مخصصة وإرشاد مهني.",
+      "startButton": "ابدأ الآن"
+    },
+    
+    "subscriptionSection": {
+      "title": "خططي",
+      "subtitle": "اختر البرنامج الذي يناسب أهدافك. جميع الأسعار تشمل المتابعة المخصصة ودعم غير محدود.",
+      "currency": {
+        "tnd": "دينار تونسي",
+        "eur": "يورو",
+        "usd": "دولار أمريكي"
+      },
+      "plans": {
+        "1Month": "شهر واحد",
+        "2Months": "شهرين",
+        "3Months": "ثلاثة أشهر",
+        "6Months": "ستة أشهر"
+      },
+      "features": {
+        "personalizedProgram": "برنامج مخصص",
+        "nutritionalGuidance": "إرشاد غذائي",
+        "whatsappSupport": "دعم عبر واتساب 24/7",
+        "exclusiveVideos": "الوصول إلى فيديوهات حصرية"
+      },
+      "bookNow": "احجز الآن"
+    },
+  
+    "gridSection": {
+      "gridItems": [
+        {
+          "title": "برنامج مخصص",
+          "description": "خطة تدريب تتناسب مع أهدافك ومستوى لياقتك"
+        },
+        {
+          "title": "إرشاد غذائي",
+          "description": "نصائح غذائية لتحسين نتائجك"
+        },
+        {
+          "title": "دعم مستمر",
+          "description": "الوصول المباشر لمدربك لمتابعة منتظمة"
+        }
+      ],
+      "section": {
+        "heading": "هل أنت جاهز للبدء في تحويل جسمك؟",
+        "description": "انضم إلى مجتمعنا وابدأ رحلتك نحو نسخة أفضل من نفسك.",
+        "button": "ابدأ الآن"
+      }
+    },
+  
+    "gallerySection": {
+      "header": {
+        "title": "اكتشف فيديوهاتنا",
+        "subtitle": "استكشف محتوانا الحصري واكتشف طرق تدريبنا"
+      },
+      "videos": [
+        {
+          "title": "برنامج تدريب",
+          "videoUrl": "/img/video/video1.mp4",
+          "thumbnail": "/img/video/gym1thumb.jpg"
+        },
+        {
+          "title": "مسابقة 1",
+          "videoUrl": "/img/video/video1.mp4",
+          "thumbnail": "/img/video/gym1thumb.jpg"
+        },
+        {
+          "title": "مسابقة 2",
+          "videoUrl": "/img/video/video1.mp4",
+          "thumbnail": "/img/video/gym1thumb.jpg"
+        }
+      ]
+    },
+  
+    "galleryPhotos": {
+      "title": "تحولاتي",
+      "images": [
+        "/img/video/gym1thumb.jpg",
+        "/img/video/gym1thumb.jpg",
+        "/img/video/gym1thumb.jpg",
+        "/img/video/gym1thumb.jpg",
+        "/img/video/gym1thumb.jpg",
+        "/img/video/gym1thumb.jpg"
+      ]
+    },
+  
+    "step1": {
+      "header": "استمارة التسجيل",
+      "subheader": "قدم معلوماتك الشخصية للمتابعة.",
+      "personalInfo": "المعلومات الشخصية",
+      "placeholders": {
+        "name": "الاسم",
+        "age": "العمر",
+        "email": "البريد الإلكتروني",
+        "phone": "رقم الهاتف",
+        "location": "الموقع"
+      },
+      "gender": {
+        "male": "ذكر",
+        "female": "أنثى",
+        "error": "يرجى اختيار جنسك."
+      },
+      "validationErrors": {
+        "name": "يرجى إدخال اسمك.",
+        "age": "يرجى إدخال عمرك.",
+        "email": "يرجى إدخال بريد إلكتروني صالح.",
+        "phone": "يرجى إدخال رقم هاتف صالح.",
+        "location": "يرجى إدخال موقعك."
+      },
+      "next": "التالي"
+    },
+  
+    "step2": {
+      "header": "استمارة التسجيل",
+      "subheader": "قدم معلوماتك الشخصية للمتابعة.",
+      "measurements": "القياسات",
+      "placeholders": {
+        "height": "الطول (سم)",
+        "weight": "الوزن (كغ)"
+      },
+      "validationErrors": {
+        "height": "يرجى إدخال ارتفاع صالح (رقم موجب).",
+        "weight": "يرجى إدخال وزن صالح (رقم موجب)."
+      },
+      "next": "التالي",
+      "back": "رجوع"
+    },
+  
+    "step3": {
+      "header": "استمارة التسجيل",
+      "subheader": "قدم معلوماتك الشخصية للمتابعة.",
+      "objectives": [
+        {
+          "title": "زيادة القوة",
+          "description": "تحسين القوة والقدرة على التحمل."
+        },
+        {
+          "title": "أسلوب حياة صحي",
+          "description": "تبني أسلوب حياة أكثر صحة."
+        },
+        {
+          "title": "فقدان الوزن",
+          "description": "تحقيق أهدافك في فقدان الوزن."
+        },
+        {
+          "title": "المسابقات",
+          "description": "التحضير للمسابقات."
+        }
+      ],
+      "error": "يرجى اختيار هدف قبل المتابعة.",
+      "next": "التالي",
+      "back": "رجوع"
+    },
+  
+    "step4": {
+      "header": "استمارة التسجيل",
+      "subheader": "اختر الوقت المتاح المفضل لديك.",
+      "error": "يرجى اختيار الوقت المتاح قبل المتابعة.",
+      "finish": "انهاء",
+      "back": "رجوع",
+      "availabilities": [
+        "6ص-12م",
+        "12م-6م",
+        "6م-10م"
+      ]
+    },
+  
+    "step5": {
+      "thankYou": "شكراً لتسجيلك!",
+      "redirecting": "جارٍ إعادة التوجيه إلى واتساب...",
+      "whatsappMessage": "مرحباً! إليك المعلومات التي قدمها المستخدم:\n\nالاسم: {{name}}\nالبريد الإلكتروني: {{email}}\nالطول: {{height}} سم\nالوزن: {{weight}} كغ\nالهدف: {{objective}}\nالوقت المتاح: {{availability}}\n\nشكراً!"
+    }
+  }
+  

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
+// Styled Components
 const Section = styled.section`
   padding: 2rem;
   color: #fff;
@@ -14,7 +16,7 @@ const Header = styled.header`
   color: white; /* Match the text color in HeroSection */
 
   span {
-    color: #af1e1e ; /* Match the yellow color in HeroSection */
+    color: #af1e1e; /* Match the yellow color in HeroSection */
     font-weight: bold; /* Ensure normal weight for the span */
     display: block; /* Keep the span on a separate line */
     font-size: 4vh; /* Slightly smaller than the main title */
@@ -40,7 +42,6 @@ const VideoContainer = styled.div`
   height: auto; /* Keep the aspect ratio */
 `;
 
-
 const VideoList = styled.div`
   flex: 1;
   display: flex;
@@ -56,16 +57,14 @@ const VideoItem = styled.div`
   border: ${({ isActive }) => (isActive ? "1px solid #af1e1e" : "2px solid transparent")};
   border-radius: 10px;
   cursor: pointer;
-  background: ${({ isActive }) => (isActive ? "rgba(243, 97, 0, 0.2)" : "rgba(255, 255, 255, 0.1)")}; /* Orange transparent for active video */
-  transition: transform 0.2s ease-in-out; /* Smooth transition for scaling effect */
+  background: ${({ isActive }) => (isActive ? "rgba(243, 97, 0, 0.2)" : "rgba(255, 255, 255, 0.1)")};
+  transition: transform 0.2s ease-in-out;
 
   &:hover {
     background: ${({ isActive }) => (isActive ? "rgba(243, 97, 0, 0.33)" : "rgba(255, 255, 255, 0.2)")};
-    transform: scale(1.05); /* Increase size by 5% on hover */
+    transform: scale(1.05);
   }
 `;
-
-
 
 const Thumbnail = styled.img`
   width: 60px;
@@ -79,31 +78,16 @@ const VideoTitle = styled.span`
   font-weight: bold;
 `;
 
-const videos = [
-  {
-    title: "Training Program",
-    videoUrl: "/img/video/video1.mp4",
-    thumbnail: "/img/video/gym1thumb.jpg",
-  },
-  {
-    title: "Competition1",
-    videoUrl: "/img/video/video1.mp4",
-    thumbnail: "/img/video/gym1thumb.jpg",
-  },
-  {
-    title: "Competition2",
-    videoUrl: "/img/video/video1.mp4",
-    thumbnail: "/img/video/gym1thumb.jpg",
-  },
-];
-
 const GallerySection = () => {
+  const { t } = useTranslation();
+  const videos = t("gallerySection.videos", { returnObjects: true });
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
 
   return (
     <Section>
       <Header>
-        Discover Our Videos <span>Explore our exclusive content and discover our training methods</span>
+        {t("gallerySection.header.title")}{" "}
+        <span>{t("gallerySection.header.subtitle")}</span>
       </Header>
       <Content>
         <VideoContainer>
