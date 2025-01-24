@@ -1,12 +1,12 @@
 {
     "heroSection": {
-        "title": "Transform Your <span>Body</span> <br /> Your <span>Life</span>",
-        "subtitle": "Discover your best version with personalized programs and professional guidance.",
+        "title": "Transform Your <span>Body</span> <br /> And Your <span>Life</span>",
+        "subtitle": "Discover your best self with personalized programs and professional guidance.",
         "startButton": "Start Now"
     },
     "subscriptionSection": {
         "title": "My Plans",
-        "subtitle": "Choose the plan that best suits your goals. All prices include personalized support and unlimited access to assistance.",
+        "subtitle": "Choose the program that best suits your goals. All prices include personalized follow-up and unlimited support.",
         "currency": {
             "tnd": "TND",
             "eur": "EUR",
@@ -37,35 +37,30 @@
                 "description": "Nutritional tips to optimize your results"
             },
             {
-                "title": "Ongoing Support",
-                "description": "Direct access to your coach for regular follow-up"
+                "title": "Continuous Support",
+                "description": "Direct access to your coach for regular follow-ups"
             }
         ],
         "section": {
-            "heading": "Ready to start your transformation?",
-            "description": "Join our community and start your journey toward a better version of yourself.",
+            "heading": "Ready to Start Your Transformation?",
+            "description": "Join our community and begin your journey to becoming your best self.",
             "button": "Start Now"
         }
     },
     "gallerySection": {
         "header": {
             "title": "Discover Our Videos",
-            "subtitle": "Explore our exclusive content and discover our training methods"
+            "subtitle": "Explore exclusive content and learn about our training methods"
         },
         "videos": [
             {
                 "title": "Training Program",
-                "videoUrl": "/img/video/video1.mp4",
-                "thumbnail": "/img/video/gym1thumb.jpg"
+                "videoUrl": "/img/resources/vid1.mp4",
+                "thumbnail": "/img/resources/coach.jpeg"
             },
             {
                 "title": "Competition 1",
-                "videoUrl": "/img/video/video1.mp4",
-                "thumbnail": "/img/video/gym1thumb.jpg"
-            },
-            {
-                "title": "Competition 2",
-                "videoUrl": "/img/video/video1.mp4",
+                "videoUrl": "/img/resources/vid2.mp4",
                 "thumbnail": "/img/video/gym1thumb.jpg"
             }
         ]
@@ -73,17 +68,18 @@
     "galleryPhotos": {
         "title": "My Transformations",
         "images": [
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg"
+            "/img/resources/trans1.jpeg",
+            "/img/resources/trans2.jpeg",
+            "/img/resources/trans3.jpeg",
+            "/img/resources/trans4.jpeg",
+            "/img/resources/trans5.jpeg",
+            "/img/resources/trans8.jpeg",
+            "/img/resources/trans9.jpeg"
         ]
     },
     "step1": {
-        "header": "Sign-Up Form",
-        "subheader": "Please provide your personal information to continue.",
+        "header": "Registration Form",
+        "subheader": "Provide your personal information to proceed.",
         "personalInfo": "Personal Information",
         "placeholders": {
             "name": "Name",
@@ -98,17 +94,17 @@
             "error": "Please select your gender."
         },
         "validationErrors": {
-            "name": "Please enter your name (only letters allowed)",
-            "age": "Please enter your age (between 16 and 65)",
-            "email": "Please enter a valid email address (Abc@example.com)",
-            "phone": "Please enter a valid phone number (+xxx xxxxxxxx)",
+            "name": "Please enter your name (letters only).",
+            "age": "Please enter your age (between 16 and 65).",
+            "email": "Please enter a valid email address (e.g., Abc@example.com).",
+            "phone": "Please enter a valid phone number (e.g., +xxx xxxxxxxx).",
             "location": "Please enter your location."
         },
         "next": "Next"
     },
     "step2": {
-        "header": "Sign-Up Form",
-        "subheader": "Please provide your personal information to continue.",
+        "header": "Registration Form",
+        "subheader": "Provide your personal information to proceed.",
         "measurements": "Measurements",
         "placeholders": {
             "height": "Height (cm)",
@@ -122,8 +118,8 @@
         "back": "Back"
     },
     "step3": {
-        "header": "Sign-Up Form",
-        "subheader": "Please provide your personal information to continue.",
+        "header": "Registration Form",
+        "subheader": "Select your goal before proceeding.",
         "objectives": [
             {
                 "title": "Get Stronger",
@@ -139,36 +135,36 @@
             },
             {
                 "title": "Competition",
-                "description": "Prepare for the competition."
+                "description": "Prepare for competition."
             }
         ],
-        "error": "Please select an objective before continuing.",
+        "error": "Please select a goal before proceeding.",
         "next": "Next",
         "back": "Back"
     },
     "step4": {
-        "header": "Sign-Up Form",
+        "header": "Registration Form",
         "subheader": "Select your preferred time slot.",
-        "error": "Please select availability before continuing.",
+        "error": "Please select availability before proceeding.",
         "finish": "Finish",
         "back": "Back",
         "availabilities": [
-            "6am-12pm",
-            "12pm-6pm",
-            "6pm-10pm"
+            "6 AM - 12 PM",
+            "12 PM - 6 PM",
+            "6 PM - 10 PM"
         ]
     },
     "step5": {
         "name": "Name",
         "email": "Email",
-        "message": "Hello, here is my information!",
+        "message": "Hi, here is my information!",
         "height": "Height",
         "weight": "Weight",
         "objective": "Objective",
         "availability": "Availability",
         "gender": "Gender",
         "location": "Location",
-        "thankYou": "Thank you for signing up!",
+        "thankYou": "Thank you for registering!",
         "redirecting": "Redirecting to WhatsApp...",
         "whatsappMessage": "Hello! Here is the information submitted by the user:\n\nName: {{name}}\nEmail: {{email}}\nHeight: {{height}} cm\nWeight: {{weight}} kg\nObjective: {{objective}}\nAvailability: {{availability}}\n\nThank you!",
         "male": "Male",
@@ -177,9 +173,9 @@
         "objective2": "Healthy Lifestyle",
         "objective3": "Weight Loss",
         "objective4": "Competition",
-        "availability1": "6am-12pm",
-        "availability2": "12pm-6pm",
-        "availability3": "6pm-10pm",
+        "availability1": "6 AM - 12 PM",
+        "availability2": "12 PM - 6 PM",
+        "availability3": "6 PM - 10 PM",
         "finalmessage": "Goodbye!"
     }
 }

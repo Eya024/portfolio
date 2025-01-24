@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
+const Logo = styled.div`
+  position: absolute; /* Place it in the top-left corner */
+  top: 3vh;
+  left: 3vh;
+  img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -105,6 +117,9 @@ const Step4 = ({ formData, onFinish, onBack }) => {
 
     const availabilities = t("step4.availabilities", { returnObjects: true });
 
+    const navigate = useNavigate();
+
+
     // Use useEffect to update selectedAvailability when formData.availability changes
     useEffect(() => {
         setSelectedAvailability(formData.availability);
@@ -114,7 +129,9 @@ const Step4 = ({ formData, onFinish, onBack }) => {
         setSelectedAvailability(index);
         setError(""); // Clear error on selection
     };
-
+    const handleLogoClick = () => {
+        navigate("/"); // Redirect to the home route
+    };
     const handleFinish = () => {
         if (selectedAvailability !== null) {
             onFinish(selectedAvailability); // Pass the selected availability index
@@ -129,6 +146,9 @@ const Step4 = ({ formData, onFinish, onBack }) => {
 
     return (
         <Container>
+            <Logo onClick={handleLogoClick}>
+                <img src="/img/logo.png" alt="Logo" />
+            </Logo>
             <Header>
                 {t("step4.header")} <span>{t("step4.subheader")}</span>
             </Header>

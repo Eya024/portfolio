@@ -55,30 +55,27 @@
         "videos": [
             {
                 "title": "Programme d'Entraînement",
-                "videoUrl": "/img/video/video1.mp4",
-                "thumbnail": "/img/video/gym1thumb.jpg"
+                "videoUrl": "/img/resources/vid1.mp4",
+                "thumbnail": "/img/resources/coach.jpeg"
             },
             {
                 "title": "Compétition 1",
-                "videoUrl": "/img/video/video1.mp4",
-                "thumbnail": "/img/video/gym1thumb.jpg"
-            },
-            {
-                "title": "Compétition 2",
-                "videoUrl": "/img/video/video1.mp4",
+                "videoUrl": "/img/resources/vid2.mp4",
                 "thumbnail": "/img/video/gym1thumb.jpg"
             }
+            
         ]
     },
     "galleryPhotos": {
         "title": "Mes Transformations",
         "images": [
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg",
-            "/img/video/gym1thumb.jpg"
+            "/img/resources/trans1.jpeg",
+            "/img/resources/trans2.jpeg",
+            "/img/resources/trans3.jpeg",
+            "/img/resources/trans4.jpeg",
+            "/img/resources/trans5.jpeg",
+            "/img/resources/trans8.jpeg",
+            "/img/resources/trans9.jpeg"
         ]
     },
     "step1": {

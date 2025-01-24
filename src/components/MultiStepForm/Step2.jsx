@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import { useTranslation } from "react-i18next";
+
+const Logo = styled.div`
+  position: absolute; /* Place it in the top-left corner */
+  top: 3vh;
+  left: 3vh;
+  img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -99,85 +112,94 @@ const Button = styled.button`
 `;
 
 const Step2 = ({ formData = {}, updateFormData, nextStep, prevStep }) => {
-  const { height = "", weight = "" } = formData;
-  const { t } = useTranslation();
-  const [errors, setErrors] = useState({ height: "", weight: "" });
+    const { height = "", weight = "" } = formData;
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+    const [errors, setErrors] = useState({ height: "", weight: "" });
 
-  const validateField = (fieldName, value) => {
-    let error = "";
+    const handleLogoClick = () => {
+        navigate("/"); // Redirect to the home route
+    };
 
-    if (fieldName === "height") {
-      if (!value || isNaN(value) || value < 140 || value > 210) {
-        error = t("step2.validationErrors.height");
-      }
-    }
+    const validateField = (fieldName, value) => {
+        let error = "";
 
-    if (fieldName === "weight") {
-      if (!value || isNaN(value) || value < 40 || value > 250) {
-        error = t("step2.validationErrors.weight");
-      }
-    }
+        if (fieldName === "height") {
+            if (!value || isNaN(value) || value < 140 || value > 210) {
+                error = t("step2.validationErrors.height");
+            }
+        }
 
-    setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error }));
-  };
+        if (fieldName === "weight") {
+            if (!value || isNaN(value) || value < 40 || value > 250) {
+                error = t("step2.validationErrors.weight");
+            }
+        }
 
-  const handleInputChange = (fieldName, value) => {
-    updateFormData(fieldName, value); // Update the form data
-    validateField(fieldName, value); // Validate the field in real-time
-  };
+        setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error }));
+    };
 
-  const validateFields = () => {
-    validateField("height", height);
-    validateField("weight", weight);
-    return !errors.height && !errors.weight;
-  };
+    const handleInputChange = (fieldName, value) => {
+        updateFormData(fieldName, value);
+        validateField(fieldName, value);
+    };
 
-  const handleNext = () => {
-    if (validateFields()) {
-      nextStep();
-    }
-  };
+    const validateFields = () => {
+        validateField("height", height);
+        validateField("weight", weight);
+        return !errors.height && !errors.weight;
+    };
 
-  return (
-    <Container>
-      <Header>
-        {t("step2.header")} <span>{t("step2.subheader")}</span>
-      </Header>
-      <FormContainer>
-        <form>
-          <Label>
-            <span>{t("step2.measurements")}</span>
-          </Label>
-          <Input
-            type="number"
-            placeholder={t("step2.placeholders.height")}
-            value={height}
-            onChange={(e) => handleInputChange("height", e.target.value)}
-            className={errors.height ? "is-invalid" : ""}
-          />
-          {errors.height && <ErrorMessage>{errors.height}</ErrorMessage>}
+    const handleNext = () => {
+        if (validateFields()) {
+            nextStep();
+        }
+    };
 
-          <Input
-            type="number"
-            placeholder={t("step2.placeholders.weight")}
-            value={weight}
-            onChange={(e) => handleInputChange("weight", e.target.value)}
-            className={errors.weight ? "is-invalid" : ""}
-          />
-          {errors.weight && <ErrorMessage>{errors.weight}</ErrorMessage>}
 
-          <ButtonGroup>
-            <Button type="button" onClick={prevStep}>
-              {t("step2.back")}
-            </Button>
-            <Button type="button" primary onClick={handleNext}>
-              {t("step2.next")}
-            </Button>
-          </ButtonGroup>
-        </form>
-      </FormContainer>
-    </Container>
-  );
+    return (
+        <Container>
+            <Logo onClick={handleLogoClick}>
+                <img src="/img/logo.png" alt="Logo" />
+            </Logo>
+            <Header>
+                {t("step2.header")} <span>{t("step2.subheader")}</span>
+            </Header>
+            <FormContainer>
+                <form>
+                    <Label>
+                        <span>{t("step2.measurements")}</span>
+                    </Label>
+                    <Input
+                        type="number"
+                        placeholder={t("step2.placeholders.height")}
+                        value={height}
+                        onChange={(e) => handleInputChange("height", e.target.value)}
+                        className={errors.height ? "is-invalid" : ""}
+                    />
+                    {errors.height && <ErrorMessage>{errors.height}</ErrorMessage>}
+
+                    <Input
+                        type="number"
+                        placeholder={t("step2.placeholders.weight")}
+                        value={weight}
+                        onChange={(e) => handleInputChange("weight", e.target.value)}
+                        className={errors.weight ? "is-invalid" : ""}
+                    />
+                    {errors.weight && <ErrorMessage>{errors.weight}</ErrorMessage>}
+
+                    <ButtonGroup>
+                        <Button type="button" onClick={prevStep}>
+                            {t("step2.back")}
+                        </Button>
+                        <Button type="button" primary onClick={handleNext}>
+                            {t("step2.next")}
+                        </Button>
+                    </ButtonGroup>
+                </form>
+            </FormContainer>
+        </Container>
+    );
 };
 
 export default Step2;

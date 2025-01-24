@@ -1,53 +1,102 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
+
+
+const Logo = styled.div`
+  position: absolute;
+  top: 3vh;
+  left: 3vh;
+
+  img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      width: 80px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    top: 2vh; /* Adjust position on medium screens */
+  }
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Change alignment to allow natural stacking */
-  min-height: 100vh; 
+  justify-content: flex-start;
+  min-height: 100vh;
   background: url("background-image-url.jpg") no-repeat center center/cover;
   color: white;
   margin: 0;
-  padding: 20px; /* Add some padding to prevent content from hitting the edges */
-  overflow: auto; /* Enable scrolling for the entire page */
-`;
+  padding: 20px;
+  overflow: auto;
 
+  @media (max-width: 1024px) {
+    padding-top: 140px; /* Ensure space for the logo and content */
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 120px;
+  }
+`;
 
 const FormContainer = styled.div`
   background: rgba(0, 0, 0, 0.8);
   border-radius: 12px;
   padding: 20px;
-  max-width: 480px; 
+  max-width: 480px;
+  margin-top: 25px;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  overflow: hidden; /* Prevent overflow of internal content */
-  display: flex; /* Use flexbox for internal layout */
-  flex-direction: column; /* Stack children vertically */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin-top: 20px; /* Ensure separation between logo and form */
+  }
 `;
 
 
 const Header = styled.h2`
-  font-size: 2rem; /* Smaller font size */
+  font-size: 2rem;
   text-align: center;
   margin-bottom: 15px;
+    margin-top: 25px;
 
-  span {
-    color: #ffc107;
-    font-size: 1.8rem; /* Match the main header size */
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+    margin-top: 10px;  /* Add margin to separate from logo */
   }
 `;
 
 const SubHeader = styled.p`
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1.2rem; /* Smaller font size */
+  font-size: 1.2rem;
   color: #ccc;
+
+  span {
+    color: #ffc107;
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem; /* Smaller font for mobile screens */
+    span {
+      font-size: 1.4rem;
+    }
+  }
 `;
+
 
 const Label = styled.div`
   display: flex;
@@ -163,6 +212,13 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
         return num >= 16 && num <= 65; // Check if age is between 16 and 65
     };
 
+    const navigate = useNavigate();
+    const handleLogoClick = () => {
+        navigate("/"); // Redirect to the home route
+    };
+
+
+
     const handleInputChange = (field, value) => {
         updateFormData(field, value); // Update the parent component's formData
 
@@ -223,10 +279,13 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
 
     return (
         <Container>
+            <Logo onClick={handleLogoClick}>
+                <img src="/img/logo.png" alt="Logo" />
+            </Logo>
             <Header>
-                {t("step1.header")} <span>{t("step1.subheader")}</span>
+                {t("step1.header")}
             </Header>
-            <SubHeader>Provide your personal information to proceed.</SubHeader>
+            <SubHeader><span>{t("step1.subheader")}</span></SubHeader>
             <FormContainer>
                 <form noValidate onSubmit={handleSubmit}>
                     <Label>

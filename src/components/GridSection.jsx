@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 
 const GridContainer = styled.div`
@@ -65,8 +66,16 @@ const Section = styled.section`
 `;
 
 const GridSection = () => {
-    const { t } = useTranslation();
+  const { t, i18n } = useTranslation(); // Initialize the useTranslation hook
+      const navigate = useNavigate(); // React Router's hook to navigate
+    
   
+
+      const handleButtonClick = () => {
+        // Get the current language from i18n and use it to navigate
+        const currentLanguage = i18n.language || "fr"; // Default to 'fr' if no language is set
+        navigate(`/inscription/${currentLanguage}`); // Navigate to the correct path
+      };
     const gridItems = t("gridSection.gridItems", { returnObjects: true });
   
     return (
@@ -82,7 +91,7 @@ const GridSection = () => {
         <Section>
           <h2>{t("gridSection.section.heading")}</h2>
           <p>{t("gridSection.section.description")}</p>
-          <button>{t("gridSection.section.button")}</button>
+          <button onClick={handleButtonClick} >{t("gridSection.section.button")}</button>
         </Section>
       </>
     );

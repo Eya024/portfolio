@@ -15,6 +15,7 @@ const Logo = styled.div`
   img {
     width: 100px;
     height: auto;
+    cursor: pointer; /* Make it look clickable */
   }
 `;
 
@@ -107,16 +108,14 @@ const Header = () => {
     { code: 'ar', label: 'العربية' },
   ];
 
-  // Retrieve the stored language or default to French
   const storedLanguage = localStorage.getItem('language') || 'fr';
   const [selectedLanguage, setSelectedLanguage] = useState(storedLanguage);
 
   useEffect(() => {
-    const currentLanguage = i18n.language || 'fr'; // Default to 'fr' if no language is set
-    setSelectedLanguage(currentLanguage); // Sync the dropdown with the actual current language
-    localStorage.setItem('language', currentLanguage); // Ensure local storage is updated
+    const currentLanguage = i18n.language || 'fr'; 
+    setSelectedLanguage(currentLanguage); 
+    localStorage.setItem('language', currentLanguage);
   }, [i18n.language]);
-  
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -125,19 +124,23 @@ const Header = () => {
   const handleLanguageSelect = (code) => {
     setSelectedLanguage(code);
     setIsDropdownOpen(false);
-    localStorage.setItem('language', code); // Update the local storage language
-    navigate(`/home/${code}`); // Navigate to the home page in the selected language
+    localStorage.setItem('language', code);
+    navigate(`/home/${code}`);
+  };
+
+  const handleLogoClick = () => {
+    navigate('/'); // Redirect to the home page
   };
 
   return (
     <Navbar>
-      <Logo>
+      <Logo onClick={handleLogoClick}>
         <img src="/img/logo.png" alt="Logo" />
       </Logo>
 
       <NavIcons>
         <SocialIcons>
-          <a href="#instagram" aria-label="Instagram">
+          <a href="https://www.instagram.com/mo_coaching1/" aria-label="Instagram">
             <i className="fab fa-instagram"></i>
           </a>
           <a href="#whatsapp" aria-label="WhatsApp">

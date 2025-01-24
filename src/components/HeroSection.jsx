@@ -58,15 +58,20 @@ const StartButton = styled.button`
 `;
 
 const ImageContainer = styled.div`
-  max-width: 40%;
+  width: 500px; /* Fixed width */
+  height: 400px; /* Fixed height */
+  background-color: black; /* Black background */
   border-radius: 1vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 
   img {
-    width: 100%;
-    height: auto;
-    display: block;
+    max-width: 100%; /* Maintain width constraints */
+    max-height: 100%; /* Maintain height constraints */
+    object-fit: contain; /* Ensures the entire image fits in the container */
   }
 `;
 
@@ -91,7 +96,7 @@ const HeroSection = () => {
         </StartButton>
       </Content>
       <ImageContainer>
-        <img src="/img/hero/hero-1.jpg" alt={t("heroSection.title")} />
+        <img src="/img/resources/coach1.jpeg" alt={t("heroSection.title")} />
       </ImageContainer>
     </HeroSectionContainer>
   );

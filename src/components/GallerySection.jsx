@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
@@ -79,40 +79,46 @@ const VideoTitle = styled.span`
 `;
 
 const GallerySection = () => {
-  const { t } = useTranslation();
-  const videos = t("gallerySection.videos", { returnObjects: true });
-  const [selectedVideo, setSelectedVideo] = useState(videos[0]);
+    const { t } = useTranslation();
+    const videos = t("gallerySection.videos", { returnObjects: true });
+    const [selectedVideo, setSelectedVideo] = useState(videos[0]);
+    const videoRef = useRef(null); // Create a reference to the video element
 
-  return (
-    <Section>
-      <Header>
-        {t("gallerySection.header.title")}{" "}
-        <span>{t("gallerySection.header.subtitle")}</span>
-      </Header>
-      <Content>
-        <VideoContainer>
-          <video
-            src={selectedVideo.videoUrl}
-            controls
-            autoPlay
-            style={{ borderRadius: "10px", width: "100%", height: "100%" }}
-          />
-        </VideoContainer>
-        <VideoList>
-          {videos.map((video, index) => (
-            <VideoItem
-              key={index}
-              onClick={() => setSelectedVideo(video)}
-              isActive={selectedVideo.title === video.title && selectedVideo.videoUrl === video.videoUrl}
-            >
-              <Thumbnail src={video.thumbnail} alt={video.title} />
-              <VideoTitle>{video.title}</VideoTitle>
-            </VideoItem>
-          ))}
-        </VideoList>
-      </Content>
-    </Section>
-  );
+    return (
+        <Section>
+            <Header>
+                {t("gallerySection.header.title")}{" "}
+                <span>{t("gallerySection.header.subtitle")}</span>
+            </Header>
+            <Content>
+                <VideoContainer>
+                    <video
+                        ref={videoRef} // Attach the reference to the video element
+                        src={selectedVideo.videoUrl}
+                        controls
+                        disablePictureInPicture
+                        controlsList="nodownload"
+                        style={{ borderRadius: "10px", width: "100%", height: "100%" }}
+                    />
+                </VideoContainer>
+                <VideoList>
+                    {videos.map((video, index) => (
+                        <VideoItem
+                            key={index}
+                            onClick={() => {
+                                setSelectedVideo(video);
+                                videoRef.current && videoRef.current.pause(); // Pause the current video before switching
+                            }}
+                            isActive={selectedVideo.title === video.title && selectedVideo.videoUrl === video.videoUrl}
+                        >
+                            <Thumbnail src={video.thumbnail} alt={video.title} />
+                            <VideoTitle>{video.title}</VideoTitle>
+                        </VideoItem>
+                    ))}
+                </VideoList>
+            </Content>
+        </Section>
+    );
 };
 
 export default GallerySection;

@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
+const Logo = styled.div`
+  position: absolute; /* Place it in the top-left corner */
+  top: 3vh;
+  left: 3vh;
+  img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -140,6 +151,11 @@ const Step3 = ({ formData, onNext, onBack }) => {
         },
     ];
 
+    const navigate = useNavigate();
+    const handleLogoClick = () => {
+        navigate("/"); // Redirect to the home route
+    };
+
     const handleSelect = (index) => {
         setSelectedObjective(index);
         setError(""); // Clear any existing error when a selection is made
@@ -155,6 +171,9 @@ const Step3 = ({ formData, onNext, onBack }) => {
 
     return (
         <Container>
+            <Logo onClick={handleLogoClick}>
+                <img src="/img/logo.png" alt="Logo" />
+            </Logo>
             <Header>
                 {t("step3.header")} <span>{t("step3.subheader")}</span>
             </Header>
