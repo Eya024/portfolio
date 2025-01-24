@@ -29,7 +29,8 @@ const CurrencyButton = styled.button`
   color: ${({ active }) => (active ? '#111' : '#fff')};
   border: none;
   padding: 10px 20px;
-  margin: 0 5px;
+  margin: 0 5px;  margin-top:5px;
+
   font-size: 1rem;
   cursor: pointer;
   border-radius: 5px;

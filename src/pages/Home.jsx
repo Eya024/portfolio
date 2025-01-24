@@ -6,32 +6,53 @@ import SubscriptionSection from "../components/SubscriptionSection";
 import GalleryPhotos from "../components/GalleryPhotos";
 import GridSection from "../components/GridSection";
 
-
 import styled from "styled-components";
 
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-              url('/img/resources/coach.jpeg') no-repeat center center/cover; /* Apply transparency with linear-gradient */
-  background-attachment: fixed; /* Keeps the background fixed while scrolling */
   min-height: 100vh;
   color: white;
+  padding: 2rem; /* Added padding to maintain spacing */
+  position: static; /* Set position to static to fix flickering */
+
+  /* Background for larger screens */
+  @media (min-width: 769px) {
+    &::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('/img/resources/coach.jpeg') no-repeat center center/cover;
+      z-index: -1; /* Place the pseudo-element behind the content */
+    }
+  }
+
+  /* Background for smaller screens */
+  @media (max-width: 768px) {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('/img/resources/coach.jpeg') no-repeat center center/cover;
+    background-attachment: fixed; /* Fixed background on mobile */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the background image */
+    position: static; /* Set position to static to fix flickering */
+  }
 `;
 
-
-
 const Home = () => {
-    return (
-        <HomeContainer>
-            <Header />
-            <HeroSection />
-            <GallerySection />
-            <SubscriptionSection />
-            <GalleryPhotos />
-            <GridSection />
-        </HomeContainer>
-    );
+  return (
+    <HomeContainer>
+      <Header />
+      <HeroSection />
+      <GallerySection />
+      <SubscriptionSection />
+      <GalleryPhotos />
+      <GridSection />
+    </HomeContainer>
+  );
 };
 
 export default Home;

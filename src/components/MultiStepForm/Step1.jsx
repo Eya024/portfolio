@@ -3,25 +3,18 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Logo = styled.div`
-  position: absolute;
-  top: 3vh;
-  left: 3vh;
+  text-align: center; /* Center the logo */
+  margin-bottom: 10px; /* Add space between logo and header */
 
   img {
-    width: 100px;
+    width: 80px; /* Smaller logo for mobile */
     height: auto;
     cursor: pointer;
 
-    @media (max-width: 768px) {
-      width: 80px;
+    @media (min-width: 769px) {
+      width: 100px; /* Larger logo for desktop */
     }
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    top: 2vh; /* Adjust position on medium screens */
   }
 `;
 
@@ -31,18 +24,13 @@ const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  background: url("background-image-url.jpg") no-repeat center center/cover;
   color: white;
   margin: 0;
   padding: 20px;
   overflow: auto;
 
-  @media (max-width: 1024px) {
-    padding-top: 140px; /* Ensure space for the logo and content */
-  }
-
   @media (max-width: 768px) {
-    padding-top: 120px;
+    padding: 10px; /* Reduce padding for smaller screens */
   }
 `;
 
@@ -59,22 +47,20 @@ const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
-    margin-top: 20px; /* Ensure separation between logo and form */
+  @media (max-width: 768px) {
+    padding: 15px; /* Reduce padding for smaller screens */
+    margin-top: 15px; /* Adjust margin for smaller screens */
   }
 `;
-
 
 const Header = styled.h2`
   font-size: 2rem;
   text-align: center;
   margin-bottom: 15px;
-    margin-top: 25px;
-
+  margin-top: 0; /* Remove top margin to place it directly under the logo */
 
   @media (max-width: 768px) {
-    font-size: 1.5rem; /* Adjust font size for smaller screens */
-    margin-top: 10px;  /* Add margin to separate from logo */
+    font-size: 1.5rem; /* Smaller font size for mobile */
   }
 `;
 
@@ -97,7 +83,6 @@ const SubHeader = styled.p`
   }
 `;
 
-
 const Label = styled.div`
   display: flex;
   align-items: center;
@@ -107,6 +92,12 @@ const Label = styled.div`
     font-size: 1rem; /* Reduced font size */
     font-weight: bold;
     margin-left: 10px;
+  }
+
+  @media (max-width: 768px) {
+    span {
+      font-size: 0.9rem; /* Smaller font for mobile screens */
+    }
   }
 `;
 
@@ -141,23 +132,31 @@ const Input = styled.input`
     background: #333; /* Keep dark background */
     border-color: #28a745; /* Bootstrap's success color */
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem; /* Smaller font for mobile screens */
+    padding: 8px; /* Reduce padding for smaller screens */
+  }
 `;
-
-
 
 const GenderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack gender buttons vertically on smaller screens */
+    gap: 10px; /* Add space between buttons */
+  }
 `;
 
 const GenderButton = styled.button`
   flex: 1;
   padding: 10px;
   margin: 0 6px;
-  border: 1px solid ${(props) => (props.active === "true" ? "#ffc107" : "#555")}; /* Fix here */
-  background: ${(props) => (props.active === "true" ? "#ffc107" : "#333")}; /* Fix here */
-  color: ${(props) => (props.active === "true" ? "#000" : "#fff")}; /* Fix here */
+  border: 1px solid ${(props) => (props.active === "true" ? "#ffc107" : "#555")};
+  background: ${(props) => (props.active === "true" ? "#ffc107" : "#333")};
+  color: ${(props) => (props.active === "true" ? "#000" : "#fff")};
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
@@ -167,15 +166,21 @@ const GenderButton = styled.button`
     background: #ffc107;
     color: #000;
   }
+
+  @media (max-width: 768px) {
+    margin: 0; /* Remove horizontal margin on smaller screens */
+    font-size: 0.9rem; /* Smaller font for mobile screens */
+    padding: 8px; /* Reduce padding for smaller screens */
+  }
 `;
 
 const Button = styled.button`
   background: #ffc107;
   color: #000;
-  padding: 10px 20px; /* Smaller padding */
+  padding: 10px 20px;
   border: none;
-  border-radius: 8px; /* Smaller border radius */
-  font-size: 1.2rem; /* Reduced font size */
+  border-radius: 8px;
+  font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
   width: 100%;
@@ -184,233 +189,220 @@ const Button = styled.button`
   &:hover {
     background: #e0a800;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1rem; /* Smaller font for mobile screens */
+    padding: 8px 16px; /* Reduce padding for smaller screens */
+  }
 `;
 
 const Step1 = ({ formData, updateFormData, nextStep }) => {
-    const { t } = useTranslation();
-    const [gender, setGender] = useState(formData.gender || ""); // Initialize gender with formData.gender
+  const { t } = useTranslation();
+  const [gender, setGender] = useState(formData.gender || "");
 
-    const [formState, setFormState] = useState({
-        name: { touched: false },
-        age: { touched: false },
-        email: { touched: false },
-        phone: { touched: false },
-        //gender: { touched: false },
+  const [formState, setFormState] = useState({
+    name: { touched: false },
+    age: { touched: false },
+    email: { touched: false },
+    phone: { touched: false },
+    location: { touched: false },
+  });
 
-        location: { touched: false },
-    });
+  const isValidName = (name) => /^[a-zA-Z\u0600-\u06FF\s]+$/.test(name);
+  const isValidPhone = (phone) => /^\+\d{1,15}$/.test(phone);
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidAge = (age) => {
+    const num = Number(age);
+    return num >= 16 && num <= 65;
+  };
 
-    const isValidName = (name) => /^[a-zA-Z\s]+$/.test(name); // Name must only contain alphabets and spaces
-    const isValidPhone = (phone) => /^\+\d{1,15}$/.test(phone); // Phone must start with "+" followed by 1-15 digits
-    const isValidEmail = (email) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Basic email validation
+  const navigate = useNavigate();
+  const handleLogoClick = () => {
+    navigate("/");
+  };
 
+  const handleInputChange = (field, value) => {
+    updateFormData(field, value);
 
+    let isValid = true;
+    if (field === "name") isValid = isValidName(value);
+    if (field === "phone") isValid = isValidPhone(value);
+    if (field === "email") isValid = isValidEmail(value);
+    if (field === "age") isValid = isValidAge(value);
 
-    const isValidAge = (age) => {
-        const num = Number(age); // Convert input to a number
-        return num >= 16 && num <= 65; // Check if age is between 16 and 65
-    };
+    setFormState((prev) => ({
+      ...prev,
+      [field]: { ...prev[field], touched: true, isValid },
+    }));
+  };
 
-    const navigate = useNavigate();
-    const handleLogoClick = () => {
-        navigate("/"); // Redirect to the home route
-    };
+  const handleBlur = (field) => {
+    setFormState((prev) => ({
+      ...prev,
+      [field]: { ...prev[field], touched: true },
+    }));
+  };
 
+  const handleGenderClick = (selectedGender) => {
+    setGender(selectedGender);
+    updateFormData("gender", selectedGender);
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleInputChange = (field, value) => {
-        updateFormData(field, value); // Update the parent component's formData
+    const requiredFields = ["name", "email", "age", "phone", "location", "gender"];
+    const formIsValid =
+      requiredFields.every((field) => formData[field] && formData[field].trim() !== "") &&
+      isValidName(formData.name) &&
+      isValidPhone(formData.phone) &&
+      isValidEmail(formData.email);
 
-        // Validate the input dynamically
-        let isValid = true;
-        if (field === "name") isValid = isValidName(value);
-        if (field === "phone") isValid = isValidPhone(value);
-        if (field === "email") isValid = isValidEmail(value);
-        if (field === "age") isValid = isValidAge(value); // Validate age
-
-        // Update formState to reflect validity
-        setFormState((prev) => ({
-            ...prev,
-            [field]: { ...prev[field], touched: true, isValid },
-        }));
-    };
-
-
-    const handleBlur = (field) => {
-        setFormState((prev) => ({
-            ...prev,
-            [field]: { ...prev[field], touched: true },
-        }));
-    };
-
-    const handleGenderClick = (selectedGender) => {
-        setGender(selectedGender); // Update local gender state
-        updateFormData("gender", selectedGender); // Update formData in the parent component
-    };
-
-
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const requiredFields = ["name", "email", "age", "phone", "location", "gender"];
-        const formIsValid =
-            requiredFields.every((field) => formData[field] && formData[field].trim() !== "") &&
-            isValidName(formData.name) &&
-            isValidPhone(formData.phone) &&
-            isValidEmail(formData.email)
-
-        if (formIsValid) {
-            nextStep(); // Proceed to the next step
-        } else {
-            // Show validation errors
-            setFormState((prev) => {
-                const updatedState = {};
-                for (let key of requiredFields) {
-                    updatedState[key] = { touched: true };
-                }
-                return updatedState;
-            });
+    if (formIsValid) {
+      nextStep();
+    } else {
+      setFormState((prev) => {
+        const updatedState = {};
+        for (let key of requiredFields) {
+          updatedState[key] = { touched: true };
         }
-    };
+        return updatedState;
+      });
+    }
+  };
 
-
-    return (
-        <Container>
-            <Logo onClick={handleLogoClick}>
-                <img src="/img/logo.png" alt="Logo" />
-            </Logo>
-            <Header>
-                {t("step1.header")}
-            </Header>
-            <SubHeader><span>{t("step1.subheader")}</span></SubHeader>
-            <FormContainer>
-                <form noValidate onSubmit={handleSubmit}>
-                    <Label>
-                        <span>{t("step1.personalInfo")}</span>
-                    </Label>
-                    <div className="mb-3">
-                        <Input
-                            type="text"
-                            placeholder={t("step1.placeholders.name")}
-                            value={formData.name}
-                            onChange={(e) => handleInputChange("name", e.target.value)}
-                            onBlur={() => handleBlur("name")}
-                            required
-                            className={
-                                formState.name.touched && (!formState.name.isValid || !formData.name.trim())
-                                    ? "is-invalid"
-                                    : "is-valid"
-                            }
-                        />
-                        {formState.name.touched && !formState.name.isValid && (
-                            <div className="invalid-feedback">{t("step1.validationErrors.name")}</div>
-                        )}
-                    </div>
-                    <div className="mb-3">
-                        <Input
-                            type="number"
-                            placeholder={t("step1.placeholders.age")}
-                            value={formData.age}
-                            onChange={(e) => handleInputChange("age", e.target.value)}
-                            onBlur={() => handleBlur("age")}
-                            required
-                            className={
-                                formState.age.touched && (!formState.age.isValid || !formData.age.trim())
-                                    ? "is-invalid"
-                                    : formState.age.touched
-                                        ? "is-valid"
-                                        : ""
-                            }
-                        />
-                        {formState.age.touched && !formState.age.isValid && (
-                            <div className="invalid-feedback">
-                                {t("step1.validationErrors.age")} {/* Example: "Age must be between 16 and 65" */}
-                            </div>
-                        )}
-                    </div>
-
-                    <GenderContainer>
-                        <GenderButton
-                            type="button"
-                            active={gender === t("step1.gender.male") ? "true" : "false"}
-                            onClick={() => handleGenderClick(t("step1.gender.male"))}
-                        >
-                            {t("step1.gender.male")}
-                        </GenderButton>
-                        <GenderButton
-                            type="button"
-                            active={gender === t("step1.gender.female") ? "true" : "false"}
-                            onClick={() => handleGenderClick(t("step1.gender.female"))}
-                        >
-                            {t("step1.gender.female")}
-                        </GenderButton>
-                    </GenderContainer>
-                    {gender === "" && (
-                        <div className="invalid-feedback" style={{ color: "#dc3545", marginBottom: "10px" }}>
-                            {t("step1.gender.error")}
-                        </div>
-                    )}
-                    <div className="mb-3">
-                        <Input
-                            type="email"
-                            placeholder={t("step1.placeholders.email")}
-                            value={formData.email}
-                            onChange={(e) => handleInputChange("email", e.target.value)}
-                            onBlur={() => handleBlur("email")}
-                            required
-                            className={
-                                formState.email.touched && (!formState.email.isValid || !formData.email.trim())
-                                    ? "is-invalid"
-                                    : "is-valid"
-                            }
-                        />
-                        {formState.email.touched && !formState.email.isValid && (
-                            <div className="invalid-feedback">{t("step1.validationErrors.email")}</div>
-                        )}
-                    </div>
-                    <div className="mb-3">
-                        <Input
-                            type="tel"
-                            placeholder={t("step1.placeholders.phone")}
-                            value={formData.phone}
-                            onChange={(e) => handleInputChange("phone", e.target.value)}
-                            onBlur={() => handleBlur("phone")}
-                            required
-                            className={
-                                formState.phone.touched && (!formState.phone.isValid || !formData.phone.trim())
-                                    ? "is-invalid"
-                                    : "is-valid"
-                            }
-                        />
-                        {formState.phone.touched && !formState.phone.isValid && (
-                            <div className="invalid-feedback">{t("step1.validationErrors.phone")}</div>
-                        )}
-                    </div>
-                    <div className="mb-3">
-                        <Input
-                            type="text"
-                            placeholder={t("step1.placeholders.location")}
-                            value={formData.location}
-                            onChange={(e) => handleInputChange("location", e.target.value)}
-                            onBlur={() => handleBlur("location")}
-                            required
-                            className={
-                                formState.location.touched && !formData.location.trim()
-                                    ? "is-invalid"
-                                    : ""
-                            }
-                        />
-                        {formState.location.touched && !formData.location.trim() && (
-                            <div className="invalid-feedback">{t("step1.validationErrors.location")}</div>
-                        )}
-                    </div>
-                    <Button type="submit">{t("step1.next")}</Button>
-                </form>
-            </FormContainer>
-        </Container>
-    );
+  return (
+    <Container>
+      <Logo onClick={handleLogoClick}>
+        <img src="/img/logo.png" alt="Logo" />
+      </Logo>
+      <Header>{t("step1.header")}</Header>
+      <SubHeader>
+        <span>{t("step1.subheader")}</span>
+      </SubHeader>
+      <FormContainer>
+        <form noValidate onSubmit={handleSubmit}>
+          <Label>
+            <span>{t("step1.personalInfo")}</span>
+          </Label>
+          <div className="mb-3">
+            <Input
+              type="text"
+              placeholder={t("step1.placeholders.name")}
+              value={formData.name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
+              onBlur={() => handleBlur("name")}
+              required
+              className={
+                formState.name.touched && (!formState.name.isValid || !formData.name.trim())
+                  ? "is-invalid"
+                  : "is-valid"
+              }
+            />
+            {formState.name.touched && !formState.name.isValid && (
+              <div className="invalid-feedback">{t("step1.validationErrors.name")}</div>
+            )}
+          </div>
+          <div className="mb-3">
+            <Input
+              type="number"
+              placeholder={t("step1.placeholders.age")}
+              value={formData.age}
+              onChange={(e) => handleInputChange("age", e.target.value)}
+              onBlur={() => handleBlur("age")}
+              required
+              className={
+                formState.age.touched && (!formState.age.isValid || !formData.age.trim())
+                  ? "is-invalid"
+                  : formState.age.touched
+                  ? "is-valid"
+                  : ""
+              }
+            />
+            {formState.age.touched && !formState.age.isValid && (
+              <div className="invalid-feedback">{t("step1.validationErrors.age")}</div>
+            )}
+          </div>
+          <GenderContainer>
+            <GenderButton
+              type="button"
+              active={gender === t("step1.gender.male") ? "true" : "false"}
+              onClick={() => handleGenderClick(t("step1.gender.male"))}
+            >
+              {t("step1.gender.male")}
+            </GenderButton>
+            <GenderButton
+              type="button"
+              active={gender === t("step1.gender.female") ? "true" : "false"}
+              onClick={() => handleGenderClick(t("step1.gender.female"))}
+            >
+              {t("step1.gender.female")}
+            </GenderButton>
+          </GenderContainer>
+          {gender === "" && (
+            <div className="invalid-feedback" style={{ color: "#dc3545", marginBottom: "10px" }}>
+              {t("step1.gender.error")}
+            </div>
+          )}
+          <div className="mb-3">
+            <Input
+              type="email"
+              placeholder={t("step1.placeholders.email")}
+              value={formData.email}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              onBlur={() => handleBlur("email")}
+              required
+              className={
+                formState.email.touched && (!formState.email.isValid || !formData.email.trim())
+                  ? "is-invalid"
+                  : "is-valid"
+              }
+            />
+            {formState.email.touched && !formState.email.isValid && (
+              <div className="invalid-feedback">{t("step1.validationErrors.email")}</div>
+            )}
+          </div>
+          <div className="mb-3">
+            <Input
+              type="tel"
+              placeholder={t("step1.placeholders.phone")}
+              value={formData.phone}
+              onChange={(e) => handleInputChange("phone", e.target.value)}
+              onBlur={() => handleBlur("phone")}
+              required
+              className={
+                formState.phone.touched && (!formState.phone.isValid || !formData.phone.trim())
+                  ? "is-invalid"
+                  : "is-valid"
+              }
+            />
+            {formState.phone.touched && !formState.phone.isValid && (
+              <div className="invalid-feedback">{t("step1.validationErrors.phone")}</div>
+            )}
+          </div>
+          <div className="mb-3">
+            <Input
+              type="text"
+              placeholder={t("step1.placeholders.location")}
+              value={formData.location}
+              onChange={(e) => handleInputChange("location", e.target.value)}
+              onBlur={() => handleBlur("location")}
+              required
+              className={
+                formState.location.touched && !formData.location.trim()
+                  ? "is-invalid"
+                  : ""
+              }
+            />
+            {formState.location.touched && !formData.location.trim() && (
+              <div className="invalid-feedback">{t("step1.validationErrors.location")}</div>
+            )}
+          </div>
+          <Button type="submit">{t("step1.next")}</Button>
+        </form>
+      </FormContainer>
+    </Container>
+  );
 };
+
 export default Step1;

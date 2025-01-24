@@ -18,8 +18,12 @@ const GalleryTitle = styled.h2`
 
 const GalleryGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust minmax for larger screens */
   gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
 `;
 
 const GalleryItem = styled.div`

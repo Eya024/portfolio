@@ -3,13 +3,16 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
   gap: 20px;
   padding: 40px;
   color: white;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
 `;
 
 const GridItem = styled.div`
@@ -67,34 +70,35 @@ const Section = styled.section`
 
 const GridSection = () => {
   const { t, i18n } = useTranslation(); // Initialize the useTranslation hook
-      const navigate = useNavigate(); // React Router's hook to navigate
-    
-  
+  const navigate = useNavigate(); // React Router's hook to navigate
 
-      const handleButtonClick = () => {
-        // Get the current language from i18n and use it to navigate
-        const currentLanguage = i18n.language || "fr"; // Default to 'fr' if no language is set
-        navigate(`/inscription/${currentLanguage}`); // Navigate to the correct path
-      };
-    const gridItems = t("gridSection.gridItems", { returnObjects: true });
-  
-    return (
-      <>
-        <GridContainer>
-          {gridItems.map((item, index) => (
-            <GridItem key={index}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </GridItem>
-          ))}
-        </GridContainer>
-        <Section>
-          <h2>{t("gridSection.section.heading")}</h2>
-          <p>{t("gridSection.section.description")}</p>
-          <button onClick={handleButtonClick} >{t("gridSection.section.button")}</button>
-        </Section>
-      </>
-    );
+  const handleButtonClick = () => {
+    // Get the current language from i18n and use it to navigate
+    const currentLanguage = i18n.language || "fr"; // Default to 'fr' if no language is set
+    navigate(`/inscription/${currentLanguage}`); // Navigate to the correct path
   };
-  
-  export default GridSection;
+
+  const gridItems = t("gridSection.gridItems", { returnObjects: true });
+
+  return (
+    <>
+      <GridContainer>
+        {gridItems.map((item, index) => (
+          <GridItem key={index}>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </GridItem>
+        ))}
+      </GridContainer>
+      <Section>
+        <h2>{t("gridSection.section.heading")}</h2>
+        <p>{t("gridSection.section.description")}</p>
+        <button onClick={handleButtonClick}>
+          {t("gridSection.section.button")}
+        </button>
+      </Section>
+    </>
+  );
+};
+
+export default GridSection;

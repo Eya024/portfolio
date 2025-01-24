@@ -4,13 +4,17 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const Logo = styled.div`
-  position: absolute; /* Place it in the top-left corner */
-  top: 3vh;
-  left: 3vh;
+  text-align: center; /* Center the logo */
+  margin-bottom: 10px; /* Add space between logo and header */
+
   img {
-    width: 100px;
+    width: 80px; /* Smaller logo for mobile */
     height: auto;
     cursor: pointer;
+
+    @media (min-width: 769px) {
+      width: 100px; /* Larger logo for desktop */
+    }
   }
 `;
 
@@ -19,10 +23,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: url("background-image-url.jpg") no-repeat center center/cover;
+  min-height: 100vh;
+  background: url("background-image-url.jpg") no-repeat center center/cover; /* Replace with your image URL */
   color: white;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
 `;
 
 const FormContainer = styled.div`
@@ -32,6 +40,7 @@ const FormContainer = styled.div`
   max-width: 500px;
   width: 100%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Prevent overflow */
 `;
 
 const Header = styled.h2`
@@ -42,6 +51,10 @@ const Header = styled.h2`
   span {
     color: #ffc107;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+  }
 `;
 
 const SubHeader = styled.p`
@@ -49,13 +62,22 @@ const SubHeader = styled.p`
   margin-bottom: 20px;
   font-size: 1rem;
   color: #bbb;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
 `;
 
 const AvailabilityContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: 15px;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  justify-content: center; /* Center cards horizontally */
+  gap: 15px; /* Add space between cards */
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    gap: 10px; /* Reduce gap for smaller screens */
+  }
 `;
 
 const AvailabilityCard = styled.div`
@@ -63,14 +85,22 @@ const AvailabilityCard = styled.div`
   color: ${(props) => (props.selected ? "#000" : "white")};
   border-radius: 12px;
   text-align: center;
-  padding: 20px;
+  padding: 15px; /* Reduce padding for smaller screens */
   cursor: pointer;
   box-shadow: ${(props) =>
-        props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
+    props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
   transition: all 0.3s ease;
+  flex: 1 1 45%; /* Allow cards to grow and shrink, with a base width of 45% */
+  max-width: 45%; /* Limit card width to prevent overflow */
 
   &:hover {
     background: ${(props) => (props.selected ? "#e0a800" : "#333")};
+  }
+
+  @media (max-width: 768px) {
+    flex: 1 1 100%; /* Full width for smaller screens */
+    max-width: 100%; /* Full width for smaller screens */
+    padding: 10px; /* Reduce padding for smaller screens */
   }
 `;
 
@@ -78,6 +108,10 @@ const TimeSlot = styled.p`
   font-size: 1rem;
   font-weight: bold;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -91,6 +125,11 @@ const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    gap: 10px; /* Add space between buttons */
+  }
 `;
 
 const Button = styled.button`
@@ -107,6 +146,12 @@ const Button = styled.button`
 
   &:hover {
     background: ${(props) => (props.primary ? "#e0a800" : "#555")};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%; /* Full width for smaller screens */
+    font-size: 0.9rem; /* Smaller font size for mobile */
+    padding: 8px 16px; /* Reduce padding for smaller screens */
   }
 `;
 

@@ -4,13 +4,17 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const Logo = styled.div`
-  position: absolute; /* Place it in the top-left corner */
-  top: 3vh;
-  left: 3vh;
+  text-align: center; /* Center the logo */
+  margin-bottom: 10px; /* Add space between logo and header */
+
   img {
-    width: 100px;
+    width: 80px; /* Smaller logo for mobile */
     height: auto;
     cursor: pointer;
+
+    @media (min-width: 769px) {
+      width: 100px; /* Larger logo for desktop */
+    }
   }
 `;
 
@@ -19,10 +23,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: url("background-image-url.jpg") no-repeat center center/cover;
+  min-height: 100vh;
+  background: url("background-image-url.jpg") no-repeat center center/cover; /* Replace with your image URL */
   color: white;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
 `;
 
 const FormContainer = styled.div`
@@ -42,6 +50,10 @@ const Header = styled.h2`
   span {
     color: #ffc107;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+  }
 `;
 
 const SubHeader = styled.p`
@@ -49,6 +61,10 @@ const SubHeader = styled.p`
   margin-bottom: 20px;
   font-size: 1rem;
   color: #bbb;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
 `;
 
 const ObjectiveGrid = styled.div`
@@ -56,6 +72,10 @@ const ObjectiveGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
 `;
 
 const ObjectiveCard = styled.div`
@@ -66,7 +86,7 @@ const ObjectiveCard = styled.div`
   text-align: center;
   cursor: pointer;
   box-shadow: ${(props) =>
-        props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
+    props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
   transition: all 0.3s ease;
 
   &:hover {
@@ -84,12 +104,20 @@ const Title = styled.h3`
   font-size: 1.2rem;
   font-weight: bold;
   margin: 10px 0 5px;
+
+  @media (max-width: 768px) {
+    font-size: 1rem; /* Smaller font size for mobile */
+  }
 `;
 
 const Description = styled.p`
   font-size: 0.9rem;
   margin: 0 10px 10px;
   color: ${(props) => (props.selected ? "#222" : "#bbb")};
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem; /* Smaller font size for mobile */
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -103,6 +131,11 @@ const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    gap: 10px; /* Add space between buttons */
+  }
 `;
 
 const Button = styled.button`
@@ -119,6 +152,12 @@ const Button = styled.button`
 
   &:hover {
     background: ${(props) => (props.primary ? "#e0a800" : "#555")};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%; /* Full width for smaller screens */
+    font-size: 0.9rem; /* Smaller font size for mobile */
+    padding: 8px 16px; /* Reduce padding for smaller screens */
   }
 `;
 

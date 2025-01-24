@@ -5,13 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Logo = styled.div`
-  position: absolute; /* Place it in the top-left corner */
-  top: 3vh;
-  left: 3vh;
+  text-align: center; /* Center the logo */
+  margin-bottom: 10px; /* Add space between logo and header */
+
   img {
-    width: 100px;
+    width: 80px; /* Smaller logo for mobile */
     height: auto;
     cursor: pointer;
+
+    @media (min-width: 769px) {
+      width: 100px; /* Larger logo for desktop */
+    }
   }
 `;
 
@@ -20,10 +24,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: url("background-image-url.jpg") no-repeat center center/cover; /* Replace with your image URL */
   color: white;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
 `;
 
 const FormContainer = styled.div`
@@ -44,6 +52,10 @@ const Header = styled.h2`
   span {
     color: #ffc107;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+  }
 `;
 
 const SubHeader = styled.p`
@@ -51,6 +63,10 @@ const SubHeader = styled.p`
   margin-bottom: 30px;
   font-size: 1rem;
   color: #bbb;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
 `;
 
 const Label = styled.div`
@@ -63,6 +79,12 @@ const Label = styled.div`
     font-size: 1rem;
     font-weight: bold;
     margin-left: 10px;
+  }
+
+  @media (max-width: 768px) {
+    span {
+      font-size: 0.9rem; /* Smaller font size for mobile */
+    }
   }
 `;
 
@@ -80,6 +102,11 @@ const Input = styled.input`
     outline: none;
     border: 1px solid #ffc107;
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+    padding: 8px; /* Reduce padding for smaller screens */
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -92,6 +119,11 @@ const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    gap: 10px; /* Add space between buttons */
+  }
 `;
 
 const Button = styled.button`
@@ -108,6 +140,12 @@ const Button = styled.button`
 
   &:hover {
     background: ${(props) => (props.primary ? "#e0a800" : "#555")};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%; /* Full width for smaller screens */
+    font-size: 0.9rem; /* Smaller font size for mobile */
+    padding: 8px 16px; /* Reduce padding for smaller screens */
   }
 `;
 
