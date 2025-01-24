@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from "react-router-dom";
 
 const Navbar = styled.header`
   display: flex;
@@ -98,6 +99,7 @@ const DropdownMenu = styled.ul`
 const Header = () => {
   const { i18n } = useTranslation();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const languages = [
     { code: 'fr', label: 'Français' },
@@ -105,14 +107,16 @@ const Header = () => {
     { code: 'ar', label: 'العربية' },
   ];
 
-  // Retrieve the stored language or default to English
+  // Retrieve the stored language or default to French
   const storedLanguage = localStorage.getItem('language') || 'fr';
   const [selectedLanguage, setSelectedLanguage] = useState(storedLanguage);
 
   useEffect(() => {
-    i18n.changeLanguage(selectedLanguage); // Change the language dynamically
-    localStorage.setItem('language', selectedLanguage); // Persist the language in localStorage
-  }, [selectedLanguage, i18n]);
+    const currentLanguage = i18n.language || 'fr'; // Default to 'fr' if no language is set
+    setSelectedLanguage(currentLanguage); // Sync the dropdown with the actual current language
+    localStorage.setItem('language', currentLanguage); // Ensure local storage is updated
+  }, [i18n.language]);
+  
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -121,6 +125,8 @@ const Header = () => {
   const handleLanguageSelect = (code) => {
     setSelectedLanguage(code);
     setIsDropdownOpen(false);
+    localStorage.setItem('language', code); // Update the local storage language
+    navigate(`/home/${code}`); // Navigate to the home page in the selected language
   };
 
   return (
