@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useTranslation } from "react-i18next"; // Import the useTranslation hook
+import { useTranslation } from "react-i18next";
 
 const HeroSectionContainer = styled.section`
   display: flex;
@@ -72,10 +72,12 @@ const ImageContainer = styled.div`
 
 const HeroSection = () => {
   const navigate = useNavigate(); // React Router's hook to navigate
-  const { t } = useTranslation(); // Initialize the useTranslation hook
+  const { t, i18n } = useTranslation(); // Initialize the useTranslation hook
 
   const handleButtonClick = () => {
-    navigate("/inscription"); // Navigate to /inscription
+    // Get the current language from i18n and use it to navigate
+    const currentLanguage = i18n.language || "fr"; // Default to 'fr' if no language is set
+    navigate(`/inscription/${currentLanguage}`); // Navigate to the correct path
   };
 
   return (
