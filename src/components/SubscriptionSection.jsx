@@ -126,7 +126,7 @@ const BookButton = styled.button`
   background-color: #af1e1e;
   color: #111;
   border: none;
-  padding: 2px 27px; /* Increased padding */
+  padding: 0.5rem 2rem; /* Increased padding */
   font-size: 1.2rem; /* Increased font size */
   font-weight: bold; /* Makes the text bold */
   cursor: pointer;
