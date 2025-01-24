@@ -63,7 +63,6 @@
                 "videoUrl": "/img/resources/vid2.mp4",
                 "thumbnail": "/img/video/gym1thumb.jpg"
             }
-            
         ]
     },
     "galleryPhotos": {
@@ -158,7 +157,7 @@
     "step5": {
         "name": "Nom",
         "email": "Email",
-        "message":"Salut, voici mes informations!",
+        "message": "Salut, voici mes informations!",
         "height": "Hauteur",
         "weight": "Poids",
         "objective": "Objectif",
@@ -177,7 +176,11 @@
         "availability1": "6h-12h",
         "availability2": "12h-18h",
         "availability3": "18h-22h",
-        "finalmessage":"Au Revoir!"
-
+        "finalmessage": "Au Revoir!"
+    },
+    "whatsappConfirmation": {
+        "thankYou": "Merci!",
+        "redirecting": "Vous êtes redirigé vers WhatsApp...",
+        "whatsappMessage": "Bonjour, je suis intéressé par le plan {{duration}} pour {{price}}.00 {{currency}}. Pourriez-vous me fournir plus de détails ?"
     }
 }

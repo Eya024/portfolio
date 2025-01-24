@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from 'react-router-dom'; // Add useParams
+
 
 // Styled Components
 const Section = styled.section`
@@ -111,6 +113,8 @@ const BookButton = styled.button`
 const SubscriptionSection = () => {
     const { t } = useTranslation();
     const [currency, setCurrency] = useState("TND");
+    const navigate = useNavigate();
+    const { lang } = useParams(); // Extract the current language from the URL
   
     const plans = [
       {
@@ -159,6 +163,11 @@ const SubscriptionSection = () => {
       setCurrency(selectedCurrency);
     };
   
+    const handleBookNow = (plan) => {
+      // Navigate to the WhatsApp confirmation page with the selected plan's details
+      navigate("/planInterest/${lang}", { state: { plan, currency } });
+    };
+  
     return (
       <Section>
         <Title>{t("subscriptionSection.title")}</Title>
@@ -195,7 +204,9 @@ const SubscriptionSection = () => {
                   <Feature key={i}>✔️ {feature}</Feature>
                 ))}
               </FeatureList>
-              <BookButton>{t("subscriptionSection.bookNow")}</BookButton>
+              <BookButton onClick={() => handleBookNow(plan)}>
+                {t("subscriptionSection.bookNow")}
+              </BookButton>
             </PlanCard>
           ))}
         </PlansContainer>

@@ -1,181 +1,186 @@
 {
     "heroSection": {
-        "title": "حول <span>جسمك</span> <br /> وحياتك <span>كذلك</span>",
-        "subtitle": "اكتشف أفضل نسخة منك مع برامج مخصصة ونصائح احترافية.",
-        "startButton": "ابدأ الآن"
+      "title": "حوّل <span>جسمك</span> <br /> <span>وحياتك</span>",
+      "subtitle": "اكتشف أفضل نسخة من نفسك مع برامج مخصصة ونصائح احترافية.",
+      "startButton": "ابدأ الآن"
     },
     "subscriptionSection": {
-        "title": "خططي",
-        "subtitle": "اختر البرنامج الذي يناسب أهدافك. جميع الأسعار تشمل متابعة مخصصة ودعم غير محدود.",
-        "currency": {
-            "tnd": "دينار تونسي",
-            "eur": "يورو",
-            "usd": "دولار"
-        },
-        "plans": {
-            "1Month": "شهر واحد",
-            "2Months": "شهران",
-            "3Months": "3 أشهر",
-            "6Months": "6 أشهر"
-        },
-        "features": {
-            "personalizedProgram": "برنامج مخصص",
-            "nutritionalGuidance": "إرشادات غذائية",
-            "whatsappSupport": "دعم واتساب 24/7",
-            "exclusiveVideos": "وصول إلى فيديوهات حصرية"
-        },
-        "bookNow": "احجز الآن"
+      "title": "برامج الاشتراك",
+      "subtitle": "اختر البرنامج الذي يناسب أهدافك. جميع الأسعار تشمل متابعة مخصصة ودعم غير محدود.",
+      "currency": {
+        "tnd": "دينار تونسي",
+        "eur": "يورو",
+        "usd": "دولار أمريكي"
+      },
+      "plans": {
+        "1Month": "شهر واحد",
+        "2Months": "شهران",
+        "3Months": "3 أشهر",
+        "6Months": "6 أشهر"
+      },
+      "features": {
+        "personalizedProgram": "برنامج مخصص",
+        "nutritionalGuidance": "إرشادات غذائية",
+        "whatsappSupport": "دعم واتساب 24/7",
+        "exclusiveVideos": "وصول إلى فيديوهات حصرية"
+      },
+      "bookNow": "احجز الآن"
     },
     "gridSection": {
-        "gridItems": [
-            {
-                "title": "برنامج مخصص",
-                "description": "خطة تدريبية تناسب أهدافك ومستواك"
-            },
-            {
-                "title": "إرشادات غذائية",
-                "description": "نصائح غذائية لتحسين النتائج"
-            },
-            {
-                "title": "دعم مستمر",
-                "description": "وصول مباشر إلى المدرب للمتابعة المنتظمة"
-            }
-        ],
-        "section": {
-            "heading": "جاهز لبدء تحولك؟",
-            "description": "انضم إلى مجتمعنا وابدأ رحلتك نحو نسخة أفضل منك.",
-            "button": "ابدأ الآن"
+      "gridItems": [
+        {
+          "title": "برنامج مخصص",
+          "description": "خطة تدريب مخصصة لأهدافك ومستواك"
+        },
+        {
+          "title": "إرشادات غذائية",
+          "description": "نصائح غذائية لتحقيق أفضل النتائج"
+        },
+        {
+          "title": "دعم مستمر",
+          "description": "وصول مباشر إلى المدرب لمتابعة منتظمة"
         }
+      ],
+      "section": {
+        "heading": "هل أنت مستعد لبدء تحولك؟",
+        "description": "انضم إلى مجتمعنا وابدأ رحلتك نحو نسخة أفضل من نفسك.",
+        "button": "ابدأ الآن"
+      }
     },
     "gallerySection": {
-        "header": {
-            "title": "اكتشف فيديوهاتنا",
-            "subtitle": "استكشف محتوى حصرياً وتعرف على طرق تدريبنا"
+      "header": {
+        "title": "اكتشف مقاطع الفيديو لدينا",
+        "subtitle": "استكشف محتوانا الحصري وتعرف على أساليب التدريب لدينا"
+      },
+      "videos": [
+        {
+          "title": "برنامج التدريب",
+          "videoUrl": "/img/resources/vid1.mp4",
+          "thumbnail": "/img/resources/coach.jpeg"
         },
-        "videos": [
-            {
-                "title": "برنامج التدريب",
-                "videoUrl": "/img/resources/vid1.mp4",
-                "thumbnail": "/img/resources/coach.jpeg"
-            },
-            {
-                "title": "المسابقة 1",
-                "videoUrl": "/img/resources/vid2.mp4",
-                "thumbnail": "/img/video/gym1thumb.jpg"
-            }
-        ]
+        {
+          "title": "مسابقة 1",
+          "videoUrl": "/img/resources/vid2.mp4",
+          "thumbnail": "/img/video/gym1thumb.jpg"
+        }
+      ]
     },
     "galleryPhotos": {
-        "title": "تحولاتي",
-        "images": [
-            "/img/resources/trans1.jpeg",
-            "/img/resources/trans2.jpeg",
-            "/img/resources/trans3.jpeg",
-            "/img/resources/trans4.jpeg",
-            "/img/resources/trans5.jpeg",
-            "/img/resources/trans8.jpeg",
-            "/img/resources/trans9.jpeg"
-        ]
+      "title": "تحولاتي",
+      "images": [
+        "/img/resources/trans1.jpeg",
+        "/img/resources/trans2.jpeg",
+        "/img/resources/trans3.jpeg",
+        "/img/resources/trans4.jpeg",
+        "/img/resources/trans5.jpeg",
+        "/img/resources/trans8.jpeg",
+        "/img/resources/trans9.jpeg"
+      ]
     },
     "step1": {
-        "header": "نموذج التسجيل",
-        "subheader": "أدخل معلوماتك الشخصية للمتابعة.",
-        "personalInfo": "المعلومات الشخصية",
-        "placeholders": {
-            "name": "الاسم",
-            "age": "العمر",
-            "email": "البريد الإلكتروني",
-            "phone": "الهاتف",
-            "location": "الموقع"
-        },
-        "gender": {
-            "male": "ذكر",
-            "female": "أنثى",
-            "error": "يرجى تحديد الجنس."
-        },
-        "validationErrors": {
-            "name": "يرجى إدخال اسم صحيح (حروف فقط).",
-            "age": "يرجى إدخال العمر (بين 16 و 65).",
-            "email": "يرجى إدخال بريد إلكتروني صالح (Abc@example.com).",
-            "phone": "يرجى إدخال رقم هاتف صحيح (+xxx xxxxxxxx).",
-            "location": "يرجى إدخال الموقع."
-        },
-        "next": "التالي"
-    },
-    "step2": {
-        "header": "نموذج التسجيل",
-        "subheader": "أدخل معلوماتك الشخصية للمتابعة.",
-        "measurements": "القياسات",
-        "placeholders": {
-            "height": "الطول (سم)",
-            "weight": "الوزن (كجم)"
-        },
-        "validationErrors": {
-            "height": "يرجى إدخال طول صحيح (بين 170 و 210 سم).",
-            "weight": "يرجى إدخال وزن صحيح (بين 40 و 250 كجم)."
-        },
-        "next": "التالي",
-        "back": "عودة"
-    },
-    "step3": {
-        "header": "نموذج التسجيل",
-        "subheader": "حدد هدفك قبل المتابعة.",
-        "objectives": [
-            {
-                "title": "زيادة القوة",
-                "description": "تحسين قوتك وتحملك."
-            },
-            {
-                "title": "نمط حياة صحي",
-                "description": "اتباع نمط حياة صحي."
-            },
-            {
-                "title": "إنقاص الوزن",
-                "description": "تحقيق أهداف إنقاص الوزن."
-            },
-            {
-                "title": "المنافسة",
-                "description": "الاستعداد للمنافسة."
-            }
-        ],
-        "error": "يرجى اختيار هدف قبل المتابعة.",
-        "next": "التالي",
-        "back": "عودة"
-    },
-    "step4": {
-        "header": "نموذج التسجيل",
-        "subheader": "حدد وقتك المفضل.",
-        "error": "يرجى تحديد الوقت قبل المتابعة.",
-        "finish": "إنهاء",
-        "back": "عودة",
-        "availabilities": [
-            "6ص-12ظ",
-            "12ظ-6م",
-            "6م-10م"
-        ]
-    },
-    "step5": {
+      "header": "نموذج التسجيل",
+      "subheader": "قدم معلوماتك الشخصية للمتابعة.",
+      "personalInfo": "المعلومات الشخصية",
+      "placeholders": {
         "name": "الاسم",
+        "age": "العمر",
         "email": "البريد الإلكتروني",
-        "message": "مرحباً، إليك معلوماتي!",
-        "height": "الطول",
-        "weight": "الوزن",
-        "objective": "الهدف",
-        "availability": "التوقيت",
-        "gender": "الجنس",
-        "location": "الموقع",
-        "thankYou": "شكراً لتسجيلك!",
-        "redirecting": "جاري إعادة التوجيه إلى واتساب...",
-        "whatsappMessage": "مرحباً! هذه معلومات المستخدم:\n\nالاسم: {{name}}\nالبريد الإلكتروني: {{email}}\nالطول: {{height}} سم\nالوزن: {{weight}} كجم\nالهدف: {{objective}}\nالتوقيت: {{availability}}\n\nشكراً!",
+        "phone": "الهاتف",
+        "location": "الموقع"
+      },
+      "gender": {
         "male": "ذكر",
         "female": "أنثى",
-        "objective1": "زيادة القوة",
-        "objective2": "نمط حياة صحي",
-        "objective3": "إنقاص الوزن",
-        "objective4": "المنافسة",
-        "availability1": "6ص-12ظ",
-        "availability2": "12ظ-6م",
-        "availability3": "6م-10م",
-        "finalmessage": "إلى اللقاء!"
+        "error": "الرجاء تحديد الجنس."
+      },
+      "validationErrors": {
+        "name": "الرجاء إدخال اسمك (يحتوي على أحرف فقط)",
+        "age": "الرجاء إدخال عمرك (بين 16 و 65)",
+        "email": "الرجاء إدخال بريد إلكتروني صالح. (مثال: Abc@example.com)",
+        "phone": "الرجاء إدخال رقم هاتف صالح. (+xxx xxxxxxxx)",
+        "location": "الرجاء إدخال موقعك."
+      },
+      "next": "التالي"
+    },
+    "step2": {
+      "header": "نموذج التسجيل",
+      "subheader": "قدم معلوماتك الشخصية للمتابعة.",
+      "measurements": "القياسات",
+      "placeholders": {
+        "height": "الطول (سم)",
+        "weight": "الوزن (كجم)"
+      },
+      "validationErrors": {
+        "height": "الرجاء إدخال طول صحيح بالسم (رقم موجب بين 170 و 210).",
+        "weight": "الرجاء إدخال وزن صحيح بالكجم (رقم موجب بين 40 و 250)."
+      },
+      "next": "التالي",
+      "back": "عودة"
+    },
+    "step3": {
+      "header": "نموذج التسجيل",
+      "subheader": "قدم معلوماتك الشخصية للمتابعة.",
+      "objectives": [
+        {
+          "title": "تصبح أقوى",
+          "description": "تحسين قوتك وقدرتك على التحمل."
+        },
+        {
+          "title": "نمط حياة صحي",
+          "description": "اعتماد نمط حياة أكثر صحة."
+        },
+        {
+          "title": "فقدان الوزن",
+          "description": "تحقيق أهداف فقدان الوزن."
+        },
+        {
+          "title": "منافسة",
+          "description": "الاستعداد للمنافسة."
+        }
+      ],
+      "error": "الرجاء تحديد هدف قبل المتابعة.",
+      "next": "التالي",
+      "back": "عودة"
+    },
+    "step4": {
+      "header": "نموذج التسجيل",
+      "subheader": "اختر الفترة الزمنية المفضلة لديك.",
+      "error": "الرجاء تحديد فترة توفر قبل المتابعة.",
+      "finish": "إنهاء",
+      "back": "عودة",
+      "availabilities": [
+        "6h-12h",
+        "12h-18h",
+        "18h-22h"
+      ]
+    },
+    "step5": {
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "message": "مرحبًا، هذه معلوماتي!",
+      "height": "الطول",
+      "weight": "الوزن",
+      "objective": "الهدف",
+      "availability": "الفترة المتاحة",
+      "gender": "الجنس",
+      "location": "الموقع",
+      "thankYou": "شكرًا لتسجيلك!",
+      "redirecting": "يتم التوجيه إلى واتساب...",
+      "whatsappMessage": "مرحبًا! هذه المعلومات التي قدمها المستخدم:\n\nالاسم: {{name}}\nالبريد الإلكتروني: {{email}}\nالطول: {{height}} سم\nالوزن: {{weight}} كجم\nالهدف: {{objective}}\nالفترة المتاحة: {{availability}}\n\nشكرًا!",
+      "male": "ذكر",
+      "female": "أنثى",
+      "objective1": "تصبح أقوى",
+      "objective2": "نمط حياة صحي",
+      "objective3": "فقدان الوزن",
+      "objective4": "منافسة",
+      "availability1": "6h-12h",
+      "availability2": "12h-18h",
+      "availability3": "18h-22h",
+      "finalmessage": "وداعًا!"
+    },
+    "whatsappConfirmation": {
+      "thankYou": "شكرًا!",
+      "redirecting": "يتم التوجيه إلى واتساب...",
+      "whatsappMessage": "مرحبًا، أنا مهتم ببرنامج {{duration}} مقابل {{price}}.00 {{currency}}. هل يمكنك تقديم المزيد من التفاصيل؟"
     }
-}
+  }

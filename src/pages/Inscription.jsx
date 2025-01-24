@@ -4,8 +4,7 @@ import MultiStepForm from "../components/MultiStepForm/MultiStepForm";
 
 
 import styled from "styled-components";
-import Step1 from "../components/MultiStepForm/Step1";
-import Step2 from "../components/MultiStepForm/Step2";
+
 
 const InscriptionContainer = styled.div`
   display: flex;

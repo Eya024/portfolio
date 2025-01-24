@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "r
 import { useTranslation } from "react-i18next";
 import Home from "./pages/Home";
 import Inscription from "./pages/Inscription";
+import PlanInterest from "./components/PlanInterest";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const LanguageRoute = ({ children }) => {
@@ -49,6 +51,11 @@ const App = () => {
             </LanguageRoute>
           }
         />
+        <Route path="/planInterest/:lang" element={
+            <LanguageRoute>
+              <PlanInterest />
+            </LanguageRoute>
+          } />
       </Routes>
     </Router>
   );
