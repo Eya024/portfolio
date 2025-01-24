@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-
 
 const Container = styled.div`
   display: flex;
@@ -55,7 +54,7 @@ const AvailabilityCard = styled.div`
   padding: 20px;
   cursor: pointer;
   box-shadow: ${(props) =>
-    props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
+        props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
   transition: all 0.3s ease;
 
   &:hover {
@@ -99,54 +98,62 @@ const Button = styled.button`
   }
 `;
 
-const Step4 = ({ onFinish, onBack }) => {
+const Step4 = ({ formData, onFinish, onBack }) => {
     const { t } = useTranslation();
-    const [selectedAvailability, setSelectedAvailability] = useState(null);
+    const [selectedAvailability, setSelectedAvailability] = useState(formData.availability); // Initialize with formData.availability
     const [error, setError] = useState("");
-  
+
     const availabilities = t("step4.availabilities", { returnObjects: true });
-  
+
+    // Use useEffect to update selectedAvailability when formData.availability changes
+    useEffect(() => {
+        setSelectedAvailability(formData.availability);
+    }, [formData.availability]);
+
     const handleSelect = (index) => {
-      setSelectedAvailability(index);
-      setError(""); // Clear error on selection
+        setSelectedAvailability(index);
+        setError(""); // Clear error on selection
     };
-  
+
     const handleFinish = () => {
-      if (selectedAvailability !== null) {
-        onFinish(selectedAvailability); // Pass the selected availability index
-      } else {
-        setError(t("step4.error"));
-      }
+        if (selectedAvailability !== null) {
+            onFinish(selectedAvailability); // Pass the selected availability index
+        } else {
+            setError(t("step4.error"));
+        }
     };
-  
+    console.log("Form Data in Step4:", formData);
+    console.log("Availabilities:", availabilities);
+    console.log("Selected Availability:", selectedAvailability);
+
+
     return (
-      <Container>
-        <Header>
-            {t("step4.header")} <span>{t("step4.subheader")}</span>
-          </Header>
-        <FormContainer>
-          
-          <AvailabilityContainer>
-            {availabilities.map((time, index) => (
-              <AvailabilityCard
-                key={index}
-                selected={selectedAvailability === index}
-                onClick={() => handleSelect(index)}
-              >
-                <TimeSlot>{time}</TimeSlot>
-              </AvailabilityCard>
-            ))}
-          </AvailabilityContainer>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          <ButtonGroup>
-            <Button onClick={onBack}>{t("step4.back")}</Button>
-            <Button primary onClick={handleFinish}>
-              {t("step4.finish")}
-            </Button>
-          </ButtonGroup>
-        </FormContainer>
-      </Container>
+        <Container>
+            <Header>
+                {t("step4.header")} <span>{t("step4.subheader")}</span>
+            </Header>
+            <FormContainer>
+                <AvailabilityContainer>
+                    {availabilities.map((time, index) => (
+                        <AvailabilityCard
+                            key={index}
+                            selected={selectedAvailability === index}  // Compare with index
+                            onClick={() => handleSelect(index)}  // When clicked, select the index
+                        >
+                            <TimeSlot>{time}</TimeSlot>
+                        </AvailabilityCard>
+                    ))}
+                </AvailabilityContainer>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+                <ButtonGroup>
+                    <Button onClick={onBack}>{t("step4.back")}</Button>
+                    <Button primary onClick={handleFinish}>
+                        {t("step4.finish")}
+                    </Button>
+                </ButtonGroup>
+            </FormContainer>
+        </Container>
     );
-  };
-  
-  export default Step4;
+};
+
+export default Step4;

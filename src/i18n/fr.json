@@ -1,167 +1,186 @@
 {
     "heroSection": {
-      "title": "Transformez Votre <span>Corps</span> <br /> Votre <span>Vie</span>",
-      "subtitle": "Découvrez votre meilleure version avec des programmes personnalisés et des conseils professionnels.",
-      "startButton": "Commencez Maintenant"
+        "title": "Transformez Votre <span>Corps</span> <br /> Votre <span>Vie</span>",
+        "subtitle": "Découvrez votre meilleure version avec des programmes personnalisés et des conseils professionnels.",
+        "startButton": "Commencez Maintenant"
     },
     "subscriptionSection": {
-    "title": "Mes Formules",
-    "subtitle": "Choisissez le programme qui correspond le mieux à vos objectifs. Tous les prix incluent un suivi personnalisé et un accès illimité au support.",
-    "currency": {
-      "tnd": "TND",
-      "eur": "EUR",
-      "usd": "USD"
+        "title": "Mes Formules",
+        "subtitle": "Choisissez le programme qui correspond le mieux à vos objectifs. Tous les prix incluent un suivi personnalisé et un accès illimité au support.",
+        "currency": {
+            "tnd": "TND",
+            "eur": "EUR",
+            "usd": "USD"
+        },
+        "plans": {
+            "1Month": "1 Mois",
+            "2Months": "2 Mois",
+            "3Months": "3 Mois",
+            "6Months": "6 Mois"
+        },
+        "features": {
+            "personalizedProgram": "Programme personnalisé",
+            "nutritionalGuidance": "Conseils nutritionnels",
+            "whatsappSupport": "Support WhatsApp 24/7",
+            "exclusiveVideos": "Accès à des vidéos exclusives"
+        },
+        "bookNow": "Réserver Maintenant"
     },
-    "plans": {
-      "1Month": "1 Mois",
-      "2Months": "2 Mois",
-      "3Months": "3 Mois",
-      "6Months": "6 Mois"
+    "gridSection": {
+        "gridItems": [
+            {
+                "title": "Programme personnalisé",
+                "description": "Un plan d'entraînement adapté à vos objectifs et à votre niveau"
+            },
+            {
+                "title": "Conseils nutritionnels",
+                "description": "Des conseils nutritionnels pour optimiser vos résultats"
+            },
+            {
+                "title": "Support continu",
+                "description": "Accès direct à votre coach pour un suivi régulier"
+            }
+        ],
+        "section": {
+            "heading": "Prêt à commencer votre transformation ?",
+            "description": "Rejoignez notre communauté et commencez votre voyage vers une meilleure version de vous-même.",
+            "button": "Commencer maintenant"
+        }
     },
-    "features": {
-      "personalizedProgram": "Programme personnalisé",
-      "nutritionalGuidance": "Conseils nutritionnels",
-      "whatsappSupport": "Support WhatsApp 24/7",
-      "exclusiveVideos": "Accès à des vidéos exclusives"
+    "gallerySection": {
+        "header": {
+            "title": "Découvrez Nos Vidéos",
+            "subtitle": "Explorez notre contenu exclusif et découvrez nos méthodes d'entraînement"
+        },
+        "videos": [
+            {
+                "title": "Programme d'Entraînement",
+                "videoUrl": "/img/video/video1.mp4",
+                "thumbnail": "/img/video/gym1thumb.jpg"
+            },
+            {
+                "title": "Compétition 1",
+                "videoUrl": "/img/video/video1.mp4",
+                "thumbnail": "/img/video/gym1thumb.jpg"
+            },
+            {
+                "title": "Compétition 2",
+                "videoUrl": "/img/video/video1.mp4",
+                "thumbnail": "/img/video/gym1thumb.jpg"
+            }
+        ]
     },
-    "bookNow": "Réserver Maintenant"
-  },
-  "gridSection": {
-    "gridItems": [
-      {
-        "title": "Programme personnalisé",
-        "description": "Un plan d'entraînement adapté à vos objectifs et à votre niveau"
-      },
-      {
-        "title": "Conseils nutritionnels",
-        "description": "Des conseils nutritionnels pour optimiser vos résultats"
-      },
-      {
-        "title": "Support continu",
-        "description": "Accès direct à votre coach pour un suivi régulier"
-      }
-    ],
-    "section": {
-      "heading": "Prêt à commencer votre transformation ?",
-      "description": "Rejoignez notre communauté et commencez votre voyage vers une meilleure version de vous-même.",
-      "button": "Commencer maintenant"
+    "galleryPhotos": {
+        "title": "Mes Transformations",
+        "images": [
+            "/img/video/gym1thumb.jpg",
+            "/img/video/gym1thumb.jpg",
+            "/img/video/gym1thumb.jpg",
+            "/img/video/gym1thumb.jpg",
+            "/img/video/gym1thumb.jpg",
+            "/img/video/gym1thumb.jpg"
+        ]
+    },
+    "step1": {
+        "header": "Formulaire d'inscription",
+        "subheader": "Fournissez vos informations personnelles pour continuer.",
+        "personalInfo": "Informations personnelles",
+        "placeholders": {
+            "name": "Nom",
+            "age": "Âge",
+            "email": "E-mail",
+            "phone": "Téléphone",
+            "location": "Emplacement"
+        },
+        "gender": {
+            "male": "Homme",
+            "female": "Femme",
+            "error": "Veuillez sélectionner votre sexe."
+        },
+        "validationErrors": {
+            "name": "Veuillez entrer votre nom (ne contient que des caractères)",
+            "age": "Veuillez entrer votre âge. (entre 16 et 65)",
+            "email": "Veuillez entrer une adresse e-mail valide. ( Abc@example.com )",
+            "phone": "Veuillez entrer un numéro de téléphone valide. (+xxx xxxxxxxx)",
+            "location": "Veuillez entrer votre localisation."
+        },
+        "next": "Suivant"
+    },
+    "step2": {
+        "header": "Formulaire d'inscription",
+        "subheader": "Fournissez vos informations personnelles pour continuer.",
+        "measurements": "Mesures",
+        "placeholders": {
+            "height": "Hauteur (cm)",
+            "weight": "Poids (kg)"
+        },
+        "validationErrors": {
+            "height": "Veuillez entrer une hauteur valide en cm (nombre positif entre 170 et 210).",
+            "weight": "Veuillez entrer un poids valide en kg (nombre positif entre 40 et 250)."
+        },
+        "next": "Suivant",
+        "back": "Retour"
+    },
+    "step3": {
+        "header": "Formulaire d'inscription",
+        "subheader": "Fournissez vos informations personnelles pour continuer.",
+        "objectives": [
+            {
+                "title": "Devenir Plus Fort",
+                "description": "Améliorez votre force et votre endurance."
+            },
+            {
+                "title": "Mode de Vie Sain",
+                "description": "Adoptez un mode de vie plus sain."
+            },
+            {
+                "title": "Perte de Poids",
+                "description": "Atteignez vos objectifs de perte de poids."
+            },
+            {
+                "title": "Compétition",
+                "description": "Préparez-vous pour la compétition."
+            }
+        ],
+        "error": "Veuillez sélectionner un objectif avant de continuer.",
+        "next": "Suivant",
+        "back": "Retour"
+    },
+    "step4": {
+        "header": "Formulaire d'inscription",
+        "subheader": "Sélectionnez votre créneau horaire préféré.",
+        "error": "Veuillez sélectionner une disponibilité avant de continuer.",
+        "finish": "Terminer",
+        "back": "Retour",
+        "availabilities": [
+            "6h-12h",
+            "12h-18h",
+            "18h-22h"
+        ]
+    },
+    "step5": {
+        "name": "Nom",
+        "email": "Email",
+        "message":"Salut, voici mes informations!",
+        "height": "Hauteur",
+        "weight": "Poids",
+        "objective": "Objectif",
+        "availability": "Disponibilité",
+        "gender": "Genre",
+        "location": "Localisation",
+        "thankYou": "Merci pour votre inscription!",
+        "redirecting": "Redirection vers WhatsApp...",
+        "whatsappMessage": "Bonjour! Voici les informations soumises par l'utilisateur:\n\nNom: {{name}}\nEmail: {{email}}\nTaille: {{height}} cm\nPoids: {{weight}} kg\nObjectif: {{objective}}\nDisponibilité: {{availability}}\n\nMerci!",
+        "male": "Homme",
+        "female": "Femme",
+        "objective1": "Devenir Plus Fort",
+        "objective2": "Mode de Vie Sain",
+        "objective3": "Perte de Poids",
+        "objective4": "Compétition",
+        "availability1": "6h-12h",
+        "availability2": "12h-18h",
+        "availability3": "18h-22h",
+        "finalmessage":"Au Revoir!"
+
     }
-  },
-  "gallerySection": {
-    "header": {
-      "title": "Découvrez Nos Vidéos",
-      "subtitle": "Explorez notre contenu exclusif et découvrez nos méthodes d'entraînement"
-    },
-    "videos": [
-      {
-        "title": "Programme d'Entraînement",
-        "videoUrl": "/img/video/video1.mp4",
-        "thumbnail": "/img/video/gym1thumb.jpg"
-      },
-      {
-        "title": "Compétition 1",
-        "videoUrl": "/img/video/video1.mp4",
-        "thumbnail": "/img/video/gym1thumb.jpg"
-      },
-      {
-        "title": "Compétition 2",
-        "videoUrl": "/img/video/video1.mp4",
-        "thumbnail": "/img/video/gym1thumb.jpg"
-      }
-    ]
-  },
-  "galleryPhotos": {
-    "title": "Mes Transformations",
-    "images": [
-      "/img/video/gym1thumb.jpg",
-      "/img/video/gym1thumb.jpg",
-      "/img/video/gym1thumb.jpg",
-      "/img/video/gym1thumb.jpg",
-      "/img/video/gym1thumb.jpg",
-      "/img/video/gym1thumb.jpg"
-    ]
-  },
-  "step1": {
-    "header": "Formulaire d'inscription",
-    "subheader": "Fournissez vos informations personnelles pour continuer.",
-    "personalInfo": "Informations personnelles",
-    "placeholders": {
-      "name": "Nom",
-      "age": "Âge",
-      "email": "E-mail",
-      "phone": "Téléphone",
-      "location": "Emplacement"
-    },
-    "gender": {
-      "male": "Homme",
-      "female": "Femme",
-      "error": "Veuillez sélectionner votre sexe."
-    },
-    "validationErrors": {
-      "name": "Veuillez entrer votre nom.",
-      "age": "Veuillez entrer votre âge.",
-      "email": "Veuillez entrer une adresse e-mail valide.",
-      "phone": "Veuillez entrer un numéro de téléphone valide.",
-      "location": "Veuillez entrer votre emplacement."
-    },
-    "next": "Suivant"
-  },
-  "step2": {
-    "header": "Formulaire d'inscription",
-    "subheader": "Fournissez vos informations personnelles pour continuer.",
-    "measurements": "Mesures",
-    "placeholders": {
-      "height": "Hauteur (cm)",
-      "weight": "Poids (kg)"
-    },
-    "validationErrors": {
-      "height": "Veuillez entrer une hauteur valide (nombre positif).",
-      "weight": "Veuillez entrer un poids valide (nombre positif)."
-    },
-    "next": "Suivant",
-    "back": "Retour"
-  },
-  "step3": {
-    "header": "Formulaire d'inscription",
-    "subheader": "Fournissez vos informations personnelles pour continuer.",
-    "objectives": [
-      {
-        "title": "Devenir Plus Fort",
-        "description": "Améliorez votre force et votre endurance."
-      },
-      {
-        "title": "Mode de Vie Sain",
-        "description": "Adoptez un mode de vie plus sain."
-      },
-      {
-        "title": "Perte de Poids",
-        "description": "Atteignez vos objectifs de perte de poids."
-      },
-      {
-        "title": "Compétition",
-        "description": "Préparez-vous pour la compétition."
-      }
-    ],
-    "error": "Veuillez sélectionner un objectif avant de continuer.",
-    "next": "Suivant",
-    "back": "Retour"
-  },
-  "step4": {
-    "header": "Formulaire d'inscription",
-    "subheader": "Sélectionnez votre créneau horaire préféré.",
-    "error": "Veuillez sélectionner une disponibilité avant de continuer.",
-    "finish": "Terminer",
-    "back": "Retour",
-    "availabilities": [
-      "6h-12h",
-      "12h-18h",
-      "18h-22h"
-    ]
-  },
-  "step5": {
-    "thankYou": "Merci pour votre inscription!",
-    "redirecting": "Redirection vers WhatsApp...",
-    "whatsappMessage": "Bonjour! Voici les informations soumises par l'utilisateur:\n\nNom: {{name}}\nEmail: {{email}}\nTaille: {{height}} cm\nPoids: {{weight}} kg\nObjectif: {{objective}}\nDisponibilité: {{availability}}\n\nMerci!"
-  }
-  }
-  
+}

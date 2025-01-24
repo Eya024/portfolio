@@ -50,14 +50,17 @@ const Subtitle = styled.p`
 
 const Step5 = ({ formData }) => {
     const { t } = useTranslation();
-    
+
+    // Log formData to check values
+    console.log(formData.objective, formData.availability);
+
     useEffect(() => {
         const phoneNumber = "+21695404825"; // Replace with your WhatsApp phone number
-        const whatsappUrl = generateWhatsAppUrl(formData, phoneNumber);
+        const whatsappUrl = generateWhatsAppUrl(formData, phoneNumber, t);
 
         // Redirect to WhatsApp
         window.location.href = whatsappUrl;
-    }, [formData]);
+    }, [formData, t]);  // Make sure the translation function `t` is included in the dependency array.
 
     return (
         <Step5Container>
@@ -72,21 +75,58 @@ const Step5 = ({ formData }) => {
 
 // Helper Functions
 const formatMessage = (formData, t) => {
-    const { name, email, height, weight, objective, availability } = formData;
-    const objectives = [t("step5.objective1"), t("step5.objective2"), t("step5.objective3")];
-    const availabilities = [t("step5.availability1"), t("step5.availability2"), t("step5.availability3")];
+    const { name, email, height, weight, objective, availability, gender, location } = formData;
+
+    // Use the translation function `t` to fetch the translated labels
+    const messageLabel = t("step5.message");
+
+    const nameLabel = t("step5.name");
+    const emailLabel = t("step5.email");
+
+    const heightLabel = t("step5.height");
+    const weightLabel = t("step5.weight");
+    const objectiveLabel = t("step5.objective");
+    const availabilityLabel = t("step5.availability");
+    const genderLabel = t("step5.gender");
+    const locationLabel = t("step5.location");
+    const finalmessageLabel = t("step5.finalmessage");
+
+
+
+    const objectives = [
+        t("step5.objective1"),
+        t("step5.objective2"),
+        t("step5.objective3"),
+        t("step5.objective4")
+    ];
+
+    const availabilities = [
+        t("step5.availability1"),
+        t("step5.availability2"),
+        t("step5.availability3")
+    ];
 
     return `
-Hello! Here is the information submitted by the user:
+      ${messageLabel}
+      ${nameLabel}: ${name},
+      ${genderLabel}: ${gender},
+      ${emailLabel}: ${email},
+      ${heightLabel}: ${height} cm,
+      ${weightLabel}: ${weight} kg,
+      ${objectiveLabel}: ${objectives[objective]},
+      ${availabilityLabel}: ${availabilities[availability]},
+      ${locationLabel}: ${location}.${finalmessageLabel}
+  
+      
+            
 
-Name: ${name}
-Email: ${email}
-Height: ${height} cm
-Weight: ${weight} kg
-Objective: ${objectives[objective]}
-Availability: ${availabilities[availability]}
-Thank you! `.trim();
+      
+  
+      
+  
+       `.trim();
 };
+
 
 const generateWhatsAppUrl = (formData, phoneNumber, t) => {
     const message = formatMessage(formData, t);

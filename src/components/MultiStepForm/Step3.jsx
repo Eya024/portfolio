@@ -55,7 +55,7 @@ const ObjectiveCard = styled.div`
   text-align: center;
   cursor: pointer;
   box-shadow: ${(props) =>
-    props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
+        props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
   transition: all 0.3s ease;
 
   &:hover {
@@ -111,79 +111,80 @@ const Button = styled.button`
   }
 `;
 
-const Step3 = ({ onNext, onBack }) => {
+const Step3 = ({ formData, onNext, onBack }) => {
     const { t } = useTranslation();
-    const [selectedObjective, setSelectedObjective] = useState(null);
+    const [selectedObjective, setSelectedObjective] = useState(formData.objective); // Initialize selectedObjective with the formData
+
     const [error, setError] = useState("");
-  
+
     const objectives = [
-      {
-        title: t("step3.objectives.0.title"),
-        description: t("step3.objectives.0.description"),
-        img: "path-to-image-1.jpg",
-      },
-      {
-        title: t("step3.objectives.1.title"),
-        description: t("step3.objectives.1.description"),
-        img: "path-to-image-2.jpg",
-      },
-      {
-        title: t("step3.objectives.2.title"),
-        description: t("step3.objectives.2.description"),
-        img: "path-to-image-3.jpg",
-      },
-      {
-        title: t("step3.objectives.3.title"),
-        description: t("step3.objectives.3.description"),
-        img: "path-to-image-4.jpg",
-      },
+        {
+            title: t("step3.objectives.0.title"),
+            description: t("step3.objectives.0.description"),
+            img: "path-to-image-1.jpg",
+        },
+        {
+            title: t("step3.objectives.1.title"),
+            description: t("step3.objectives.1.description"),
+            img: "path-to-image-2.jpg",
+        },
+        {
+            title: t("step3.objectives.2.title"),
+            description: t("step3.objectives.2.description"),
+            img: "path-to-image-3.jpg",
+        },
+        {
+            title: t("step3.objectives.3.title"),
+            description: t("step3.objectives.3.description"),
+            img: "path-to-image-4.jpg",
+        },
     ];
-  
+
     const handleSelect = (index) => {
-      setSelectedObjective(index);
-      setError(""); // Clear any existing error when a selection is made
+        setSelectedObjective(index);
+        setError(""); // Clear any existing error when a selection is made
     };
-  
+
     const handleNext = () => {
-      if (selectedObjective !== null) {
-        onNext(selectedObjective); // Pass the selected objective index to the next step
-      } else {
-        setError(t("step3.error"));
-      }
+        if (selectedObjective !== null) {
+            onNext(selectedObjective); // Pass the selected objective index to the next step
+        } else {
+            setError(t("step3.error")); // Set error if no objective is selected
+        }
     };
-  
+
     return (
-      <Container>
-        <Header>
-            {t("step3.header")} <span>{t("step3.subheader")}</span>
-          </Header>
-        <FormContainer>
-          
-          <ObjectiveGrid>
-            {objectives.map((objective, index) => (
-              <ObjectiveCard
-                key={index}
-                selected={selectedObjective === index}
-                onClick={() => handleSelect(index)}
-              >
-                <Image src={objective.img} alt={objective.title} />
-                <Title>{objective.title}</Title>
-                <Description selected={selectedObjective === index}>
-                  {objective.description}
-                </Description>
-              </ObjectiveCard>
-            ))}
-          </ObjectiveGrid>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          <ButtonGroup>
-            <Button onClick={onBack}>{t("step3.back")}</Button>
-            <Button primary onClick={handleNext}>
-              {t("step3.next")}
-            </Button>
-          </ButtonGroup>
-        </FormContainer>
-      </Container>
+        <Container>
+            <Header>
+                {t("step3.header")} <span>{t("step3.subheader")}</span>
+            </Header>
+            <FormContainer>
+                <ObjectiveGrid>
+                    {objectives.map((objective, index) => (
+                        <ObjectiveCard
+                            key={index}
+                            selected={selectedObjective === index}
+                            onClick={() => handleSelect(index)}
+                        >
+                            <Image src={objective.img} alt={objective.title} />
+                            <Title>{objective.title}</Title>
+                            <Description selected={selectedObjective === index}>
+                                {objective.description}
+                            </Description>
+                        </ObjectiveCard>
+                    ))}
+                </ObjectiveGrid>
+                {/* Render the error message just below the grid */}
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+                <ButtonGroup>
+                    <Button onClick={onBack}>{t("step3.back")}</Button>
+                    <Button primary onClick={handleNext}>
+                        {t("step3.next")}
+                    </Button>
+                </ButtonGroup>
+            </FormContainer>
+        </Container>
     );
-  };
-  
-  export default Step3;
+};
+
+export default Step3;

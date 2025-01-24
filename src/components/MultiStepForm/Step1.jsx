@@ -146,12 +146,40 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
         age: { touched: false },
         email: { touched: false },
         phone: { touched: false },
+        //gender: { touched: false },
+
         location: { touched: false },
     });
 
-    const handleInputChange = (field, value) => {
-        updateFormData(field, value); // Directly update formData in the parent
+    const isValidName = (name) => /^[a-zA-Z\s]+$/.test(name); // Name must only contain alphabets and spaces
+    const isValidPhone = (phone) => /^\+\d{1,15}$/.test(phone); // Phone must start with "+" followed by 1-15 digits
+    const isValidEmail = (email) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Basic email validation
+
+
+
+    const isValidAge = (age) => {
+        const num = Number(age); // Convert input to a number
+        return num >= 16 && num <= 65; // Check if age is between 16 and 65
     };
+
+    const handleInputChange = (field, value) => {
+        updateFormData(field, value); // Update the parent component's formData
+
+        // Validate the input dynamically
+        let isValid = true;
+        if (field === "name") isValid = isValidName(value);
+        if (field === "phone") isValid = isValidPhone(value);
+        if (field === "email") isValid = isValidEmail(value);
+        if (field === "age") isValid = isValidAge(value); // Validate age
+
+        // Update formState to reflect validity
+        setFormState((prev) => ({
+            ...prev,
+            [field]: { ...prev[field], touched: true, isValid },
+        }));
+    };
+
 
     const handleBlur = (field) => {
         setFormState((prev) => ({
@@ -165,14 +193,18 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
         updateFormData("gender", selectedGender); // Update formData in the parent component
     };
 
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validate only the fields relevant for Step 1
         const requiredFields = ["name", "email", "age", "phone", "location", "gender"];
-        const formIsValid = requiredFields.every(
-            (field) => formData[field] && formData[field].trim() !== ""
-        );
+        const formIsValid =
+            requiredFields.every((field) => formData[field] && formData[field].trim() !== "") &&
+            isValidName(formData.name) &&
+            isValidPhone(formData.phone) &&
+            isValidEmail(formData.email)
 
         if (formIsValid) {
             nextStep(); // Proceed to the next step
@@ -187,9 +219,7 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
             });
         }
     };
-    
-    
-    
+
 
     return (
         <Container>
@@ -211,12 +241,12 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
                             onBlur={() => handleBlur("name")}
                             required
                             className={
-                                formState.name.touched && !formData.name.trim()
+                                formState.name.touched && (!formState.name.isValid || !formData.name.trim())
                                     ? "is-invalid"
-                                    : ""
+                                    : "is-valid"
                             }
                         />
-                        {formState.name.touched && !formData.name.trim() && (
+                        {formState.name.touched && !formState.name.isValid && (
                             <div className="invalid-feedback">{t("step1.validationErrors.name")}</div>
                         )}
                     </div>
@@ -229,15 +259,20 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
                             onBlur={() => handleBlur("age")}
                             required
                             className={
-                                formState.age.touched && !formData.age.trim()
+                                formState.age.touched && (!formState.age.isValid || !formData.age.trim())
                                     ? "is-invalid"
-                                    : ""
+                                    : formState.age.touched
+                                        ? "is-valid"
+                                        : ""
                             }
                         />
-                        {formState.age.touched && !formData.age.trim() && (
-                            <div className="invalid-feedback">{t("step1.validationErrors.age")}</div>
+                        {formState.age.touched && !formState.age.isValid && (
+                            <div className="invalid-feedback">
+                                {t("step1.validationErrors.age")} {/* Example: "Age must be between 16 and 65" */}
+                            </div>
                         )}
                     </div>
+
                     <GenderContainer>
                         <GenderButton
                             type="button"
@@ -254,7 +289,7 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
                             {t("step1.gender.female")}
                         </GenderButton>
                     </GenderContainer>
-                    { gender === "" && (
+                    {gender === "" && (
                         <div className="invalid-feedback" style={{ color: "#dc3545", marginBottom: "10px" }}>
                             {t("step1.gender.error")}
                         </div>
@@ -268,12 +303,12 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
                             onBlur={() => handleBlur("email")}
                             required
                             className={
-                                formState.email.touched && !formData.email.trim()
+                                formState.email.touched && (!formState.email.isValid || !formData.email.trim())
                                     ? "is-invalid"
-                                    : ""
+                                    : "is-valid"
                             }
                         />
-                        {formState.email.touched && !formData.email.trim() && (
+                        {formState.email.touched && !formState.email.isValid && (
                             <div className="invalid-feedback">{t("step1.validationErrors.email")}</div>
                         )}
                     </div>
@@ -286,12 +321,12 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
                             onBlur={() => handleBlur("phone")}
                             required
                             className={
-                                formState.phone.touched && !formData.phone.trim()
+                                formState.phone.touched && (!formState.phone.isValid || !formData.phone.trim())
                                     ? "is-invalid"
-                                    : ""
+                                    : "is-valid"
                             }
                         />
-                        {formState.phone.touched && !formData.phone.trim() && (
+                        {formState.phone.touched && !formState.phone.isValid && (
                             <div className="invalid-feedback">{t("step1.validationErrors.phone")}</div>
                         )}
                     </div>

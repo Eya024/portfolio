@@ -103,70 +103,83 @@ const Step2 = ({ formData = {}, updateFormData, nextStep, prevStep }) => {
     const { height = "", weight = "" } = formData;
     const { t } = useTranslation();
     const [errors, setErrors] = useState({ height: "", weight: "" });
-  
+
+    // Function to validate height and weight
     const validateField = (fieldName, value) => {
-      let error = "";
-      if (!value || isNaN(value) || value <= 0) {
-        error = t(`step2.validationErrors.${fieldName}`);
-      }
-      setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error }));
+        let error = "";
+
+        // Validate height (should be between 140 and 210)
+        if (fieldName === "height") {
+            if (!value || isNaN(value) || value < 140 || value > 210) {
+                error = t("step2.validationErrors.height"); // Custom error message
+            }
+        }
+
+        // Validate weight (should be between 40 and 250)
+        if (fieldName === "weight") {
+            if (!value || isNaN(value) || value < 40 || value > 250) {
+                error = t("step2.validationErrors.weight"); // Custom error message
+            }
+        }
+
+        setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error }));
     };
-  
+
     const validateFields = () => {
-      validateField("height", height);
-      validateField("weight", weight);
-  
-      return !errors.height && !errors.weight;
+        validateField("height", height);
+        validateField("weight", weight);
+
+        return !errors.height && !errors.weight;
     };
-  
+
     const handleNext = () => {
-      if (validateFields()) {
-        nextStep();
-      }
+        if (validateFields()) {
+            nextStep();
+        }
     };
-  
+
     return (
-      <Container>
-        <Header>
-          {t("step2.header")} <span>{t("step2.subheader")}</span>
-        </Header>
-        <FormContainer>
-          <form>
-            <Label>
-              <span>{t("step2.measurements")}</span>
-            </Label>
-            <Input
-              type="number"
-              placeholder={t("step2.placeholders.height")}
-              value={height}
-              onChange={(e) => updateFormData("height", e.target.value)}
-              onBlur={() => validateField("height", height)}
-              className={errors.height ? "is-invalid" : ""}
-            />
-            {errors.height && <ErrorMessage>{errors.height}</ErrorMessage>}
-  
-            <Input
-              type="number"
-              placeholder={t("step2.placeholders.weight")}
-              value={weight}
-              onChange={(e) => updateFormData("weight", e.target.value)}
-              onBlur={() => validateField("weight", weight)}
-              className={errors.weight ? "is-invalid" : ""}
-            />
-            {errors.weight && <ErrorMessage>{errors.weight}</ErrorMessage>}
-  
-            <ButtonGroup>
-              <Button type="button" onClick={prevStep}>
-                {t("step2.back")}
-              </Button>
-              <Button type="button" primary onClick={handleNext}>
-                {t("step2.next")}
-              </Button>
-            </ButtonGroup>
-          </form>
-        </FormContainer>
-      </Container>
+        <Container>
+            <Header>
+                {t("step2.header")} <span>{t("step2.subheader")}</span>
+            </Header>
+            <FormContainer>
+                <form>
+                    <Label>
+                        <span>{t("step2.measurements")}</span>
+                    </Label>
+                    <Input
+                        type="number"
+                        placeholder={t("step2.placeholders.height")}
+                        value={height}
+                        onChange={(e) => updateFormData("height", e.target.value)}
+                        onBlur={() => validateField("height", height)}
+                        className={errors.height ? "is-invalid" : ""}
+                    />
+                    {errors.height && <ErrorMessage>{errors.height}</ErrorMessage>}
+
+                    <Input
+                        type="number"
+                        placeholder={t("step2.placeholders.weight")}
+                        value={weight}
+                        onChange={(e) => updateFormData("weight", e.target.value)}
+                        onBlur={() => validateField("weight", weight)}
+                        className={errors.weight ? "is-invalid" : ""}
+                    />
+                    {errors.weight && <ErrorMessage>{errors.weight}</ErrorMessage>}
+
+                    <ButtonGroup>
+                        <Button type="button" onClick={prevStep}>
+                            {t("step2.back")}
+                        </Button>
+                        <Button type="button" primary onClick={handleNext}>
+                            {t("step2.next")}
+                        </Button>
+                    </ButtonGroup>
+                </form>
+            </FormContainer>
+        </Container>
     );
-  };
-  
-  export default Step2;
+};
+
+export default Step2;
