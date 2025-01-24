@@ -19,14 +19,14 @@ const Header = styled.header`
     color: #af1e1e;
     font-weight: bold;
     display: block;
-    font-size: 2.5rem;
+    font-size: 1.6rem;
     margin-top: 1vh;
   }
 
   @media (max-width: 768px) {
     font-size: 3rem; /* Adjust font size for smaller screens */
     span {
-      font-size: 2rem; /* Adjust subtitle size */
+      font-size: 1.6rem; /* Adjust subtitle size */
     }
   }
 `;

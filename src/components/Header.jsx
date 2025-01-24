@@ -5,41 +5,43 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = styled.header`
   display: flex;
-  flex-direction: column; /* Stack items by default */
-  align-items: center;
+  flex-direction: row; /* Always use row layout */
+  justify-content: space-between; /* Space out logo and other items */
+  align-items: center; /* Center items vertically */
   padding: 3vh 6vw;
   color: white;
 
-  @media (min-width: 768px) {
-    flex-direction: row; /* Switch to row layout for larger screens */
-    justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: row; /* Keep row layout for phone screens */
+    justify-content: space-between; /* Space out logo and other items */
+    padding: 2vh 4vw; /* Reduce padding for phone screens */
   }
 `;
 
 const Logo = styled.div`
-  margin-bottom: 2vh; /* Add spacing between the logo and items below on mobile */
-
   img {
     width: 6rem;
     height: auto;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+      width: 4rem; /* Reduce logo size for phone screens */
+    }
   }
 
-  @media (min-width: 768px) {
-    margin-bottom: 0; /* Remove spacing for larger screens */
+  @media (max-width: 768px) {
+    margin-bottom: 0; /* Remove spacing for phone screens */
   }
 `;
 
 const NavIcons = styled.div`
   display: flex;
-  flex-direction: column; /* Stack items vertically on mobile */
+  flex-direction: row; /* Arrange items in a row */
   align-items: center;
-  gap: 1.5vh;
+  gap: 2vw; /* Add spacing between items */
 
-  @media (min-width: 768px) {
-    flex-direction: row; /* Arrange items in a row on larger screens */
-    gap: 2vw;
-    align-items: center; /* Align icons properly in a row */
+  @media (max-width: 768px) {
+    gap: 1.5vw; /* Adjust spacing for phone screens */
   }
 `;
 
@@ -55,24 +57,24 @@ const SocialIcons = styled.div`
     &:hover {
       color: orange;
     }
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem; /* Reduce icon size for phone screens */
+    }
   }
 
   @media (max-width: 768px) {
-    justify-content: center; /* Center icons on smaller screens */
+    gap: 1.5vw; /* Adjust spacing for phone screens */
   }
 `;
 
 const LanguageDropdownContainer = styled.div`
   position: relative;
-  display: flex; /* Make sure the dropdown is part of the flex container */
-  align-items: center; /* Ensure the dropdown aligns with the other icons */
+  display: flex;
+  align-items: center;
 
   @media (max-width: 768px) {
-    margin-top: 0; /* Remove margin on small screens */
-  }
-
-  @media (min-width: 768px) {
-    margin-top: 0; /* Ensure no top margin on large screens */
+    margin-top: 0; /* Remove margin for phone screens */
   }
 `;
 
@@ -88,15 +90,18 @@ const DropdownButton = styled.div`
 
   i {
     font-size: 1.6rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem; /* Reduce globe icon size for phone screens */
+    }
   }
 
   span {
     @media (max-width: 768px) {
-      display: none; /* Hide the language label on smaller screens */
+      display: none; /* Hide the language label on phone screens */
     }
   }
 `;
-
 
 const DropdownMenu = styled.ul`
   position: absolute;

@@ -1,12 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import GallerySection from "../components/GallerySection";
 import SubscriptionSection from "../components/SubscriptionSection";
 import GalleryPhotos from "../components/GalleryPhotos";
 import GridSection from "../components/GridSection";
-
-import styled from "styled-components";
+import AnimatedSection from "../components/AnimatedSection"; // Import the AnimatedSection component
 
 const HomeContainer = styled.div`
   display: flex;
@@ -46,11 +46,26 @@ const Home = () => {
   return (
     <HomeContainer>
       <Header />
-      <HeroSection />
-      <GallerySection />
-      <SubscriptionSection />
-      <GalleryPhotos />
-      <GridSection />
+      {/* Wrap each section with AnimatedSection */}
+      <AnimatedSection>
+        <HeroSection />
+      </AnimatedSection>
+
+      <AnimatedSection>
+        <GallerySection />
+      </AnimatedSection>
+
+      <AnimatedSection>
+        <SubscriptionSection />
+      </AnimatedSection>
+
+      <AnimatedSection>
+        <GalleryPhotos />
+      </AnimatedSection>
+
+      <AnimatedSection>
+        <GridSection />
+      </AnimatedSection>
     </HomeContainer>
   );
 };

@@ -11,9 +11,12 @@ const GallerySection = styled.section`
 `;
 
 const GalleryTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: 4rem;
   margin-bottom: 20px;
   color: #fff;
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
 const GalleryGrid = styled.div`

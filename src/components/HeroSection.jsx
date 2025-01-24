@@ -1,69 +1,94 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useTranslation } from "react-i18next";
+
+// Keyframes for arrow animation
+const float = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px); // Move the arrow to the right
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
 
 const HeroSectionContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4vh 8vw; /* Use vh for vertical and vw for horizontal padding */
+  padding: 4vh 5vw; /* Match GallerySection padding: 4vh 5vw */
   height: 100vh;
   color: white;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
-  flex-direction: row; /* Default to row layout */
+  flex-wrap: wrap;
+  flex-direction: row;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* Stack content and image vertically on smaller screens */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    height: auto; /* Allow for content to flow naturally */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 4vh 2vw; /* Further reduce horizontal padding for phone screens */
   }
 `;
 
 const ImageContainer = styled.div`
-  width: 40%; /* Use percentage for responsiveness */
-  max-width: 500px; /* Limit maximum width */
-  aspect-ratio: 5 / 4; /* Maintain aspect ratio */
-  background-color: black; /* Black background */
+  width: 40%;
+  max-width: 500px;
+  aspect-ratio: 5 / 4;
+  background-color: black;
   border-radius: 1rem;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.5);
+  position: relative;
 
   img {
-    width: 100%; /* Maintain width constraints */
-    height: 100%; /* Maintain height constraints */
-    object-fit: cover; /* Ensures the entire image fits in the container */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    &.active {
+      opacity: 1;
+    }
   }
 
   @media (max-width: 768px) {
-    width: 100%; /* Full width for smaller screens */
-    margin-top: 2vh; /* Add spacing between content and image */
+    width: 100%;
+    margin-top: 2vh;
   }
 `;
 
 const Content = styled.div`
   max-width: 50%;
   flex: 1;
-  padding: 2vw; /* Add padding to avoid overlapping on smaller screens */
+  padding: 2vw;
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: center; /* Vertically center the content */
-  align-items: flex-start; /* Align content to the left by default (for larger screens) */
-  text-align: left; /* Left-align the text on larger screens */
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
 
   @media (max-width: 768px) {
-    align-items: center; /* Center content horizontally on smaller screens */
-    text-align: center; /* Center text on smaller screens */
-    max-width: 90%; /* Adjust max-width for smaller screens */
+    align-items: center;
+    text-align: center;
+    max-width: 90%;
+    padding: 0; /* Remove padding for phone screens */
   }
 `;
 
 const Title = styled.h1`
-  font-size: 4rem; /* Use rem for consistent font sizing */
+  font-size: 4rem;
   font-weight: bold;
   line-height: 1.2;
   margin-bottom: 2vh;
@@ -74,7 +99,7 @@ const Title = styled.h1`
   }
 
   @media (max-width: 768px) {
-    font-size: 3rem; /* Adjust font size for smaller screens */
+    font-size: 3rem;
   }
 `;
 
@@ -84,7 +109,7 @@ const Subtitle = styled.p`
   margin-bottom: 3vh;
 
   @media (max-width: 768px) {
-    font-size: 1.4rem; /* Adjust font size for smaller screens */
+    font-size: 1.4rem;
   }
 `;
 
@@ -108,19 +133,37 @@ const StartButton = styled.button`
 
   i {
     font-size: 1.4rem;
+    animation: ${float} 1.5s ease-in-out infinite; // Apply the float animation
   }
 
   @media (max-width: 768px) {
-    font-size: 1.2rem; /* Adjust font size for smaller screens */
+    font-size: 1.2rem;
     padding: 0.8rem 1.6rem;
   }
 `;
 
-
-
 const HeroSection = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+
+  // State to track the active image index
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Array of image paths
+  const images = [
+    "/img/resources/coach1.jpeg",
+    "/img/resources/coach2.jpeg",
+    "/img/resources/coach3.jpeg",
+  ];
+
+  // Function to handle image rotation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [images.length]);
 
   const handleButtonClick = () => {
     const currentLanguage = i18n.language || "fr";
@@ -137,7 +180,14 @@ const HeroSection = () => {
         </StartButton>
       </Content>
       <ImageContainer>
-        <img src="/img/resources/coach1.jpeg" alt={t("heroSection.title")} />
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={t("heroSection.title")}
+            className={index === activeIndex ? "active" : ""}
+          />
+        ))}
       </ImageContainer>
     </HeroSectionContainer>
   );
