@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Logo = styled.div`
-  text-align: center; /* Center the logo */
-  margin-bottom: 10px; /* Add space between logo and header */
+  text-align: center;
+  margin-bottom: 10px;
 
   img {
-    width: 80px; /* Smaller logo for mobile */
+    width: 80px;
     height: auto;
     cursor: pointer;
 
     @media (min-width: 769px) {
-      width: 100px; /* Larger logo for desktop */
+      width: 100px;
     }
   }
 `;
@@ -24,12 +24,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: url("background-image-url.jpg") no-repeat center center/cover; /* Replace with your image URL */
+  background: url("background-image-url.jpg") no-repeat center center/cover;
   color: white;
   padding: 20px;
 
   @media (max-width: 768px) {
-    padding: 10px; /* Reduce padding for smaller screens */
+    padding: 10px;
   }
 `;
 
@@ -47,28 +47,28 @@ const Header = styled.h2`
   font-size: 2rem;
   text-align: center;
   margin-bottom: 15px;
-  margin-top: 0; /* Remove top margin to place it directly under the logo */
+  margin-top: 0;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem; /* Smaller font size for mobile */
+    font-size: 1.5rem;
   }
 `;
 
 const SubHeader = styled.p`
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1.2rem; /* Match font size in Step1 */
-  color: #ccc; /* Match color in Step1 */
+  font-size: 1.2rem;
+  color: #ccc;
 
   span {
-    color: #d3d3d3; /* Match color in Step1 */
-    font-size: 1.4rem; /* Match font size in Step1 */
+    color: #d3d3d3;
+    font-size: 1.4rem;
   }
 
   @media (max-width: 768px) {
-    font-size: 1rem; /* Match responsive font size in Step1 */
+    font-size: 1rem;
     span {
-      font-size: 1.4rem; /* Match responsive font size in Step1 */
+      font-size: 1.4rem;
     }
   }
 `;
@@ -87,7 +87,7 @@ const Label = styled.div`
 
   @media (max-width: 768px) {
     span {
-      font-size: 0.9rem; /* Smaller font size for mobile */
+      font-size: 0.9rem;
     }
   }
 `;
@@ -96,20 +96,24 @@ const Input = styled.input`
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #444;
+  border: 1px solid ${(props) => {
+    if (props.isFocused) return "#ffc107"; // Yellow border when focused
+    if (props.isInvalid) return "#dc3545"; // Red border when invalid
+    return "#444"; // Default border color
+  }};
   border-radius: 8px;
   background: #222;
   color: white;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
 
   &:focus {
     outline: none;
-    border: 1px solid #ffc107;
   }
 
   @media (max-width: 768px) {
-    font-size: 0.9rem; /* Smaller font size for mobile */
-    padding: 8px; /* Reduce padding for smaller screens */
+    font-size: 0.9rem;
+    padding: 8px;
   }
 `;
 
@@ -125,14 +129,14 @@ const ButtonGroup = styled.div`
   margin-top: 20px;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* Stack buttons vertically on smaller screens */
-    gap: 10px; /* Add space between buttons */
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 
 const Button = styled.button`
   background: ${(props) => (props.primary ? "#af1e1e" : "#444")};
-  color: ${(props) => (props.primary ? "#000" : "white")};
+  color: ${(props) => (props.primary ? "white" : "white")};
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
@@ -147,9 +151,9 @@ const Button = styled.button`
   }
 
   @media (max-width: 768px) {
-    width: 100%; /* Full width for smaller screens */
-    font-size: 0.9rem; /* Smaller font size for mobile */
-    padding: 8px 16px; /* Reduce padding for smaller screens */
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 `;
 
@@ -158,9 +162,11 @@ const Step2 = ({ formData = {}, updateFormData, nextStep, prevStep }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({ height: "", weight: "" });
+  const [touched, setTouched] = useState({ height: false, weight: false });
+  const [focused, setFocused] = useState({ height: false, weight: false }); // Track focus state
 
   const handleLogoClick = () => {
-    navigate("/"); // Redirect to the home route
+    navigate("/");
   };
 
   const validateField = (fieldName, value) => {
@@ -179,17 +185,28 @@ const Step2 = ({ formData = {}, updateFormData, nextStep, prevStep }) => {
     }
 
     setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: error }));
+    return !error; // Return true if valid, false if invalid
   };
 
   const handleInputChange = (fieldName, value) => {
-    updateFormData(fieldName, value);
-    validateField(fieldName, value);
+    updateFormData(fieldName, value); // Update form data on every change
+    setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" })); // Clear error while typing
+  };
+
+  const handleBlur = (fieldName, value) => {
+    validateField(fieldName, value); // Validate on blur
+    setTouched((prev) => ({ ...prev, [fieldName]: true })); // Mark as touched
+    setFocused((prev) => ({ ...prev, [fieldName]: false })); // Remove focus
+  };
+
+  const handleFocus = (fieldName) => {
+    setFocused((prev) => ({ ...prev, [fieldName]: true })); // Add focus
   };
 
   const validateFields = () => {
-    validateField("height", height);
-    validateField("weight", weight);
-    return !errors.height && !errors.weight;
+    const isHeightValid = validateField("height", height);
+    const isWeightValid = validateField("weight", weight);
+    return isHeightValid && isWeightValid;
   };
 
   const handleNext = () => {
@@ -217,18 +234,24 @@ const Step2 = ({ formData = {}, updateFormData, nextStep, prevStep }) => {
             placeholder={t("step2.placeholders.height")}
             value={height}
             onChange={(e) => handleInputChange("height", e.target.value)}
-            className={errors.height ? "is-invalid" : ""}
+            onFocus={() => handleFocus("height")}
+            onBlur={(e) => handleBlur("height", e.target.value)}
+            isFocused={focused.height}
+            isInvalid={touched.height && !!errors.height}
           />
-          {errors.height && <ErrorMessage>{errors.height}</ErrorMessage>}
+          {touched.height && errors.height && <ErrorMessage>{errors.height}</ErrorMessage>}
 
           <Input
             type="number"
             placeholder={t("step2.placeholders.weight")}
             value={weight}
             onChange={(e) => handleInputChange("weight", e.target.value)}
-            className={errors.weight ? "is-invalid" : ""}
+            onFocus={() => handleFocus("weight")}
+            onBlur={(e) => handleBlur("weight", e.target.value)}
+            isFocused={focused.weight}
+            isInvalid={touched.weight && !!errors.weight}
           />
-          {errors.weight && <ErrorMessage>{errors.weight}</ErrorMessage>}
+          {touched.weight && errors.weight && <ErrorMessage>{errors.weight}</ErrorMessage>}
 
           <ButtonGroup>
             <Button type="button" onClick={prevStep}>

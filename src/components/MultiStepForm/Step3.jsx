@@ -84,7 +84,7 @@ const ObjectiveGrid = styled.div`
 
 const ObjectiveCard = styled.div`
   background: ${(props) => (props.selected ? "#af1e1e" : "#222")};
-  color: ${(props) => (props.selected ? "#000" : "white")};
+  color: ${(props) => (props.selected ? "white" : "white")};
   border-radius: 12px;
   overflow: hidden;
   text-align: center;
@@ -95,6 +95,7 @@ const ObjectiveCard = styled.div`
 
   &:hover {
     background: ${(props) => (props.selected ? "#9c4f55" : "#333")};
+    color: white;
   }
 `;
 
@@ -117,7 +118,7 @@ const Title = styled.h3`
 const Description = styled.p`
   font-size: 0.9rem;
   margin: 0 10px 10px;
-  color: ${(props) => (props.selected ? "#222" : "#bbb")};
+  color: ${(props) => (props.selected ? "white" : "#bbb")};
 
   @media (max-width: 768px) {
     font-size: 0.8rem; /* Smaller font size for mobile */
@@ -144,7 +145,7 @@ const ButtonGroup = styled.div`
 
 const Button = styled.button`
   background: ${(props) => (props.primary ? "#af1e1e" : "#444")};
-  color: ${(props) => (props.primary ? "#000" : "white")};
+  color: ${(props) => (props.primary ? "white" : "white")};
   padding: 10px 20px;
   border: none;
   border-radius: 8px;

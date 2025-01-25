@@ -86,7 +86,7 @@ const AvailabilityContainer = styled.div`
 
 const AvailabilityCard = styled.div`
   background: ${(props) => (props.selected ? "#af1e1e" : "#222")};
-  color: ${(props) => (props.selected ? "#000" : "white")};
+  color: ${(props) => (props.selected ? "white" : "white")};
   border-radius: 12px;
   text-align: center;
   padding: 15px; /* Reduce padding for smaller screens */
@@ -138,7 +138,7 @@ const ButtonGroup = styled.div`
 
 const Button = styled.button`
   background: ${(props) => (props.primary ? "#af1e1e" : "#444")};
-  color: ${(props) => (props.primary ? "#000" : "white")};
+  color: ${(props) => (props.primary ? "white" : "white")};
   padding: 10px 20px;
   border: none;
   border-radius: 8px;

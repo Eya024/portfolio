@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -106,32 +106,26 @@ const Input = styled.input`
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #444;
+  border: 1px solid #444; /* Default border color */
   border-radius: 8px;
   background: #333; /* Dark background */
   color: white; /* White text */
   font-size: 1rem;
 
+  /* Yellow border only when focused */
   &:focus {
     outline: none;
-    border: 1px solid #ffc107;
+    border-color: #ffc107; /* Yellow border */
   }
 
-  /* Hide validation styles until input is touched */
-  &:not(:focus):not(:valid) {
-    background: #333; /* Keep dark background */
-    border-color: #444; /* Neutral border */
-  }
-
-  /* Override Bootstrap validation styles */
+  /* Red border for invalid inputs (persists even when not focused) */
   &.is-invalid {
-    background: #333; /* Keep dark background */
-    border-color: #dc3545; /* Bootstrap's danger color */
+    border-color: #dc3545; /* Red border */
   }
 
-  &.is-valid {
-    background: #333; /* Keep dark background */
-    border-color: #28a745; /* Bootstrap's success color */
+  /* Green border for valid inputs (only during focus) */
+  &:focus.is-valid {
+    border-color: #ffc107; /* Green border */
   }
 
   @media (max-width: 768px) {
@@ -155,16 +149,16 @@ const GenderButton = styled.button`
   flex: 1;
   padding: 10px;
   margin: 0 6px;
-  border: 1px solid ${(props) => (props.active === "true" ? "#af1e1e" : "#555")};
+  border: 0px solid ${(props) => (props.active === "true" ? "#af1e1e" : "#555")};
   background: ${(props) => (props.active === "true" ? "#af1e1e" : "#333")};
-  color: ${(props) => (props.active === "true" ? "#000" : "#fff")};
+  color: ${(props) => (props.active === "true" ? "#fff" : "#fff")};
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
 
   &:hover {
-    background: #af1e1e;
+    background: #9c4f55;
     color: white;
   }
 
@@ -201,14 +195,7 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
   const { t } = useTranslation();
   const [gender, setGender] = useState(formData.gender || "");
 
-  const [formState, setFormState] = useState({
-    name: { touched: false },
-    age: { touched: false },
-    email: { touched: false },
-    phone: { touched: false },
-    location: { touched: false },
-  });
-
+  // Validation functions
   const isValidName = (name) => /^[a-zA-Z\u0600-\u06FF\s]+$/.test(name);
   const isValidPhone = (phone) => /^\+\d{1,15}$/.test(phone);
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -217,6 +204,26 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
     return num >= 16 && num <= 65;
   };
 
+  // Initialize formState using useState
+  const [formState, setFormState] = useState({
+    name: { touched: false, isValid: isValidName(formData.name) },
+    age: { touched: false, isValid: isValidAge(formData.age) },
+    email: { touched: false, isValid: isValidEmail(formData.email) },
+    phone: { touched: false, isValid: isValidPhone(formData.phone) },
+    location: { touched: false, isValid: !!formData.location.trim() },
+  });
+
+  // Update formState when formData changes
+  useEffect(() => {
+    setFormState({
+      name: { touched: false, isValid: isValidName(formData.name) },
+      age: { touched: false, isValid: isValidAge(formData.age) },
+      email: { touched: false, isValid: isValidEmail(formData.email) },
+      phone: { touched: false, isValid: isValidPhone(formData.phone) },
+      location: { touched: false, isValid: !!formData.location.trim() },
+    });
+  }, [formData]);
+
   const navigate = useNavigate();
   const handleLogoClick = () => {
     navigate("/");
@@ -224,23 +231,19 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
 
   const handleInputChange = (field, value) => {
     updateFormData(field, value);
+  };
 
+  const handleBlur = (field, value) => {
     let isValid = true;
     if (field === "name") isValid = isValidName(value);
     if (field === "phone") isValid = isValidPhone(value);
     if (field === "email") isValid = isValidEmail(value);
     if (field === "age") isValid = isValidAge(value);
+    if (field === "location") isValid = !!value.trim();
 
     setFormState((prev) => ({
       ...prev,
       [field]: { ...prev[field], touched: true, isValid },
-    }));
-  };
-
-  const handleBlur = (field) => {
-    setFormState((prev) => ({
-      ...prev,
-      [field]: { ...prev[field], touched: true },
     }));
   };
 
@@ -257,15 +260,27 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
       requiredFields.every((field) => formData[field] && formData[field].trim() !== "") &&
       isValidName(formData.name) &&
       isValidPhone(formData.phone) &&
-      isValidEmail(formData.email);
+      isValidEmail(formData.email) &&
+      isValidAge(formData.age); // Add age validation here
 
     if (formIsValid) {
       nextStep();
     } else {
+      // Only mark invalid fields as touched
       setFormState((prev) => {
-        const updatedState = {};
+        const updatedState = { ...prev };
         for (let key of requiredFields) {
-          updatedState[key] = { touched: true };
+          let isValid = true;
+          if (key === "name") isValid = isValidName(formData.name);
+          if (key === "phone") isValid = isValidPhone(formData.phone);
+          if (key === "email") isValid = isValidEmail(formData.email);
+          if (key === "age") isValid = isValidAge(formData.age);
+          if (key === "location") isValid = !!formData.location.trim();
+          if (key === "gender") isValid = !!formData.gender;
+
+          if (!isValid) {
+            updatedState[key] = { ...updatedState[key], touched: true, isValid: false };
+          }
         }
         return updatedState;
       });
@@ -292,12 +307,14 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
               placeholder={t("step1.placeholders.name")}
               value={formData.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
-              onBlur={() => handleBlur("name")}
+              onBlur={(e) => handleBlur("name", e.target.value)}
               required
               className={
                 formState.name.touched && (!formState.name.isValid || !formData.name.trim())
                   ? "is-invalid"
-                  : "is-valid"
+                  : formState.name.touched
+                  ? "is-valid"
+                  : ""
               }
             />
             {formState.name.touched && !formState.name.isValid && (
@@ -310,7 +327,7 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
               placeholder={t("step1.placeholders.age")}
               value={formData.age}
               onChange={(e) => handleInputChange("age", e.target.value)}
-              onBlur={() => handleBlur("age")}
+              onBlur={(e) => handleBlur("age", e.target.value)}
               required
               className={
                 formState.age.touched && (!formState.age.isValid || !formData.age.trim())
@@ -351,12 +368,14 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
               placeholder={t("step1.placeholders.email")}
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
-              onBlur={() => handleBlur("email")}
+              onBlur={(e) => handleBlur("email", e.target.value)}
               required
               className={
                 formState.email.touched && (!formState.email.isValid || !formData.email.trim())
                   ? "is-invalid"
-                  : "is-valid"
+                  : formState.email.touched
+                  ? "is-valid"
+                  : ""
               }
             />
             {formState.email.touched && !formState.email.isValid && (
@@ -369,12 +388,14 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
               placeholder={t("step1.placeholders.phone")}
               value={formData.phone}
               onChange={(e) => handleInputChange("phone", e.target.value)}
-              onBlur={() => handleBlur("phone")}
+              onBlur={(e) => handleBlur("phone", e.target.value)}
               required
               className={
                 formState.phone.touched && (!formState.phone.isValid || !formData.phone.trim())
                   ? "is-invalid"
-                  : "is-valid"
+                  : formState.phone.touched
+                  ? "is-valid"
+                  : ""
               }
             />
             {formState.phone.touched && !formState.phone.isValid && (
@@ -387,11 +408,13 @@ const Step1 = ({ formData, updateFormData, nextStep }) => {
               placeholder={t("step1.placeholders.location")}
               value={formData.location}
               onChange={(e) => handleInputChange("location", e.target.value)}
-              onBlur={() => handleBlur("location")}
+              onBlur={(e) => handleBlur("location", e.target.value)}
               required
               className={
                 formState.location.touched && !formData.location.trim()
                   ? "is-invalid"
+                  : formState.location.touched
+                  ? "is-valid"
                   : ""
               }
             />
