@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const Logo = styled.div`
-  text-align: center; /* Center the logo */
-  margin-bottom: 10px; /* Add space between logo and header */
+  text-align: center;
+  margin-bottom: 10px;
 
   img {
-    width: 80px; /* Smaller logo for mobile */
+    width: 80px;
     height: auto;
     cursor: pointer;
 
     @media (min-width: 769px) {
-      width: 100px; /* Larger logo for desktop */
+      width: 100px;
     }
   }
 `;
@@ -24,12 +24,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: url("background-image-url.jpg") no-repeat center center/cover; /* Replace with your image URL */
+  background: url("background-image-url.jpg") no-repeat center center/cover;
   color: white;
   padding: 20px;
 
   @media (max-width: 768px) {
-    padding: 10px; /* Reduce padding for smaller screens */
+    padding: 10px;
   }
 `;
 
@@ -48,7 +48,7 @@ const Header = styled.h2`
   margin-bottom: 10px;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem; /* Smaller font size for mobile */
+    font-size: 1.5rem;
   }
 `;
 
@@ -64,7 +64,7 @@ const SubHeader = styled.p`
   }
 
   @media (max-width: 768px) {
-    font-size: 1rem; /* Smaller font for mobile screens */
+    font-size: 1rem;
     span {
       font-size: 1.4rem;
     }
@@ -78,7 +78,7 @@ const ObjectiveGrid = styled.div`
   margin-top: 20px;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr; /* Single column for smaller screens */
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -111,7 +111,7 @@ const Title = styled.h3`
   margin: 10px 0 5px;
 
   @media (max-width: 768px) {
-    font-size: 1rem; /* Smaller font size for mobile */
+    font-size: 1rem;
   }
 `;
 
@@ -121,7 +121,7 @@ const Description = styled.p`
   color: ${(props) => (props.selected ? "white" : "#bbb")};
 
   @media (max-width: 768px) {
-    font-size: 0.8rem; /* Smaller font size for mobile */
+    font-size: 0.8rem;
   }
 `;
 
@@ -138,8 +138,8 @@ const ButtonGroup = styled.div`
   margin-top: 20px;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* Stack buttons vertically on smaller screens */
-    gap: 10px; /* Add space between buttons */
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 
@@ -160,16 +160,15 @@ const Button = styled.button`
   }
 
   @media (max-width: 768px) {
-    width: 100%; /* Full width for smaller screens */
-    font-size: 0.9rem; /* Smaller font size for mobile */
-    padding: 8px 16px; /* Reduce padding for smaller screens */
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 `;
 
-const Step3 = ({ formData, onNext, onBack }) => {
+const Step3 = ({ formData, updateFormData, onNext, onBack }) => {
   const { t } = useTranslation();
-  const [selectedObjective, setSelectedObjective] = useState(formData.objective); // Initialize selectedObjective with the formData
-
+  const [selectedObjective, setSelectedObjective] = useState(formData.objective);
   const [error, setError] = useState("");
 
   const objectives = [
@@ -197,14 +196,22 @@ const Step3 = ({ formData, onNext, onBack }) => {
 
   const navigate = useNavigate();
   const handleLogoClick = () => {
-    navigate("/"); // Redirect to the home route
+    navigate("/");
   };
 
+  // Sync selectedObjective with formData.objective
+  useEffect(() => {
+    setSelectedObjective(formData.objective);
+  }, [formData.objective]);
+
+  // Handle selection of a goal
   const handleSelect = (index) => {
     setSelectedObjective(index);
+    updateFormData("objective", index); // Update formData.objective immediately
     setError(""); // Clear any existing error when a selection is made
   };
 
+  // Handle clicking the "Next" button
   const handleNext = () => {
     if (selectedObjective !== null) {
       onNext(selectedObjective); // Pass the selected objective index to the next step
@@ -238,7 +245,6 @@ const Step3 = ({ formData, onNext, onBack }) => {
             </ObjectiveCard>
           ))}
         </ObjectiveGrid>
-        {/* Render the error message just below the grid */}
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <ButtonGroup>
           <Button onClick={onBack}>{t("step3.back")}</Button>

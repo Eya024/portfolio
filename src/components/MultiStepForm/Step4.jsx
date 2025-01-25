@@ -4,16 +4,16 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const Logo = styled.div`
-  text-align: center; /* Center the logo */
-  margin-bottom: 10px; /* Add space between logo and header */
+  text-align: center;
+  margin-bottom: 10px;
 
   img {
-    width: 80px; /* Smaller logo for mobile */
+    width: 80px;
     height: auto;
     cursor: pointer;
 
     @media (min-width: 769px) {
-      width: 100px; /* Larger logo for desktop */
+      width: 100px;
     }
   }
 `;
@@ -24,12 +24,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: url("background-image-url.jpg") no-repeat center center/cover; /* Replace with your image URL */
+  background: url("background-image-url.jpg") no-repeat center center/cover;
   color: white;
   padding: 20px;
 
   @media (max-width: 768px) {
-    padding: 10px; /* Reduce padding for smaller screens */
+    padding: 10px;
   }
 `;
 
@@ -40,7 +40,7 @@ const FormContainer = styled.div`
   max-width: 500px;
   width: 100%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden; /* Prevent overflow */
+  overflow: hidden;
 `;
 
 const Header = styled.h2`
@@ -49,7 +49,7 @@ const Header = styled.h2`
   margin-bottom: 10px;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem; /* Smaller font size for mobile */
+    font-size: 1.5rem;
   }
 `;
 
@@ -65,7 +65,7 @@ const SubHeader = styled.p`
   }
 
   @media (max-width: 768px) {
-    font-size: 1rem; /* Smaller font for mobile screens */
+    font-size: 1rem;
     span {
       font-size: 1.4rem;
     }
@@ -74,13 +74,13 @@ const SubHeader = styled.p`
 
 const AvailabilityContainer = styled.div`
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap to the next line */
-  justify-content: center; /* Center cards horizontally */
-  gap: 15px; /* Add space between cards */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
   margin-top: 20px;
 
   @media (max-width: 768px) {
-    gap: 10px; /* Reduce gap for smaller screens */
+    gap: 10px;
   }
 `;
 
@@ -89,22 +89,22 @@ const AvailabilityCard = styled.div`
   color: ${(props) => (props.selected ? "white" : "white")};
   border-radius: 12px;
   text-align: center;
-  padding: 15px; /* Reduce padding for smaller screens */
+  padding: 15px;
   cursor: pointer;
   box-shadow: ${(props) =>
     props.selected ? "0 4px 15px rgba(255, 73, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
   transition: all 0.3s ease;
-  flex: 1 1 45%; /* Allow cards to grow and shrink, with a base width of 45% */
-  max-width: 45%; /* Limit card width to prevent overflow */
+  flex: 1 1 45%;
+  max-width: 45%;
 
   &:hover {
     background: ${(props) => (props.selected ? "#9c4f55" : "#333")};
   }
 
   @media (max-width: 768px) {
-    flex: 1 1 100%; /* Full width for smaller screens */
-    max-width: 100%; /* Full width for smaller screens */
-    padding: 10px; /* Reduce padding for smaller screens */
+    flex: 1 1 100%;
+    max-width: 100%;
+    padding: 10px;
   }
 `;
 
@@ -114,7 +114,7 @@ const TimeSlot = styled.p`
   margin: 0;
 
   @media (max-width: 768px) {
-    font-size: 0.9rem; /* Smaller font size for mobile */
+    font-size: 0.9rem;
   }
 `;
 
@@ -131,8 +131,8 @@ const ButtonGroup = styled.div`
   margin-top: 20px;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* Stack buttons vertically on smaller screens */
-    gap: 10px; /* Add space between buttons */
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 
@@ -153,35 +153,34 @@ const Button = styled.button`
   }
 
   @media (max-width: 768px) {
-    width: 100%; /* Full width for smaller screens */
-    font-size: 0.9rem; /* Smaller font size for mobile */
-    padding: 8px 16px; /* Reduce padding for smaller screens */
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 `;
 
-const Step4 = ({ formData, onFinish, onBack }) => {
+const Step4 = ({ formData, updateFormData, onFinish, onBack }) => {
   const { t } = useTranslation();
-  const [selectedAvailability, setSelectedAvailability] = useState(formData.availability); // Initialize with formData.availability
+  const [selectedAvailability, setSelectedAvailability] = useState(formData.availability);
   const [error, setError] = useState("");
 
   const availabilities = t("step4.availabilities", { returnObjects: true });
 
   const navigate = useNavigate();
 
-  // Use useEffect to update selectedAvailability when formData.availability changes
+  // Sync selectedAvailability with formData.availability
   useEffect(() => {
     setSelectedAvailability(formData.availability);
   }, [formData.availability]);
 
+  // Handle selection of a timeslot
   const handleSelect = (index) => {
     setSelectedAvailability(index);
+    updateFormData("availability", index); // Update formData.availability immediately
     setError(""); // Clear error on selection
   };
 
-  const handleLogoClick = () => {
-    navigate("/"); // Redirect to the home route
-  };
-
+  // Handle clicking the "Finish" button
   const handleFinish = () => {
     if (selectedAvailability !== null) {
       onFinish(selectedAvailability); // Pass the selected availability index
@@ -190,9 +189,10 @@ const Step4 = ({ formData, onFinish, onBack }) => {
     }
   };
 
-  console.log("Form Data in Step4:", formData);
-  console.log("Availabilities:", availabilities);
-  console.log("Selected Availability:", selectedAvailability);
+  // Handle logo click
+  const handleLogoClick = () => {
+    navigate("/");
+  };
 
   return (
     <Container>
@@ -208,8 +208,8 @@ const Step4 = ({ formData, onFinish, onBack }) => {
           {availabilities.map((time, index) => (
             <AvailabilityCard
               key={index}
-              selected={selectedAvailability === index} // Compare with index
-              onClick={() => handleSelect(index)} // When clicked, select the index
+              selected={selectedAvailability === index}
+              onClick={() => handleSelect(index)}
             >
               <TimeSlot>{time}</TimeSlot>
             </AvailabilityCard>
