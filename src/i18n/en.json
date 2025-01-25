@@ -59,7 +59,7 @@
                 "thumbnail": "/img/resources/coach.jpeg"
             },
             {
-                "title": "Competition 1",
+                "title": "Competition",
                 "videoUrl": "/img/resources/vid2.mp4",
                 "thumbnail": "/img/video/gym1thumb.jpg"
             }
@@ -111,7 +111,7 @@
             "weight": "Weight (kg)"
         },
         "validationErrors": {
-            "height": "Please enter a valid height in cm (positive number between 170 and 210).",
+            "height": "Please enter a valid height in cm (positive number between 140 and 210).",
             "weight": "Please enter a valid weight in kg (positive number between 40 and 250)."
         },
         "next": "Next",

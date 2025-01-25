@@ -1,6 +1,6 @@
 {
     "heroSection": {
-        "title": "Transformez Votre <span>Corps</span> <br /> Votre <span>Vie</span>",
+        "title": "Transformez Votre Corps et Votre Vie",
         "subtitle": "Découvrez votre meilleure version avec des programmes personnalisés et des conseils professionnels.",
         "startButton": "Commencez Maintenant"
     },
@@ -59,7 +59,7 @@
                 "thumbnail": "/img/resources/thumb1.png"
             },
             {
-                "title": "Compétition 1",
+                "title": "Compétition",
                 "videoUrl": "/img/resources/vid2.mp4",
                 "thumbnail": "/img/resources/thumb2.png"
             }
@@ -72,9 +72,8 @@
             "/img/resources/trans2.jpeg",
             "/img/resources/trans3.jpeg",
             "/img/resources/trans4.jpeg",
-            "/img/resources/trans5.jpeg",
-            "/img/resources/trans8.jpeg",
-            "/img/resources/trans9.jpeg"
+            "/img/resources/trans10.jpeg",
+            "/img/resources/trans13.jpeg"
         ]
     },
     "step1": {
@@ -111,7 +110,7 @@
             "weight": "Poids (kg)"
         },
         "validationErrors": {
-            "height": "Veuillez entrer une hauteur valide en cm (nombre positif entre 170 et 210).",
+            "height": "Veuillez entrer une hauteur valide en cm (nombre positif entre 140 et 210).",
             "weight": "Veuillez entrer un poids valide en kg (nombre positif entre 40 et 250)."
         },
         "next": "Suivant",

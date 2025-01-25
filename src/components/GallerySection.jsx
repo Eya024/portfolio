@@ -16,17 +16,17 @@ const Header = styled.header`
   color: white;
 
   span {
-    color: #af1e1e;
-    font-weight: bold;
-    display: block;
-    font-size: 1.6rem;
-    margin-top: 1vh;
+    color: #d3d3d3; /* Match the color of the Subtitle in HeroSection */
+    font-weight: normal; /* Match the font weight of the Subtitle */
+    display: block; /* Ensure the span is on a new line */
+    font-size: 1.6rem; /* Match the font size of the Subtitle */
+    margin-top: 1vh; /* Add some spacing between the title and the span */
   }
 
   @media (max-width: 768px) {
     font-size: 3rem; /* Adjust font size for smaller screens */
     span {
-      font-size: 1.6rem; /* Adjust subtitle size */
+      font-size: 1.4rem; /* Adjust font size for smaller screens */
     }
   }
 `;
@@ -130,48 +130,48 @@ const VideoTitle = styled.span`
 `;
 
 const GallerySection = () => {
-    const { t } = useTranslation();
-    const videos = t("gallerySection.videos", { returnObjects: true });
-    const [selectedVideo, setSelectedVideo] = useState(videos[0]);
-    const videoRef = useRef(null);
-  
-    return (
-      <Section>
-        <Header>
-          {t("gallerySection.header.title")}{" "}
-          <span>{t("gallerySection.header.subtitle")}</span>
-        </Header>
-        <Content>
-          <VideoContainer>
-            <video
-              ref={videoRef}
-              src={selectedVideo.videoUrl}
-              controls
-              disablePictureInPicture
-              controlsList="nodownload"
-            />
-          </VideoContainer>
-          <VideoList>
-            {videos.map((video, index) => (
-              <VideoItem
-                key={index}
-                onClick={() => {
-                  setSelectedVideo(video);
-                  if (videoRef.current) videoRef.current.pause(); // Pause before switching
-                }}
-                isActive={
-                  selectedVideo.title === video.title &&
-                  selectedVideo.videoUrl === video.videoUrl
-                }
-              >
-                <Thumbnail src={video.thumbnail} alt={video.title} />
-                <VideoTitle>{video.title}</VideoTitle>
-              </VideoItem>
-            ))}
-          </VideoList>
-        </Content>
-      </Section>
-    );
-  };
-  
-  export default GallerySection;
+  const { t } = useTranslation();
+  const videos = t("gallerySection.videos", { returnObjects: true });
+  const [selectedVideo, setSelectedVideo] = useState(videos[0]);
+  const videoRef = useRef(null);
+
+  return (
+    <Section>
+      <Header>
+        {t("gallerySection.header.title")}{" "}
+        <span>{t("gallerySection.header.subtitle")}</span>
+      </Header>
+      <Content>
+        <VideoContainer>
+          <video
+            ref={videoRef}
+            src={selectedVideo.videoUrl}
+            controls
+            disablePictureInPicture
+            controlsList="nodownload"
+          />
+        </VideoContainer>
+        <VideoList>
+          {videos.map((video, index) => (
+            <VideoItem
+              key={index}
+              onClick={() => {
+                setSelectedVideo(video);
+                if (videoRef.current) videoRef.current.pause(); // Pause before switching
+              }}
+              isActive={
+                selectedVideo.title === video.title &&
+                selectedVideo.videoUrl === video.videoUrl
+              }
+            >
+              <Thumbnail src={video.thumbnail} alt={video.title} />
+              <VideoTitle>{video.title}</VideoTitle>
+            </VideoItem>
+          ))}
+        </VideoList>
+      </Content>
+    </Section>
+  );
+};
+
+export default GallerySection;

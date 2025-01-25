@@ -28,7 +28,6 @@ const float1 = keyframes`
   }
 `;
 
-
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
@@ -68,20 +67,25 @@ const Section = styled.section`
   color: white;
 
   h2 {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    font-weight: bold;
+    font-size: 4rem; /* Match font size in HeroSection */
+    font-weight: bold; /* Match font weight in HeroSection */
+    line-height: 1.2; /* Match line height in HeroSection */
+    margin-bottom: 2vh; /* Match margin-bottom in HeroSection */
+    color: white; /* Match color in HeroSection */
+
     @media (max-width: 768px) {
-    font-size: 2.9rem;
-  }
+      font-size: 3rem; /* Match responsive font size in HeroSection */
+    }
   }
 
   p {
-    font-size: 1.6rem;
-    margin-bottom: 40px;
+    font-size: 1.6rem; /* Match font size in HeroSection */
+    color: #d3d3d3; /* Match color in HeroSection */
+    margin-bottom: 3vh; /* Match margin-bottom in HeroSection */
+
     @media (max-width: 768px) {
-    font-size: 1.4rem;
-  }
+      font-size: 1.4rem; /* Match responsive font size in HeroSection */
+    }
   }
 
   .button-container {

@@ -48,7 +48,6 @@ const Header = styled.h2`
   text-align: center;
   margin-bottom: 10px;
 
-
   @media (max-width: 768px) {
     font-size: 1.5rem; /* Smaller font size for mobile */
   }
@@ -57,13 +56,19 @@ const Header = styled.h2`
 const SubHeader = styled.p`
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1.8rem;
-    color: #af1e1e;
-      font-weight: bold;
+  font-size: 1.2rem;
+  color: #ccc;
 
+  span {
+    color: #d3d3d3;
+    font-size: 1.4rem;
+  }
 
   @media (max-width: 768px) {
-    font-size: 0.9rem; /* Smaller font size for mobile */
+    font-size: 1rem; /* Smaller font for mobile screens */
+    span {
+      font-size: 1.4rem;
+    }
   }
 `;
 
@@ -155,70 +160,71 @@ const Button = styled.button`
 `;
 
 const Step4 = ({ formData, onFinish, onBack }) => {
-    const { t } = useTranslation();
-    const [selectedAvailability, setSelectedAvailability] = useState(formData.availability); // Initialize with formData.availability
-    const [error, setError] = useState("");
+  const { t } = useTranslation();
+  const [selectedAvailability, setSelectedAvailability] = useState(formData.availability); // Initialize with formData.availability
+  const [error, setError] = useState("");
 
-    const availabilities = t("step4.availabilities", { returnObjects: true });
+  const availabilities = t("step4.availabilities", { returnObjects: true });
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
+  // Use useEffect to update selectedAvailability when formData.availability changes
+  useEffect(() => {
+    setSelectedAvailability(formData.availability);
+  }, [formData.availability]);
 
-    // Use useEffect to update selectedAvailability when formData.availability changes
-    useEffect(() => {
-        setSelectedAvailability(formData.availability);
-    }, [formData.availability]);
+  const handleSelect = (index) => {
+    setSelectedAvailability(index);
+    setError(""); // Clear error on selection
+  };
 
-    const handleSelect = (index) => {
-        setSelectedAvailability(index);
-        setError(""); // Clear error on selection
-    };
-    const handleLogoClick = () => {
-        navigate("/"); // Redirect to the home route
-    };
-    const handleFinish = () => {
-        if (selectedAvailability !== null) {
-            onFinish(selectedAvailability); // Pass the selected availability index
-        } else {
-            setError(t("step4.error"));
-        }
-    };
-    console.log("Form Data in Step4:", formData);
-    console.log("Availabilities:", availabilities);
-    console.log("Selected Availability:", selectedAvailability);
+  const handleLogoClick = () => {
+    navigate("/"); // Redirect to the home route
+  };
 
+  const handleFinish = () => {
+    if (selectedAvailability !== null) {
+      onFinish(selectedAvailability); // Pass the selected availability index
+    } else {
+      setError(t("step4.error"));
+    }
+  };
 
-    return (
-        <Container>
-            <Logo onClick={handleLogoClick}>
-                <img src="/img/logo.png" alt="Logo" />
-            </Logo>
-            <Header>
-                {t("step4.header")} 
-            </Header>
-            <SubHeader>{t("step4.subheader")}</SubHeader>
-            <FormContainer>
-                <AvailabilityContainer>
-                    {availabilities.map((time, index) => (
-                        <AvailabilityCard
-                            key={index}
-                            selected={selectedAvailability === index}  // Compare with index
-                            onClick={() => handleSelect(index)}  // When clicked, select the index
-                        >
-                            <TimeSlot>{time}</TimeSlot>
-                        </AvailabilityCard>
-                    ))}
-                </AvailabilityContainer>
-                {error && <ErrorMessage>{error}</ErrorMessage>}
-                <ButtonGroup>
-                    <Button onClick={onBack}>{t("step4.back")}</Button>
-                    <Button primary onClick={handleFinish}>
-                        {t("step4.finish")}
-                    </Button>
-                </ButtonGroup>
-            </FormContainer>
-        </Container>
-    );
+  console.log("Form Data in Step4:", formData);
+  console.log("Availabilities:", availabilities);
+  console.log("Selected Availability:", selectedAvailability);
+
+  return (
+    <Container>
+      <Logo onClick={handleLogoClick}>
+        <img src="/img/logo.png" alt="Logo" />
+      </Logo>
+      <Header>{t("step4.header")}</Header>
+      <SubHeader>
+        <span>{t("step4.subheader")}</span>
+      </SubHeader>
+      <FormContainer>
+        <AvailabilityContainer>
+          {availabilities.map((time, index) => (
+            <AvailabilityCard
+              key={index}
+              selected={selectedAvailability === index} // Compare with index
+              onClick={() => handleSelect(index)} // When clicked, select the index
+            >
+              <TimeSlot>{time}</TimeSlot>
+            </AvailabilityCard>
+          ))}
+        </AvailabilityContainer>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <ButtonGroup>
+          <Button onClick={onBack}>{t("step4.back")}</Button>
+          <Button primary onClick={handleFinish}>
+            {t("step4.finish")}
+          </Button>
+        </ButtonGroup>
+      </FormContainer>
+    </Container>
+  );
 };
 
 export default Step4;

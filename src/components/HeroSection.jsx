@@ -95,7 +95,8 @@ const Title = styled.h1`
   color: white;
 
   span {
-    color: #af1e1e;
+    color: white;
+    
   }
 
   @media (max-width: 768px) {

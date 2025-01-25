@@ -25,18 +25,23 @@ const Section = styled.section`
 
 const Title = styled.h1`
   font-size: 4rem;
-  color: #af1e1e;
-  margin-bottom: 10px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 2vh; /* Match margin-bottom in HeroSection */
+  color: white; /* Match color in HeroSection */
+
   @media (max-width: 768px) {
-    font-size: 3rem;
+    font-size: 3rem; /* Match responsive font size in HeroSection */
   }
 `;
 
 const Subtitle = styled.p`
   font-size: 1.6rem;
-  margin-bottom: 30px;
+  color: #d3d3d3; /* Match color in HeroSection */
+  margin-bottom: 3vh; /* Match margin-bottom in HeroSection */
+
   @media (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: 1.4rem; /* Match responsive font size in HeroSection */
   }
 `;
 

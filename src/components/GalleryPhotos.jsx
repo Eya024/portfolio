@@ -39,10 +39,22 @@ const GalleryItem = styled.div`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  position: relative; /* Required for the overlay */
 
   &:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* 20% less vibrant overlay */
+    z-index: 1; /* Ensure the overlay is on top of the image */
   }
 `;
 
@@ -51,6 +63,8 @@ const GalleryImage = styled.img`
   height: 300px;
   object-fit: cover;
   display: block;
+  position: relative; /* Ensure the image stays below the overlay */
+  z-index: 0; /* Ensure the image is below the overlay */
 `;
 
 const ModalImage = styled.img`

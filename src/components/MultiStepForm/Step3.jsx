@@ -47,8 +47,6 @@ const Header = styled.h2`
   text-align: center;
   margin-bottom: 10px;
 
-
-
   @media (max-width: 768px) {
     font-size: 1.5rem; /* Smaller font size for mobile */
   }
@@ -57,13 +55,19 @@ const Header = styled.h2`
 const SubHeader = styled.p`
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1.8rem;
-    color: #af1e1e;
-      font-weight: bold;
+  font-size: 1.2rem;
+  color: #ccc;
 
+  span {
+    color: #d3d3d3;
+    font-size: 1.4rem;
+  }
 
   @media (max-width: 768px) {
-    font-size: 0.9rem; /* Smaller font size for mobile */
+    font-size: 1rem; /* Smaller font for mobile screens */
+    span {
+      font-size: 1.4rem;
+    }
   }
 `;
 
@@ -162,91 +166,88 @@ const Button = styled.button`
 `;
 
 const Step3 = ({ formData, onNext, onBack }) => {
-    const { t } = useTranslation();
-    const [selectedObjective, setSelectedObjective] = useState(formData.objective); // Initialize selectedObjective with the formData
+  const { t } = useTranslation();
+  const [selectedObjective, setSelectedObjective] = useState(formData.objective); // Initialize selectedObjective with the formData
 
-    const [error, setError] = useState("");
+  const [error, setError] = useState("");
 
-    const objectives = [
-        {
-            title: t("step3.objectives.0.title"),
-            description: t("step3.objectives.0.description"),
-            img: "/img/resources/strength.jpg",
-        },
-        {
-            title: t("step3.objectives.1.title"),
-            description: t("step3.objectives.1.description"),
-            img: "/img/resources/lifestyle.jpg",
-        },
-        {
-            title: t("step3.objectives.2.title"),
-            description: t("step3.objectives.2.description"),
-            img: "/img/resources/weight.jpg",
-        },
-        {
-            title: t("step3.objectives.3.title"),
-            description: t("step3.objectives.3.description"),
-            img: "/img/resources/muscle.jpg",
-        },
-    ];
+  const objectives = [
+    {
+      title: t("step3.objectives.0.title"),
+      description: t("step3.objectives.0.description"),
+      img: "/img/resources/strength.jpg",
+    },
+    {
+      title: t("step3.objectives.1.title"),
+      description: t("step3.objectives.1.description"),
+      img: "/img/resources/lifestyle.jpg",
+    },
+    {
+      title: t("step3.objectives.2.title"),
+      description: t("step3.objectives.2.description"),
+      img: "/img/resources/weight.jpg",
+    },
+    {
+      title: t("step3.objectives.3.title"),
+      description: t("step3.objectives.3.description"),
+      img: "/img/resources/muscle.jpg",
+    },
+  ];
 
-    const navigate = useNavigate();
-    const handleLogoClick = () => {
-        navigate("/"); // Redirect to the home route
-    };
+  const navigate = useNavigate();
+  const handleLogoClick = () => {
+    navigate("/"); // Redirect to the home route
+  };
 
-    const handleSelect = (index) => {
-        setSelectedObjective(index);
-        setError(""); // Clear any existing error when a selection is made
-    };
+  const handleSelect = (index) => {
+    setSelectedObjective(index);
+    setError(""); // Clear any existing error when a selection is made
+  };
 
-    const handleNext = () => {
-        if (selectedObjective !== null) {
-            onNext(selectedObjective); // Pass the selected objective index to the next step
-        } else {
-            setError(t("step3.error")); // Set error if no objective is selected
-        }
-    };
+  const handleNext = () => {
+    if (selectedObjective !== null) {
+      onNext(selectedObjective); // Pass the selected objective index to the next step
+    } else {
+      setError(t("step3.error")); // Set error if no objective is selected
+    }
+  };
 
-    return (
-        <Container>
-            <Logo onClick={handleLogoClick}>
-                <img src="/img/logo.png" alt="Logo" />
-            </Logo>
-            <Header>
-                {t("step3.header")} 
-            </Header>
-            <SubHeader>
-            {t("step3.subheader")}
-
-            </SubHeader>
-            <FormContainer>
-                <ObjectiveGrid>
-                    {objectives.map((objective, index) => (
-                        <ObjectiveCard
-                            key={index}
-                            selected={selectedObjective === index}
-                            onClick={() => handleSelect(index)}
-                        >
-                            <Image src={objective.img} alt={objective.title} />
-                            <Title>{objective.title}</Title>
-                            <Description selected={selectedObjective === index}>
-                                {objective.description}
-                            </Description>
-                        </ObjectiveCard>
-                    ))}
-                </ObjectiveGrid>
-                {/* Render the error message just below the grid */}
-                {error && <ErrorMessage>{error}</ErrorMessage>}
-                <ButtonGroup>
-                    <Button onClick={onBack}>{t("step3.back")}</Button>
-                    <Button primary onClick={handleNext}>
-                        {t("step3.next")}
-                    </Button>
-                </ButtonGroup>
-            </FormContainer>
-        </Container>
-    );
+  return (
+    <Container>
+      <Logo onClick={handleLogoClick}>
+        <img src="/img/logo.png" alt="Logo" />
+      </Logo>
+      <Header>{t("step3.header")}</Header>
+      <SubHeader>
+        <span>{t("step3.subheader")}</span>
+      </SubHeader>
+      <FormContainer>
+        <ObjectiveGrid>
+          {objectives.map((objective, index) => (
+            <ObjectiveCard
+              key={index}
+              selected={selectedObjective === index}
+              onClick={() => handleSelect(index)}
+            >
+              <Image src={objective.img} alt={objective.title} />
+              <Title>{objective.title}</Title>
+              <Description selected={selectedObjective === index}>
+                {objective.description}
+              </Description>
+            </ObjectiveCard>
+          ))}
+        </ObjectiveGrid>
+        {/* Render the error message just below the grid */}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <ButtonGroup>
+          <Button onClick={onBack}>{t("step3.back")}</Button>
+          <Button primary onClick={handleNext}>
+            {t("step3.next")}
+          </Button>
+        </ButtonGroup>
+      </FormContainer>
+    </Container>
+  );
 };
 
 export default Step3;

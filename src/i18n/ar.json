@@ -59,7 +59,7 @@
           "thumbnail": "/img/resources/coach.jpeg"
         },
         {
-          "title": "مسابقة 1",
+          "title": "مسابقة ",
           "videoUrl": "/img/resources/vid2.mp4",
           "thumbnail": "/img/video/gym1thumb.jpg"
         }
@@ -111,7 +111,7 @@
         "weight": "الوزن (كجم)"
       },
       "validationErrors": {
-        "height": "الرجاء إدخال طول صحيح بالسم (رقم موجب بين 170 و 210).",
+        "height": "الرجاء إدخال طول صحيح بالسم (رقم موجب بين 140 و 210).",
         "weight": "الرجاء إدخال وزن صحيح بالكجم (رقم موجب بين 40 و 250)."
       },
       "next": "التالي",

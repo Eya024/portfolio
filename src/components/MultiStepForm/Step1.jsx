@@ -71,9 +71,8 @@ const SubHeader = styled.p`
   color: #ccc;
 
   span {
-    color: #af1e1e;
-    font-size: 1.8rem;
-      font-weight: bold;
+    color: #d3d3d3;
+    font-size: 1.4rem;
 
   }
 
