@@ -35,7 +35,6 @@ const HomeContainer = styled.div`
   @media (max-width: 768px) {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 url('/img/resources/coach.jpeg') no-repeat center center/cover;
-    background-attachment: fixed; /* Fixed background on mobile */
     background-size: cover; /* Ensure the image covers the entire container */
     background-position: center; /* Center the background image */
     position: static; /* Set position to static to fix flickering */

@@ -90,21 +90,22 @@ const VideoItem = styled.div`
   align-items: center;
   gap: 1.5vh;
   padding: 1.5vh;
-  border: ${({ isActive }) => (isActive ? "0.2rem solid #af1e1e" : "0.2rem solid transparent")};
+  border: ${({ "data-is-active": isActive }) =>
+    isActive ? "0.2rem solid #af1e1e" : "0.2rem solid transparent"};
   border-radius: 1rem;
   cursor: pointer;
-  background: ${({ isActive }) =>
+  background: ${({ "data-is-active": isActive }) =>
     isActive ? "rgba(243, 97, 0, 0.3)" : "rgba(255, 255, 255, 0.1)"};
   transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
 
   &:hover {
-    background: ${({ isActive }) =>
-      isActive ? "rgba(243, 97, 0, 0.4)" : "rgba(255, 255, 255, 0.2)"};
+    background: ${({ "data-is-active": isActive }) =>
+    isActive ? "rgba(243, 97, 0, 0.4)" : "rgba(255, 255, 255, 0.2)"};
     transform: scale(1.05);
   }
 
   @media (max-width: 768px) {
-    padding: 1rem; /* Adjust padding on smaller screens */
+    padding: 1rem;
   }
 `;
 
@@ -159,7 +160,7 @@ const GallerySection = () => {
                 setSelectedVideo(video);
                 if (videoRef.current) videoRef.current.pause(); // Pause before switching
               }}
-              isActive={
+              data-is-active={
                 selectedVideo.title === video.title &&
                 selectedVideo.videoUrl === video.videoUrl
               }

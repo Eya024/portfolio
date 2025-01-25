@@ -24,7 +24,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: url("background-image-url.jpg") no-repeat center center/cover;
   color: white;
   padding: 20px;
 

@@ -5,7 +5,7 @@ import { fadeIn } from "./Animation";
 
 const SectionWrapper = styled.section`
   opacity: 0; /* Start hidden */
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 1s ease-in-out forwards;
+  animation: ${({ "data-is-visible": isVisible }) => (isVisible ? fadeIn : "none")} 1s ease-in-out forwards;
 `;
 
 const AnimatedSection = ({ children }) => {
@@ -41,10 +41,10 @@ const AnimatedSection = ({ children }) => {
     }, []);
 
     return (
-        <SectionWrapper ref={sectionRef} isVisible={isVisible}>
-            {children}
+        <SectionWrapper ref={sectionRef} data-is-visible={isVisible}>
+          {children}
         </SectionWrapper>
-    );
+      );
 };
 
 export default AnimatedSection;

@@ -9,7 +9,6 @@ const Step5Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url("/img/hero/hero-1.jpg") no-repeat center center fixed;
   background-size: cover;
 `;
 

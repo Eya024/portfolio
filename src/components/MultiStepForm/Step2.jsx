@@ -24,7 +24,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: url("background-image-url.jpg") no-repeat center center/cover;
   color: white;
   padding: 20px;
 
@@ -203,11 +202,7 @@ const Step2 = ({ formData = {}, updateFormData, nextStep, prevStep }) => {
     setFocused((prev) => ({ ...prev, [fieldName]: true })); // Add focus
   };
 
-  const validateFields = () => {
-    const isHeightValid = validateField("height", height);
-    const isWeightValid = validateField("weight", weight);
-    return isHeightValid && isWeightValid;
-  };
+
 
   const handleNext = () => {
     // Mark all fields as touched

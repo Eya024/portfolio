@@ -50,8 +50,8 @@ const CurrencySwitcher = styled.div`
 `;
 
 const CurrencyButton = styled.button`
-  background-color: ${({ active }) => (active ? '#af1e1e' : '#333')};
-  color: ${({ active }) => (active ? '#111' : '#fff')};
+  background-color: ${({ 'data-active': active }) => (active ? '#af1e1e' : '#333')};
+  color: ${({ 'data-active': active }) => (active ? '#111' : '#fff')};
   border: none;
   padding: 10px 20px;
   margin: 0 5px;
@@ -212,19 +212,19 @@ const SubscriptionSection = () => {
       <Subtitle>{t("subscriptionSection.subtitle")}</Subtitle>
       <CurrencySwitcher>
         <CurrencyButton
-          active={currency === "TND"}
+          data-active={currency === "TND"} // Use data-active instead of active
           onClick={() => handleCurrencyChange("TND")}
         >
           {t("subscriptionSection.currency.tnd")}
         </CurrencyButton>
         <CurrencyButton
-          active={currency === "EUR"}
+          data-active={currency === "EUR"} // Use data-active instead of active
           onClick={() => handleCurrencyChange("EUR")}
         >
           {t("subscriptionSection.currency.eur")}
         </CurrencyButton>
         <CurrencyButton
-          active={currency === "USD"}
+          data-active={currency === "USD"} // Use data-active instead of active
           onClick={() => handleCurrencyChange("USD")}
         >
           {t("subscriptionSection.currency.usd")}
