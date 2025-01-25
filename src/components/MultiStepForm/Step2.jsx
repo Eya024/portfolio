@@ -210,7 +210,15 @@ const Step2 = ({ formData = {}, updateFormData, nextStep, prevStep }) => {
   };
 
   const handleNext = () => {
-    if (validateFields()) {
+    // Mark all fields as touched
+    setTouched({ height: true, weight: true });
+
+    // Validate all fields
+    const isHeightValid = validateField("height", height);
+    const isWeightValid = validateField("weight", weight);
+
+    // Only proceed to the next step if all fields are valid
+    if (isHeightValid && isWeightValid) {
       nextStep();
     }
   };
