@@ -74,7 +74,7 @@ const Section = styled.section`
     color: white; /* Match color in HeroSection */
 
     @media (max-width: 768px) {
-      font-size: 3rem; /* Match responsive font size in HeroSection */
+      font-size: 2rem; /* Match responsive font size in HeroSection */
     }
   }
 
