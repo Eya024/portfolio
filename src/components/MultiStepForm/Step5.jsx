@@ -24,7 +24,7 @@ const Modal = styled.div`
 `;
 
 const SuccessIcon = styled.div`
-  background: #ffd700;
+  background: #af1e1e;
   color: #000;
   font-size: 60px;
   width: 80px;

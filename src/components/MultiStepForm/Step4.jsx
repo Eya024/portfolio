@@ -44,13 +44,10 @@ const FormContainer = styled.div`
 `;
 
 const Header = styled.h2`
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-align: center;
   margin-bottom: 10px;
 
-  span {
-    color: #ffc107;
-  }
 
   @media (max-width: 768px) {
     font-size: 1.5rem; /* Smaller font size for mobile */
@@ -60,8 +57,10 @@ const Header = styled.h2`
 const SubHeader = styled.p`
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1rem;
-  color: #bbb;
+  font-size: 1.8rem;
+    color: #af1e1e;
+      font-weight: bold;
+
 
   @media (max-width: 768px) {
     font-size: 0.9rem; /* Smaller font size for mobile */
@@ -195,8 +194,9 @@ const Step4 = ({ formData, onFinish, onBack }) => {
                 <img src="/img/logo.png" alt="Logo" />
             </Logo>
             <Header>
-                {t("step4.header")} <span>{t("step4.subheader")}</span>
+                {t("step4.header")} 
             </Header>
+            <SubHeader>{t("step4.subheader")}</SubHeader>
             <FormContainer>
                 <AvailabilityContainer>
                     {availabilities.map((time, index) => (

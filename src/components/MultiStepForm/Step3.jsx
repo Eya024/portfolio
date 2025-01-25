@@ -43,13 +43,11 @@ const FormContainer = styled.div`
 `;
 
 const Header = styled.h2`
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-align: center;
   margin-bottom: 10px;
 
-  span {
-    color: #ffc107;
-  }
+
 
   @media (max-width: 768px) {
     font-size: 1.5rem; /* Smaller font size for mobile */
@@ -59,8 +57,10 @@ const Header = styled.h2`
 const SubHeader = styled.p`
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1rem;
-  color: #bbb;
+  font-size: 1.8rem;
+    color: #af1e1e;
+      font-weight: bold;
+
 
   @media (max-width: 768px) {
     font-size: 0.9rem; /* Smaller font size for mobile */
@@ -171,22 +171,22 @@ const Step3 = ({ formData, onNext, onBack }) => {
         {
             title: t("step3.objectives.0.title"),
             description: t("step3.objectives.0.description"),
-            img: "path-to-image-1.jpg",
+            img: "/img/resources/strength.jpg",
         },
         {
             title: t("step3.objectives.1.title"),
             description: t("step3.objectives.1.description"),
-            img: "path-to-image-2.jpg",
+            img: "/img/resources/lifestyle.jpg",
         },
         {
             title: t("step3.objectives.2.title"),
             description: t("step3.objectives.2.description"),
-            img: "path-to-image-3.jpg",
+            img: "/img/resources/weight.jpg",
         },
         {
             title: t("step3.objectives.3.title"),
             description: t("step3.objectives.3.description"),
-            img: "path-to-image-4.jpg",
+            img: "/img/resources/muscle.jpg",
         },
     ];
 
@@ -214,8 +214,12 @@ const Step3 = ({ formData, onNext, onBack }) => {
                 <img src="/img/logo.png" alt="Logo" />
             </Logo>
             <Header>
-                {t("step3.header")} <span>{t("step3.subheader")}</span>
+                {t("step3.header")} 
             </Header>
+            <SubHeader>
+            {t("step3.subheader")}
+
+            </SubHeader>
             <FormContainer>
                 <ObjectiveGrid>
                     {objectives.map((objective, index) => (
