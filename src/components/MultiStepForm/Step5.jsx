@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 // Styled components
 const Step5Container = styled.div`
@@ -24,7 +25,7 @@ const Modal = styled.div`
 `;
 
 const SuccessIcon = styled.div`
-  background: #af1e1e;
+  background: black;
   color: #000;
   font-size: 60px;
   width: 80px;
@@ -49,64 +50,78 @@ const Subtitle = styled.p`
 `;
 
 const Step5 = ({ formData }) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
+  const navigate = useNavigate(); // Initialize navigate
 
-    // Log formData to check values
-    console.log(formData.objective, formData.availability);
+  // Log formData to check values
+  console.log(formData.objective, formData.availability);
 
-    useEffect(() => {
-        const phoneNumber = "+21695404825"; // Replace with your WhatsApp phone number
-        const whatsappUrl = generateWhatsAppUrl(formData, phoneNumber, t);
+  useEffect(() => {
+    const phoneNumber = "+21695404825"; // Replace with your WhatsApp phone number
+    const whatsappUrl = generateWhatsAppUrl(formData, phoneNumber, t);
 
-        // Redirect to WhatsApp
-        window.location.href = whatsappUrl;
-    }, [formData, t]);  // Make sure the translation function `t` is included in the dependency array.
+    // Redirect to WhatsApp in the same tab
+    window.location.href = whatsappUrl;
 
-    return (
-        <Step5Container>
-            <Modal>
-                <SuccessIcon>✔️</SuccessIcon>
-                <Title>{t("step5.thankYou")}</Title>
-                <Subtitle>{t("step5.redirecting")}</Subtitle>
-            </Modal>
-        </Step5Container>
-    );
+    // Add a fake entry to the browser history
+    window.history.pushState(null, "", "/");
+
+    // Listen for the popstate event (back button)
+    const handlePopState = () => {
+      navigate("/"); // Redirect to the home page
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [formData, t, navigate]); // Include navigate in the dependency array
+
+  return (
+    <Step5Container>
+      <Modal>
+        <SuccessIcon>✔️</SuccessIcon>
+        <Title>{t("step5.thankYou")}</Title>
+        <Subtitle>{t("step5.redirecting")}</Subtitle>
+      </Modal>
+    </Step5Container>
+  );
 };
 
 // Helper Functions
 const formatMessage = (formData, t) => {
-    const { name, email, height, weight, objective, availability, gender, location } = formData;
+  const { name, email, height, weight, objective, availability, gender, location } = formData;
 
-    // Use the translation function `t` to fetch the translated labels
-    const messageLabel = t("step5.message");
+  // Use the translation function `t` to fetch the translated labels
+  const messageLabel = t("step5.message");
 
-    const nameLabel = t("step5.name");
-    const emailLabel = t("step5.email");
+  const nameLabel = t("step5.name");
+  const emailLabel = t("step5.email");
 
-    const heightLabel = t("step5.height");
-    const weightLabel = t("step5.weight");
-    const objectiveLabel = t("step5.objective");
-    const availabilityLabel = t("step5.availability");
-    const genderLabel = t("step5.gender");
-    const locationLabel = t("step5.location");
-    const finalmessageLabel = t("step5.finalmessage");
+  const heightLabel = t("step5.height");
+  const weightLabel = t("step5.weight");
+  const objectiveLabel = t("step5.objective");
+  const availabilityLabel = t("step5.availability");
+  const genderLabel = t("step5.gender");
+  const locationLabel = t("step5.location");
+  const finalmessageLabel = t("step5.finalmessage");
 
+  const objectives = [
+    t("step5.objective1"),
+    t("step5.objective2"),
+    t("step5.objective3"),
+    t("step5.objective4"),
+  ];
 
+  const availabilities = [
+    t("step5.availability1"),
+    t("step5.availability2"),
+    t("step5.availability3"),
+  ];
 
-    const objectives = [
-        t("step5.objective1"),
-        t("step5.objective2"),
-        t("step5.objective3"),
-        t("step5.objective4")
-    ];
-
-    const availabilities = [
-        t("step5.availability1"),
-        t("step5.availability2"),
-        t("step5.availability3")
-    ];
-
-    return `
+  return `
       ${messageLabel}
       ${nameLabel}: ${name},
       ${genderLabel}: ${gender},
@@ -116,22 +131,13 @@ const formatMessage = (formData, t) => {
       ${objectiveLabel}: ${objectives[objective]},
       ${availabilityLabel}: ${availabilities[availability]},
       ${locationLabel}: ${location}.${finalmessageLabel}
-  
-      
-            
-
-      
-  
-      
-  
-       `.trim();
+     `.trim();
 };
 
-
 const generateWhatsAppUrl = (formData, phoneNumber, t) => {
-    const message = formatMessage(formData, t);
-    const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  const message = formatMessage(formData, t);
+  const encodedMessage = encodeURIComponent(message);
+  return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 };
 
 export default Step5;

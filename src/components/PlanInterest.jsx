@@ -25,7 +25,7 @@ const Modal = styled.div`
 `;
 
 const SuccessIcon = styled.div`
-  background: #ffd700;
+  background: black;
   color: #000;
   font-size: 60px;
   width: 80px;
@@ -75,6 +75,21 @@ const PlanInterest = () => {
     // Redirect to WhatsApp after a short delay
     const redirectTimer = setTimeout(() => {
       window.location.href = whatsappUrl;
+
+      // Add a fake entry to the browser history
+      window.history.pushState(null, "", "/");
+
+      // Listen for the popstate event (back button)
+      const handlePopState = () => {
+        navigate("/"); // Redirect to the home page
+      };
+
+      window.addEventListener("popstate", handlePopState);
+
+      // Cleanup the event listener
+      return () => {
+        window.removeEventListener("popstate", handlePopState);
+      };
     }, 3000); // 3-second delay before redirecting
 
     // Cleanup the timer
