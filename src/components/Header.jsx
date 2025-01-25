@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = styled.header`
   display: flex;
@@ -175,6 +175,9 @@ const Header = () => {
     navigate('/');
   };
 
+  const whatsappNumber = '+1234567890'; // Replace with your phone number
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+
   return (
     <Navbar>
       <Logo onClick={handleLogoClick}>
@@ -183,10 +186,23 @@ const Header = () => {
 
       <NavIcons>
         <SocialIcons>
-          <a href="https://www.instagram.com/mo_coaching1/" aria-label="Instagram">
+          {/* Instagram Link */}
+          <a
+            href="https://www.instagram.com/mo_coaching1/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="#whatsapp" aria-label="WhatsApp">
+
+          {/* WhatsApp Link */}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+          >
             <i className="fab fa-whatsapp"></i>
           </a>
         </SocialIcons>
