@@ -155,8 +155,8 @@ const GenderButton = styled.button`
   flex: 1;
   padding: 10px;
   margin: 0 6px;
-  border: 1px solid ${(props) => (props.active === "true" ? "#ffc107" : "#555")};
-  background: ${(props) => (props.active === "true" ? "#ffc107" : "#333")};
+  border: 1px solid ${(props) => (props.active === "true" ? "#af1e1e" : "#555")};
+  background: ${(props) => (props.active === "true" ? "#af1e1e" : "#333")};
   color: ${(props) => (props.active === "true" ? "#000" : "#fff")};
   border-radius: 8px;
   font-size: 1rem;
@@ -164,8 +164,8 @@ const GenderButton = styled.button`
   transition: background 0.3s ease;
 
   &:hover {
-    background: #ffc107;
-    color: #000;
+    background: #af1e1e;
+    color: white;
   }
 
   @media (max-width: 768px) {
@@ -176,8 +176,8 @@ const GenderButton = styled.button`
 `;
 
 const Button = styled.button`
-  background: #ffc107;
-  color: #000;
+  background: #af1e1e;
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
@@ -188,7 +188,7 @@ const Button = styled.button`
   transition: background 0.3s ease;
 
   &:hover {
-    background: #e0a800;
+    background: #9c4f55;
   }
 
   @media (max-width: 768px) {

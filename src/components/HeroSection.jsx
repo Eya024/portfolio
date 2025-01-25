@@ -117,7 +117,7 @@ const Subtitle = styled.p`
 const StartButton = styled.button`
   padding: 1rem 2rem;
   font-size: 1.4rem;
-  color: black;
+  color: white;
   background: #af1e1e;
   border: none;
   border-radius: 0.5rem;

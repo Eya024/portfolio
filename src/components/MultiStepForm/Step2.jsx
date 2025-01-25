@@ -131,7 +131,7 @@ const ButtonGroup = styled.div`
 `;
 
 const Button = styled.button`
-  background: ${(props) => (props.primary ? "#ffc107" : "#444")};
+  background: ${(props) => (props.primary ? "#af1e1e" : "#444")};
   color: ${(props) => (props.primary ? "#000" : "white")};
   padding: 10px 20px;
   border: none;
@@ -143,7 +143,7 @@ const Button = styled.button`
   width: 120px;
 
   &:hover {
-    background: ${(props) => (props.primary ? "#e0a800" : "#555")};
+    background: ${(props) => (props.primary ? "#9c4f55" : "#555")};
   }
 
   @media (max-width: 768px) {

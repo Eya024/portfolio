@@ -129,7 +129,7 @@ const Feature = styled.li`
 
 const BookButton = styled.button`
   background-color: #af1e1e;
-  color: #111;
+  color: white;
   border: none;
   padding: 0.5rem 2rem; /* Increased padding */
   font-size: 1.2rem; /* Increased font size */

@@ -96,7 +96,7 @@ const Section = styled.section`
   button {
     background: #af1e1e;
     border: none;
-    color: #000;
+    color: white;
     padding: 15px 30px;
     font-size: 1rem;
     font-weight: bold;

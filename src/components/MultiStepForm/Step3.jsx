@@ -83,18 +83,18 @@ const ObjectiveGrid = styled.div`
 `;
 
 const ObjectiveCard = styled.div`
-  background: ${(props) => (props.selected ? "#ffc107" : "#222")};
+  background: ${(props) => (props.selected ? "#af1e1e" : "#222")};
   color: ${(props) => (props.selected ? "#000" : "white")};
   border-radius: 12px;
   overflow: hidden;
   text-align: center;
   cursor: pointer;
   box-shadow: ${(props) =>
-    props.selected ? "0 4px 15px rgba(255, 193, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
+    props.selected ? "0 4px 15px rgba(255, 73, 7, 0.6)" : "0 4px 10px rgba(0, 0, 0, 0.5)"};
   transition: all 0.3s ease;
 
   &:hover {
-    background: ${(props) => (props.selected ? "#e0a800" : "#333")};
+    background: ${(props) => (props.selected ? "#9c4f55" : "#333")};
   }
 `;
 
@@ -143,7 +143,7 @@ const ButtonGroup = styled.div`
 `;
 
 const Button = styled.button`
-  background: ${(props) => (props.primary ? "#ffc107" : "#444")};
+  background: ${(props) => (props.primary ? "#af1e1e" : "#444")};
   color: ${(props) => (props.primary ? "#000" : "white")};
   padding: 10px 20px;
   border: none;
@@ -155,7 +155,7 @@ const Button = styled.button`
   width: 120px;
 
   &:hover {
-    background: ${(props) => (props.primary ? "#e0a800" : "#555")};
+    background: ${(props) => (props.primary ? "#9c4f55" : "#555")};
   }
 
   @media (max-width: 768px) {
