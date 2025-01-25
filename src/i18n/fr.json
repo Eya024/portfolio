@@ -56,12 +56,12 @@
             {
                 "title": "Programme d'Entraînement",
                 "videoUrl": "/img/resources/vid1.mp4",
-                "thumbnail": "/img/resources/coach.jpeg"
+                "thumbnail": "/img/resources/thumb1.png"
             },
             {
                 "title": "Compétition 1",
                 "videoUrl": "/img/resources/vid2.mp4",
-                "thumbnail": "/img/video/gym1thumb.jpg"
+                "thumbnail": "/img/resources/thumb2.png"
             }
         ]
     },
