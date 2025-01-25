@@ -15,7 +15,7 @@ const GalleryTitle = styled.h2`
   margin-bottom: 20px;
   color: #fff;
   @media (max-width: 768px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 `;
 
