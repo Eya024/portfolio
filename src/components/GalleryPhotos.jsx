@@ -21,8 +21,12 @@ const GalleryTitle = styled.h2`
 
 const GalleryGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust minmax for larger screens */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Default layout for smaller screens */
   gap: 20px;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr); /* 3 images per row for larger screens */
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr; /* Single column for smaller screens */
