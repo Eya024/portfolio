@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { useTranslation } from "react-i18next";
 
+
 // Keyframes for arrow animation
 const float = keyframes`
   0% {

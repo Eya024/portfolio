@@ -26,7 +26,7 @@ const Logo = styled.div`
     cursor: pointer;
 
     @media (max-width: 768px) {
-      width: 6rem; /* Reduce logo size for phone screens */
+      width: 7rem; /* Reduce logo size for phone screens */
     }
   }
 
