@@ -143,8 +143,8 @@
                 "description": "Préparez-vous pour la compétition."
             },
             {
-                "title": "Prise de poids",
-                "description": "Atteignez vos objectifs de prise de poids."
+                "title": "Prise de Masse",
+                "description": "Atteignez vos objectifs de prise de masse."
             }
         ],
         "error": "Veuillez sélectionner un objectif avant de continuer.",
@@ -178,10 +178,12 @@
         "whatsappMessage": "Bonjour! Voici les informations soumises par l'utilisateur:\n\nNom: {{name}}\nEmail: {{email}}\nTaille: {{height}} cm\nPoids: {{weight}} kg\nObjectif: {{objective}}\nDisponibilité: {{availability}}\n\nMerci!",
         "male": "Homme",
         "female": "Femme",
-        "objective1": "Devenir Plus Fort",
+        "objective1": "Renforcement Musculaire",
         "objective2": "Mode de Vie Sain",
         "objective3": "Perte de Poids",
         "objective4": "Compétition",
+        "objective5": "Prise de Masse",
+
         "availability1": "6h-12h",
         "availability2": "12h-18h",
         "availability3": "18h-22h",

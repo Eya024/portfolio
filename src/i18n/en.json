@@ -143,8 +143,8 @@
                 "description": "Prepare for competition."
             },
             {
-                "title": "Weight Gain",
-                "description": "Achieve your weight gain objectives."
+                "title": "Mass Gain",
+                "description": "Achieve your mass gain objectives."
             }
         ],
         "error": "Please select an objective before continuing.",
@@ -178,10 +178,12 @@
         "whatsappMessage": "Hello! Here is the information submitted by the user:\n\nName: {{name}}\nEmail: {{email}}\nHeight: {{height}} cm\nWeight: {{weight}} kg\nObjective: {{objective}}\nAvailability: {{availability}}\n\nThank you!",
         "male": "Male",
         "female": "Female",
-        "objective1": "Get Stronger",
+        "objective1": "Muscle Strengthening",
         "objective2": "Healthy Lifestyle",
         "objective3": "Weight Loss",
         "objective4": "Competition",
+        "objective5": "Mass Gain",
+
         "availability1": "6h-12h",
         "availability2": "12h-18h",
         "availability3": "18h-22h",

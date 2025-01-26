@@ -112,6 +112,8 @@ const formatMessage = (formData, t) => {
     t("step5.objective2"),
     t("step5.objective3"),
     t("step5.objective4"),
+    t("step5.objective5"),
+
   ];
 
   const availabilities = [

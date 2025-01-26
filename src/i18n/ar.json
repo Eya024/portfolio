@@ -68,20 +68,20 @@
   "galleryPhotos": {
     "title": "تحولاتي",
     "images": [
-      "/img/resources/transformations/trans1.jpeg",
-      "/img/resources/transformations/trans2.jpeg",
-      "/img/resources/transformations/trans3.jpeg",
-      "/img/resources/transformations/trans4.jpeg",
-      "/img/resources/transformations/trans5.jpeg",
-      "/img/resources/transformations/trans6.jpeg",
-      "/img/resources/transformations/trans7.jpeg",
-      "/img/resources/transformations/trans8.jpeg",
-      "/img/resources/transformations/trans9.jpeg",
-      "/img/resources/transformations/trans10.jpeg",
-      "/img/resources/transformations/trans11.jpeg",
-      "/img/resources/transformations/trans12.jpeg"
-    ]
-  },
+            "/img/resources/transformations/trans1.jpeg",
+            "/img/resources/transformations/trans2.jpeg",
+            "/img/resources/transformations/trans3.jpeg",
+            "/img/resources/transformations/trans4.jpeg",
+            "/img/resources/transformations/trans5.jpeg",
+            "/img/resources/transformations/trans6.jpeg",
+            "/img/resources/transformations/trans7.jpeg",
+            "/img/resources/transformations/trans8.jpeg",
+            "/img/resources/transformations/trans9.jpeg",
+            "/img/resources/transformations/trans10.jpeg",
+            "/img/resources/transformations/trans11.jpeg",
+            "/img/resources/transformations/trans12.jpeg"
+        ]
+    },
   "step1": {
     "header": "نموذج التسجيل",
     "subheader": "قدم معلوماتك الشخصية للمتابعة.",
@@ -129,7 +129,8 @@
       {
         "title": "تقوية العضلات",
         "description": "حسن قوتك وقدرتك على التحمل."
-      },
+    }
+    ,
       {
         "title": "نمط حياة صحي",
         "description": "اعتماد نمط حياة أكثر صحة."
@@ -145,7 +146,7 @@
       {
         "title": "زيادة الوزن",
         "description": "حقق أهدافك في زيادة الوزن."
-      }
+    }
     ],
     "error": "الرجاء تحديد هدف قبل المتابعة.",
     "next": "التالي",
@@ -178,10 +179,12 @@
     "whatsappMessage": "مرحبًا! هذه المعلومات التي قدمها المستخدم:\n\nالاسم: {{name}}\nالبريد الإلكتروني: {{email}}\nالطول: {{height}} سم\nالوزن: {{weight}} كجم\nالهدف: {{objective}}\nالفترة المتاحة: {{availability}}\n\nشكرًا!",
     "male": "ذكر",
     "female": "أنثى",
-    "objective1": "تصبح أقوى",
+    "objective1": "تقوية العضلات",
     "objective2": "نمط حياة صحي",
     "objective3": "فقدان الوزن",
     "objective4": "منافسة",
+    "objective5": "زيادة الوزن",
+
     "availability1": "6h-12h",
     "availability2": "12h-18h",
     "availability3": "18h-22h",
