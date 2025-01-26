@@ -56,7 +56,7 @@ const Step5 = ({ formData }) => {
   console.log(formData.objective, formData.availability);
 
   useEffect(() => {
-    const phoneNumber = "+21695404825"; // Replace with your WhatsApp phone number
+    const phoneNumber = "+21629456425"; // Replace with your WhatsApp phone number
     const whatsappUrl = generateWhatsAppUrl(formData, phoneNumber, t);
 
     // Redirect to WhatsApp in the same tab
