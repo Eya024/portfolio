@@ -36,7 +36,7 @@ const HeroSectionContainer = styled.section`
 `;
 
 const ImageContainer = styled.div`
-  width: 40%;
+  width: 43%;
   max-width: 500px;
   aspect-ratio: 5 / 4;
   background-color: black;
@@ -51,7 +51,7 @@ const ImageContainer = styled.div`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Show the whole image without cropping */
     position: absolute;
     top: 0;
     left: 0;
@@ -96,7 +96,6 @@ const Title = styled.h1`
 
   span {
     color: white;
-    
   }
 
   @media (max-width: 768px) {

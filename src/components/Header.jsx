@@ -5,15 +5,16 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar = styled.header`
   display: flex;
-  flex-direction: row; /* Always use row layout */
+  flex-direction: row; /* Default layout: row */
   justify-content: space-between; /* Space out logo and other items */
   align-items: center; /* Center items vertically */
   padding: 3vh 6vw;
   color: white;
 
   @media (max-width: 768px) {
-    flex-direction: row; /* Keep row layout for phone screens */
-    justify-content: space-between; /* Space out logo and other items */
+    flex-direction: column; /* Change to column layout for phone screens */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
     padding: 2vh 4vw; /* Reduce padding for phone screens */
   }
 `;
@@ -25,12 +26,12 @@ const Logo = styled.div`
     cursor: pointer;
 
     @media (max-width: 768px) {
-      width: 4rem; /* Reduce logo size for phone screens */
+      width: 6rem; /* Reduce logo size for phone screens */
     }
   }
 
   @media (max-width: 768px) {
-    margin-bottom: 0; /* Remove spacing for phone screens */
+    margin-bottom: 1rem; /* Add spacing between logo and other items */
   }
 `;
 
