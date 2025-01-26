@@ -127,7 +127,7 @@
         "subheader": "Fournissez vos informations personnelles pour continuer.",
         "objectives": [
             {
-                "title": "Devenir Plus Fort",
+                "title": "Renforcement Musculaire",
                 "description": "Améliorez votre force et votre endurance."
             },
             {
@@ -141,6 +141,10 @@
             {
                 "title": "Compétition",
                 "description": "Préparez-vous pour la compétition."
+            },
+            {
+                "title": "Prise de poids",
+                "description": "Atteignez vos objectifs de prise de poids."
             }
         ],
         "error": "Veuillez sélectionner un objectif avant de continuer.",

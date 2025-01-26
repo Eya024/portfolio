@@ -72,12 +72,12 @@ const SubHeader = styled.p`
 
 const ObjectiveGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* Two columns */
   gap: 20px;
   margin-top: 20px;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column for mobile */
   }
 `;
 
@@ -95,6 +95,21 @@ const ObjectiveCard = styled.div`
   &:hover {
     background: ${(props) => (props.selected ? "#9c4f55" : "#333")};
     color: white;
+  }
+
+  /* Center the last card if it's alone */
+  &:last-child:nth-child(odd) {
+    grid-column: 1 / -1; /* Span across both columns */
+    justify-self: center; /* Center the card horizontally */
+    max-width: 50%; /* Limit the width to half of the grid */
+  }
+
+  @media (max-width: 768px) {
+    &:last-child:nth-child(odd) {
+      grid-column: auto; /* Reset for mobile */
+      max-width: 100%; /* Full width on mobile */
+      justify-self: stretch; /* Stretch to full width */
+    }
   }
 `;
 
@@ -174,7 +189,7 @@ const Step3 = ({ formData, updateFormData, onNext, onBack }) => {
     {
       title: t("step3.objectives.0.title"),
       description: t("step3.objectives.0.description"),
-      img: "/img/resources/strength.jpg",
+      img: "/img/resources/renforcementmusculaire.jpeg",
     },
     {
       title: t("step3.objectives.1.title"),
@@ -184,12 +199,17 @@ const Step3 = ({ formData, updateFormData, onNext, onBack }) => {
     {
       title: t("step3.objectives.2.title"),
       description: t("step3.objectives.2.description"),
-      img: "/img/resources/weight.jpg",
+      img: "/img/resources/pertedepoids.jpeg",
     },
     {
       title: t("step3.objectives.3.title"),
       description: t("step3.objectives.3.description"),
       img: "/img/resources/muscle.jpg",
+    },
+    {
+      title: t("step3.objectives.4.title"),
+      description: t("step3.objectives.4.description"),
+      img: "/img/resources/prisedemasse.jpeg",
     },
   ];
 

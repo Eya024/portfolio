@@ -68,20 +68,20 @@
   "galleryPhotos": {
     "title": "تحولاتي",
     "images": [
-            "/img/resources/transformations/trans1.jpeg",
-            "/img/resources/transformations/trans2.jpeg",
-            "/img/resources/transformations/trans3.jpeg",
-            "/img/resources/transformations/trans4.jpeg",
-            "/img/resources/transformations/trans5.jpeg",
-            "/img/resources/transformations/trans6.jpeg",
-            "/img/resources/transformations/trans7.jpeg",
-            "/img/resources/transformations/trans8.jpeg",
-            "/img/resources/transformations/trans9.jpeg",
-            "/img/resources/transformations/trans10.jpeg",
-            "/img/resources/transformations/trans11.jpeg",
-            "/img/resources/transformations/trans12.jpeg"
-        ]
-    },
+      "/img/resources/transformations/trans1.jpeg",
+      "/img/resources/transformations/trans2.jpeg",
+      "/img/resources/transformations/trans3.jpeg",
+      "/img/resources/transformations/trans4.jpeg",
+      "/img/resources/transformations/trans5.jpeg",
+      "/img/resources/transformations/trans6.jpeg",
+      "/img/resources/transformations/trans7.jpeg",
+      "/img/resources/transformations/trans8.jpeg",
+      "/img/resources/transformations/trans9.jpeg",
+      "/img/resources/transformations/trans10.jpeg",
+      "/img/resources/transformations/trans11.jpeg",
+      "/img/resources/transformations/trans12.jpeg"
+    ]
+  },
   "step1": {
     "header": "نموذج التسجيل",
     "subheader": "قدم معلوماتك الشخصية للمتابعة.",
@@ -127,8 +127,8 @@
     "subheader": "قدم معلوماتك الشخصية للمتابعة.",
     "objectives": [
       {
-        "title": "تصبح أقوى",
-        "description": "تحسين قوتك وقدرتك على التحمل."
+        "title": "تقوية العضلات",
+        "description": "حسن قوتك وقدرتك على التحمل."
       },
       {
         "title": "نمط حياة صحي",
@@ -141,6 +141,10 @@
       {
         "title": "منافسة",
         "description": "الاستعداد للمنافسة."
+      },
+      {
+        "title": "زيادة الوزن",
+        "description": "حقق أهدافك في زيادة الوزن."
       }
     ],
     "error": "الرجاء تحديد هدف قبل المتابعة.",

@@ -24,7 +24,6 @@
             "whatsappSupport": "24/7 WhatsApp Support",
             "exclusiveVideos": "Access to Exclusive Videos"
         },
-
         "bookNow": "Book Now"
     },
     "gridSection": {
@@ -128,7 +127,7 @@
         "subheader": "Provide your personal information to continue.",
         "objectives": [
             {
-                "title": "Get Stronger",
+                "title": "Muscle Strengthening",
                 "description": "Improve your strength and endurance."
             },
             {
@@ -142,6 +141,10 @@
             {
                 "title": "Competition",
                 "description": "Prepare for competition."
+            },
+            {
+                "title": "Weight Gain",
+                "description": "Achieve your weight gain objectives."
             }
         ],
         "error": "Please select an objective before continuing.",
