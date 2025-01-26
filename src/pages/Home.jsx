@@ -6,7 +6,7 @@ import GallerySection from "../components/GallerySection";
 import SubscriptionSection from "../components/SubscriptionSection";
 import GalleryPhotos from "../components/GalleryPhotos";
 import GridSection from "../components/GridSection";
-import AnimatedSection from "../components/AnimatedSection"; // Import the AnimatedSection component
+import AnimatedSection from "../components/AnimatedSection";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const HomeContainer = styled.div`
   min-height: 100vh;
   color: white;
   padding: 2rem; /* Added padding to maintain spacing */
-  position: static; /* Set position to static to fix flickering */
+  position: relative; /* Ensure the pseudo-element is positioned correctly */
 
   /* Background for larger screens */
   @media (min-width: 769px) {
@@ -31,12 +31,18 @@ const HomeContainer = styled.div`
     }
   }
 
-  /* Background for smaller screens */
+  /* Gradient background for smaller screens */
   @media (max-width: 768px) {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('/img/resources/coach.jpeg') no-repeat center center/cover;
-    background-size: cover; /* Ensure the image covers the entire container */
-    background-position: center; /* Center the background image */
+    background: linear-gradient(
+      to bottom,
+      #000000, /* Black at the top */
+rgb(12, 0, 0) 25%, /* Dark red at 25% */
+rgb(57, 1, 2) 50%, /* Darker red in the middle */
+rgb(52, 0, 1) 75%, /* Red at 75% */
+rgb(29, 0, 1) /* Dark red at the bottom */
+    );
+    background-size: cover; /* Ensure the gradient covers the entire container */
+    background-position: center; /* Center the background */
     position: static; /* Set position to static to fix flickering */
   }
 `;
