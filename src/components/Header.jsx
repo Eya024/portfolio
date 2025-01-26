@@ -21,7 +21,7 @@ const Navbar = styled.header`
 
 const Logo = styled.div`
   img {
-    width: 6rem;
+    width: 9rem;
     height: auto;
     cursor: pointer;
 

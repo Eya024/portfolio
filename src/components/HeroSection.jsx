@@ -37,9 +37,9 @@ const HeroSectionContainer = styled.section`
 `;
 
 const ImageContainer = styled.div`
-  width: 43%;
-  max-width: 500px;
-  aspect-ratio: 5 / 4;
+  width: 30%; /* Smaller width for larger screens */
+  max-width: 400px; /* Smaller max-width for larger screens */
+  aspect-ratio: 9 / 16; /* Maintain the 16:9 aspect ratio (height is taller than width) */
   background-color: black;
   border-radius: 1rem;
   overflow: hidden;
@@ -65,8 +65,12 @@ const ImageContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 100%;
-    margin-top: 2vh;
+    width: 100%; /* Set width to 100% */
+    max-width: none; /* Remove max-width constraint for mobile */
+    margin-top: 15vh;
+    aspect-ratio: 16 / 9; /* Switch to a wider aspect ratio for mobile */
+    transform: scale(1.5); /* Scale the container up by 20% */
+    transform-origin: center; /* Ensure the scaling is centered */
   }
 `;
 
