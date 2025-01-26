@@ -1,45 +1,45 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-// Styled Components
+// Styled Components (unchanged)
 const Section = styled.section`
-  padding: 4vh 5vw; /* Use vh/vw for consistent padding */
+  padding: 4vh 5vw;
   color: #fff;
 `;
 
 const Header = styled.header`
-  font-size: 4rem; /* Use rem for consistent font sizing */
+  font-size: 4rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 3vh; /* Consistent spacing with HeroSection */
+  margin-bottom: 3vh;
   color: white;
 
   span {
-    color: #d3d3d3; /* Match the color of the Subtitle in HeroSection */
-    font-weight: normal; /* Match the font weight of the Subtitle */
-    display: block; /* Ensure the span is on a new line */
-    font-size: 1.6rem; /* Match the font size of the Subtitle */
-    margin-top: 1vh; /* Add some spacing between the title and the span */
+    color: #d3d3d3;
+    font-weight: normal;
+    display: block;
+    font-size: 1.6rem;
+    margin-top: 1vh;
   }
 
   @media (max-width: 768px) {
-    font-size: 3rem; /* Adjust font size for smaller screens */
+    font-size: 3rem;
     span {
-      font-size: 1.4rem; /* Adjust font size for smaller screens */
+      font-size: 1.4rem;
     }
   }
 `;
 
 const Content = styled.div`
   display: flex;
-  gap: 2vw; /* Use relative units for spacing */
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
-  flex-direction: row; /* Default to row layout for PC screens */
+  gap: 2vw;
+  flex-wrap: wrap;
+  flex-direction: row;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* Stack video container and list vertically on smaller screens */
-    gap: 3vh; /* Add more space between the video container and list */
+    flex-direction: column;
+    gap: 3vh;
   }
 `;
 
@@ -75,13 +75,13 @@ const VideoContainer = styled.div`
 `;
 
 const VideoList = styled.div`
-  flex: 1; /* Take up half of the screen on larger screens */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.5vh; /* Add more space between the video items */
+  gap: 1.5vh;
 
   @media (max-width: 768px) {
-    width: 100%; /* Full width on smaller screens */
+    width: 100%;
   }
 `;
 
@@ -100,7 +100,7 @@ const VideoItem = styled.div`
 
   &:hover {
     background: ${({ "data-is-active": isActive }) =>
-    isActive ? "rgba(243, 97, 0, 0.4)" : "rgba(255, 255, 255, 0.2)"};
+      isActive ? "rgba(243, 97, 0, 0.4)" : "rgba(255, 255, 255, 0.2)"};
     transform: scale(1.05);
   }
 
@@ -110,31 +110,53 @@ const VideoItem = styled.div`
 `;
 
 const Thumbnail = styled.img`
-  width: 4rem; /* Use rem for size */
+  width: 4rem;
   height: 4rem;
   border-radius: 0.5rem;
 
   @media (max-width: 768px) {
     width: 3.5rem;
-    height: 3.5rem; /* Adjust size for smaller screens */
+    height: 3.5rem;
   }
 `;
 
 const VideoTitle = styled.span`
   color: #fff;
-  font-size: 1.2rem; /* Use rem for font size */
+  font-size: 1.2rem;
   font-weight: bold;
 
   @media (max-width: 768px) {
-    font-size: 1rem; /* Adjust font size for smaller screens */
+    font-size: 1rem;
   }
 `;
 
+// Helper function to compare two arrays deeply
+const areArraysEqual = (array1, array2) => {
+  if (array1.length !== array2.length) return false;
+  return array1.every(
+    (video, index) =>
+      video.title === array2[index].title &&
+      video.videoUrl === array2[index].videoUrl &&
+      video.thumbnail === array2[index].thumbnail
+  );
+};
+
 const GallerySection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const videos = t("gallerySection.videos", { returnObjects: true });
-  const [selectedVideo, setSelectedVideo] = useState(videos[0]);
+  const [selectedVideo, setSelectedVideo] = useState(videos[0]); // Default to the first video
   const videoRef = useRef(null);
+
+  // Track the previous videos array for comparison
+  const previousVideosRef = useRef(videos);
+
+  useEffect(() => {
+    if (!areArraysEqual(previousVideosRef.current, videos)) {
+      // Reset selectedVideo only if the videos array content has changed
+      setSelectedVideo(videos[0]);
+      previousVideosRef.current = videos; // Update the ref to the new videos array
+    }
+  }, [videos]); // Trigger when the videos array changes
 
   return (
     <Section>

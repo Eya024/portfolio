@@ -152,9 +152,10 @@ const HeroSection = () => {
 
   // Array of image paths
   const images = [
-    "/img/resources/coach1.jpeg",
+    "/img/resources/coach111.jpeg",
     "/img/resources/coach2.jpeg",
     "/img/resources/coach3.jpeg",
+    "/img/resources/coach1.jpeg"
   ];
 
   // Function to handle image rotation

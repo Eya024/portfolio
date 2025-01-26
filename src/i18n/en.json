@@ -1,6 +1,6 @@
 {
     "heroSection": {
-        "title": "Transform Your <span>Body</span> <br /> Your <span>Life</span>",
+        "title": "Transform Your Body And Your Life ",
         "subtitle": "Discover your best self with personalized programs and professional guidance.",
         "startButton": "Start Now"
     },
@@ -20,10 +20,11 @@
         },
         "features": {
             "personalizedProgram": "Personalized Program",
-            "nutritionalGuidance": "Nutritional Guidance",
+            "nutritionalGuidance": "Personalized Nutritional Plan",
             "whatsappSupport": "24/7 WhatsApp Support",
             "exclusiveVideos": "Access to Exclusive Videos"
         },
+
         "bookNow": "Book Now"
     },
     "gridSection": {
@@ -55,7 +56,7 @@
         "videos": [
             {
                 "title": "Training Program",
-                "videoUrl": "/img/resources/vid1.mp4",
+                "videoUrl": "/img/resources/vid3.mp4",
                 "thumbnail": "/img/resources/coach.jpeg"
             },
             {
@@ -68,13 +69,18 @@
     "galleryPhotos": {
         "title": "My Transformations",
         "images": [
-            "/img/resources/trans1.jpeg",
-            "/img/resources/trans2.jpeg",
-            "/img/resources/trans3.jpeg",
-            "/img/resources/trans4.jpeg",
-            "/img/resources/trans5.jpeg",
-            "/img/resources/trans8.jpeg",
-            "/img/resources/trans9.jpeg"
+            "/img/resources/transformations/trans1.jpeg",
+            "/img/resources/transformations/trans2.jpeg",
+            "/img/resources/transformations/trans3.jpeg",
+            "/img/resources/transformations/trans4.jpeg",
+            "/img/resources/transformations/trans5.jpeg",
+            "/img/resources/transformations/trans6.jpeg",
+            "/img/resources/transformations/trans7.jpeg",
+            "/img/resources/transformations/trans8.jpeg",
+            "/img/resources/transformations/trans9.jpeg",
+            "/img/resources/transformations/trans10.jpeg",
+            "/img/resources/transformations/trans11.jpeg",
+            "/img/resources/transformations/trans12.jpeg"
         ]
     },
     "step1": {

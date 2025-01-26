@@ -150,7 +150,7 @@ const BookButton = styled.button`
 
 const SubscriptionSection = () => {
   const { t } = useTranslation();
-  const [currency, setCurrency] = useState("TND");
+  const [currency, setCurrency] = useState("EUR"); // Set EUR as the default currency
   const navigate = useNavigate();
   const { lang } = useParams(); // Extract the current language from the URL
 
@@ -177,7 +177,7 @@ const SubscriptionSection = () => {
     },
     {
       duration: t("subscriptionSection.plans.3Months"),
-      price: 350,
+      price: 400,
       features: [
         t("subscriptionSection.features.personalizedProgram"),
         t("subscriptionSection.features.nutritionalGuidance"),
@@ -187,7 +187,7 @@ const SubscriptionSection = () => {
     },
     {
       duration: t("subscriptionSection.plans.6Months"),
-      price: 650,
+      price: 700,
       features: [
         t("subscriptionSection.features.personalizedProgram"),
         t("subscriptionSection.features.nutritionalGuidance"),
@@ -211,12 +211,7 @@ const SubscriptionSection = () => {
       <Title>{t("subscriptionSection.title")}</Title>
       <Subtitle>{t("subscriptionSection.subtitle")}</Subtitle>
       <CurrencySwitcher>
-        <CurrencyButton
-          data-active={currency === "TND"} // Use data-active instead of active
-          onClick={() => handleCurrencyChange("TND")}
-        >
-          {t("subscriptionSection.currency.tnd")}
-        </CurrencyButton>
+        {/* Remove TND button and keep EUR and USD */}
         <CurrencyButton
           data-active={currency === "EUR"} // Use data-active instead of active
           onClick={() => handleCurrencyChange("EUR")}
