@@ -56,11 +56,11 @@ const Home = () => {
       </AnimatedSection>
 
       <AnimatedSection>
-        <SubscriptionSection />
+        <GalleryPhotos />
       </AnimatedSection>
 
       <AnimatedSection>
-        <GalleryPhotos />
+        < SubscriptionSection/>
       </AnimatedSection>
 
       <AnimatedSection>
