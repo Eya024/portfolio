@@ -26,7 +26,7 @@ const HomeContainer = styled.div`
       width: 100%;
       height: 100%;
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                  url('/img/resources/coach.jpeg') no-repeat center center/cover;
+                  url('/img/resources/coachh.jpeg') no-repeat center center/cover;
       z-index: -1; /* Place the pseudo-element behind the content */
     }
   }
