@@ -14,36 +14,30 @@ const HomeContainer = styled.div`
   min-height: 100vh;
   color: white;
   padding: 2rem; /* Added padding to maintain spacing */
-  position: relative; /* Ensure the pseudo-element is positioned correctly */
+  position: static; /* Set position to static to fix flickering */
 
   /* Background for larger screens */
   @media (min-width: 769px) {
     &::before {
       content: '';
-      position: fixed; /* Keep the background fixed relative to the viewport */
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                  url('/img/resources/coachh.jpeg') no-repeat center center/cover;
-      background-attachment: fixed; /* Make the background scroll with the page */
+                  url('/img/resources/coach.jpeg') no-repeat center center/cover;
       z-index: -1; /* Place the pseudo-element behind the content */
     }
   }
 
-  /* Gradient background for smaller screens */
+  /* Background for smaller screens */
   @media (max-width: 768px) {
-    background: linear-gradient(
-      to bottom,
-      #000000, /* Black at the top */
-      rgb(12, 0, 0) 25%, /* Dark red at 25% */
-      rgb(57, 1, 2) 50%, /* Darker red in the middle */
-      rgb(52, 0, 1) 75%, /* Red at 75% */
-      rgb(29, 0, 1) /* Dark red at the bottom */
-    );
-    background-size: cover; /* Ensure the gradient covers the entire container */
-    background-position: center; /* Center the background */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('/img/resources/coach.jpeg') no-repeat center center/cover;
+    background-attachment: fixed; /* Fixed background on mobile */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the background image */
     position: static; /* Set position to static to fix flickering */
   }
 `;

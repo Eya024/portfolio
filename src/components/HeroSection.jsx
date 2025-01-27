@@ -26,6 +26,8 @@ const HeroSectionContainer = styled.section`
   color: white;
   flex-wrap: wrap;
   flex-direction: row;
+    margin-bottom: 10vh;
+
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -40,7 +42,7 @@ const ImageContainer = styled.div`
   width: 30%; /* Smaller width for larger screens */
   max-width: 400px; /* Smaller max-width for larger screens */
   aspect-ratio: 9 / 16; /* Maintain the 16:9 aspect ratio (height is taller than width) */
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
   border-radius: 1rem;
   overflow: hidden;
   display: flex;
@@ -48,6 +50,10 @@ const ImageContainer = styled.div`
   justify-content: center;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.5);
   position: relative;
+
+  /* Applying the backdrop blur effect */
+  backdrop-filter: blur(10px); /* Blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
 
   img {
     width: 100%;
@@ -67,12 +73,15 @@ const ImageContainer = styled.div`
   @media (max-width: 768px) {
     width: 100%; /* Set width to 100% */
     max-width: none; /* Remove max-width constraint for mobile */
-    margin-top: 15vh;
+    margin-top: 35vh;
+    margin-bottom: 25vh;
+
     aspect-ratio: 16 / 9; /* Switch to a wider aspect ratio for mobile */
-    transform: scale(1.5); /* Scale the container up by 20% */
+    transform: scale(2.75); /* Scale the container up by 20% */
     transform-origin: center; /* Ensure the scaling is centered */
   }
 `;
+
 
 const Content = styled.div`
   max-width: 50%;

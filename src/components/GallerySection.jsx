@@ -2,17 +2,26 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-// Styled Components (unchanged)
+// Styled Components
 const Section = styled.section`
-  padding: 4vh 5vw;
+  height: 100vh; /* Fill the entire viewport */
+  padding: 0 5vw; /* Adjust padding */
   color: #fff;
+  display: flex;
+  flex-direction: column; /* Stack header and content */
+  justify-content: space-between; /* Distribute header and content evenly */
+  margin-bottom: 28vh;
 `;
+
+
+
+
 
 const Header = styled.header`
   font-size: 4rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 3vh;
+  margin: 2vh 0; /* Reduce vertical margin */
   color: white;
 
   span {
@@ -34,54 +43,59 @@ const Header = styled.header`
 const Content = styled.div`
   display: flex;
   gap: 2vw;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: row;
+  align-items: flex-start; /* Align children to the top */
+  flex-grow: 1; /* Ensure content takes available space */
+  justify-content: center; /* Center content horizontally */
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: column; /* Stack on mobile screens */
     gap: 3vh;
+    align-items: center; /* Center align on mobile */
   }
 `;
 
 const VideoContainer = styled.div`
-  flex: 2;
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   border-radius: 10px;
-  padding: 1rem;
-  max-width: 1000px;
-  max-height: 500px;
-  width: 100%;
-  height: auto;
+  padding: 0;
   background: black;
   overflow: hidden;
   position: relative;
+  aspect-ratio: 9 / 16; /* Maintain aspect ratio */
+  transform: scale(0.7); /* Shrink the container */
+  transform-origin: top center; /* Center the shrinking effect */
+  height: auto; /* Allow height to adjust naturally */
 
   video {
     border-radius: 10px;
     width: 100%;
     height: 100%;
+    object-fit: cover; /* Ensure the video fills the container */
   }
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 100%; /* Full width on mobile */
     padding: 0;
     margin-bottom: 3vh;
-    aspect-ratio: 16 / 9;
-    max-width: none;
-    max-height: none;
+    aspect-ratio: 9 / 16; /* Maintain aspect ratio on mobile */
+    transform: scale(1); /* Restore full size on mobile */
+    align-items: center; /* Center-align the video */
   }
 `;
 
 const VideoList = styled.div`
-  flex: 1;
+  flex: 1; /* Take 1/3 of the space */
   display: flex;
   flex-direction: column;
   gap: 1.5vh;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 100%; /* Full width on mobile */
   }
 `;
 
