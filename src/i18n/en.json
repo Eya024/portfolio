@@ -4,6 +4,10 @@
         "subtitle": "Discover your best self with personalized programs and professional guidance.",
         "startButton": "Start Now"
     },
+    "aboutMe": {
+        "title": "About Me",
+        "subtitle": "Passionate about sports and well-being, I am a <b>state-certified sports coach since 2017</b>, with extensive expertise in <b>nutrition</b> and experience as a <b>classic physique bodybuilding competitor</b>. <br><br> My goal is to guide you through your physical and mental transformation by sharing my knowledge and experience in <b>sports and nutritional coaching</b>. <br><br> Whether you are a beginner or an experienced athlete, I will help you reach your goals with a tailored program and personalized support. <br><br> <b>Join me</b> and become the best version of yourself. <br><br> 💪 <b>My goal is clear: to achieve yours.</b>"
+    },
     "subscriptionSection": {
         "title": "My Plans",
         "subtitle": "Choose the program that best suits your goals. All prices include personalized follow-up and unlimited support.",
@@ -183,7 +187,6 @@
         "objective3": "Weight Loss",
         "objective4": "Competition",
         "objective5": "Mass Gain",
-
         "availability1": "6h-12h",
         "availability2": "12h-18h",
         "availability3": "18h-22h",

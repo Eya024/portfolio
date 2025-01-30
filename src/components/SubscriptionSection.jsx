@@ -162,7 +162,6 @@ const SubscriptionSection = () => {
         t("subscriptionSection.features.personalizedProgram"),
         t("subscriptionSection.features.nutritionalGuidance"),
         t("subscriptionSection.features.whatsappSupport"),
-        t("subscriptionSection.features.exclusiveVideos"),
       ],
     },
     {
@@ -172,7 +171,6 @@ const SubscriptionSection = () => {
         t("subscriptionSection.features.personalizedProgram"),
         t("subscriptionSection.features.nutritionalGuidance"),
         t("subscriptionSection.features.whatsappSupport"),
-        t("subscriptionSection.features.exclusiveVideos"),
       ],
     },
     {
@@ -182,7 +180,6 @@ const SubscriptionSection = () => {
         t("subscriptionSection.features.personalizedProgram"),
         t("subscriptionSection.features.nutritionalGuidance"),
         t("subscriptionSection.features.whatsappSupport"),
-        t("subscriptionSection.features.exclusiveVideos"),
       ],
     },
     {
@@ -192,7 +189,6 @@ const SubscriptionSection = () => {
         t("subscriptionSection.features.personalizedProgram"),
         t("subscriptionSection.features.nutritionalGuidance"),
         t("subscriptionSection.features.whatsappSupport"),
-        t("subscriptionSection.features.exclusiveVideos"),
       ],
     },
   ];

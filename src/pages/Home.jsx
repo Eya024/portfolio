@@ -7,6 +7,7 @@ import SubscriptionSection from "../components/SubscriptionSection";
 import GalleryPhotos from "../components/GalleryPhotos";
 import GridSection from "../components/GridSection";
 import AnimatedSection from "../components/AnimatedSection";
+import AboutMe from "../components/AboutMe";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -33,11 +34,19 @@ const HomeContainer = styled.div`
 
   /* Background for smaller screens */
   @media (max-width: 768px) {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('/img/resources/coach.jpeg') no-repeat center center/cover;
-    background-attachment: fixed; /* Fixed background on mobile */
-    background-size: cover; /* Ensure the image covers the entire container */
-    background-position: center; /* Center the background image */
+    background: linear-gradient(
+        to bottom,
+rgb(0, 0, 0),
+rgb(36, 0, 0),
+rgb(0, 0, 0),
+
+rgb(41, 0, 0),
+        #250104,
+        rgb(0, 0, 0)
+
+      );
+    background-size: cover; /* Ensure the gradient covers the entire container */
+    background-position: center; /* Center the gradient */
     position: static; /* Set position to static to fix flickering */
   }
 `;
@@ -60,7 +69,11 @@ const Home = () => {
       </AnimatedSection>
 
       <AnimatedSection>
-        < SubscriptionSection/>
+        < AboutMe />
+      </AnimatedSection>
+
+      <AnimatedSection>
+        < SubscriptionSection />
       </AnimatedSection>
 
       <AnimatedSection>

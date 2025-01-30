@@ -4,6 +4,10 @@
     "subtitle": "اكتشف أفضل نسخة من نفسك مع برامج مخصصة ونصائح احترافية.",
     "startButton": "ابدأ الآن"
   },
+  "aboutMe": {
+    "title": "عني",
+    "subtitle": "شغوف بالرياضة والصحة، أنا <b>مدرب رياضي حاصل على شهادة الدولة منذ عام 2017</b>، ولدي خبرة واسعة في <b>التغذية</b> وتجربة كمنافس في <b>كمال الأجسام لفئة الفيزيك الكلاسيكي</b>. <br><br> هدفي هو مساعدتك في رحلتك نحو التحول الجسدي والذهني من خلال مشاركة معرفتي وخبرتي في <b>التدريب الرياضي والتغذية</b>. <br><br> سواء كنت مبتدئًا أو رياضيًا محترفًا، سأساعدك على تحقيق أهدافك من خلال برنامج مخصص ودعم شخصي. <br><br> <b>انضم إلي</b> وكن أفضل نسخة من نفسك. <br><br> 💪 <b>هدفي واضح: تحقيق هدفك.</b>"
+  },
   "subscriptionSection": {
     "title": "برامج الاشتراك",
     "subtitle": "اختر البرنامج الذي يناسب أهدافك. جميع الأسعار تشمل متابعة مخصصة ودعم غير محدود.",
@@ -68,20 +72,20 @@
   "galleryPhotos": {
     "title": "تحولاتي",
     "images": [
-            "/img/resources/transformations/trans1.jpeg",
-            "/img/resources/transformations/trans2.jpeg",
-            "/img/resources/transformations/trans3.jpeg",
-            "/img/resources/transformations/trans4.jpeg",
-            "/img/resources/transformations/trans5.jpeg",
-            "/img/resources/transformations/trans6.jpeg",
-            "/img/resources/transformations/trans7.jpeg",
-            "/img/resources/transformations/trans8.jpeg",
-            "/img/resources/transformations/trans9.jpeg",
-            "/img/resources/transformations/trans10.jpeg",
-            "/img/resources/transformations/trans11.jpeg",
-            "/img/resources/transformations/trans12.jpeg"
-        ]
-    },
+      "/img/resources/transformations/trans1.jpeg",
+      "/img/resources/transformations/trans2.jpeg",
+      "/img/resources/transformations/trans3.jpeg",
+      "/img/resources/transformations/trans4.jpeg",
+      "/img/resources/transformations/trans5.jpeg",
+      "/img/resources/transformations/trans6.jpeg",
+      "/img/resources/transformations/trans7.jpeg",
+      "/img/resources/transformations/trans8.jpeg",
+      "/img/resources/transformations/trans9.jpeg",
+      "/img/resources/transformations/trans10.jpeg",
+      "/img/resources/transformations/trans11.jpeg",
+      "/img/resources/transformations/trans12.jpeg"
+    ]
+  },
   "step1": {
     "header": "نموذج التسجيل",
     "subheader": "قدم معلوماتك الشخصية للمتابعة.",
@@ -129,8 +133,7 @@
       {
         "title": "تقوية العضلات",
         "description": "حسن قوتك وقدرتك على التحمل."
-    }
-    ,
+      },
       {
         "title": "نمط حياة صحي",
         "description": "اعتماد نمط حياة أكثر صحة."
@@ -146,7 +149,7 @@
       {
         "title": "زيادة الوزن",
         "description": "حقق أهدافك في زيادة الوزن."
-    }
+      }
     ],
     "error": "الرجاء تحديد هدف قبل المتابعة.",
     "next": "التالي",
@@ -184,7 +187,6 @@
     "objective3": "فقدان الوزن",
     "objective4": "منافسة",
     "objective5": "زيادة الوزن",
-
     "availability1": "6h-12h",
     "availability2": "12h-18h",
     "availability3": "18h-22h",

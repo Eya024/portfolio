@@ -4,6 +4,10 @@
         "subtitle": "Découvrez votre meilleure version avec des programmes personnalisés et des conseils professionnels.",
         "startButton": "Commencez Maintenant"
     },
+    "aboutMe": {
+    "title": "À propos de moi",
+    "subtitle": "Passionné par le sport et le bien-être, je suis <b>coach sportif diplômé d’État depuis 2017</b>, avec une expertise approfondie en <b>nutrition</b> et une expérience en tant que <b>compétiteur de bodybuilding classic physique</b>. <br><br> Mon objectif est de t’accompagner dans ta transformation physique et mentale en te partageant mon savoir et mon expérience en <b>coaching sportif et nutritionnel</b>. <br><br> Que tu sois débutant ou athlète confirmé, je t’aiderai à atteindre tes objectifs avec un programme adapté et un suivi personnalisé. <br><br> <b>Rejoins-moi</b> et deviens la meilleure version de toi-même. <br><br> 💪 <b>Mon objectif est clair : réaliser le vôtre.</b>"
+},
     "subscriptionSection": {
         "title": "Mes Formules",
         "subtitle": "Choisissez le programme qui correspond le mieux à vos objectifs. Tous les prix incluent un suivi personnalisé et un accès illimité au support.",
@@ -183,7 +187,6 @@
         "objective3": "Perte de Poids",
         "objective4": "Compétition",
         "objective5": "Prise de Masse",
-
         "availability1": "6h-12h",
         "availability2": "12h-18h",
         "availability3": "18h-22h",
