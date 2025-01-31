@@ -123,34 +123,7 @@ const Subtitle = styled.p`
   }
 `;
 
-const StartButton = styled.button`
-  padding: 1rem 2rem;
-  font-size: 1.4rem;
-  color: white;
-  background: #af1e1e;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background 0.3s ease;
 
-  &:hover {
-    background: #9c4f55;
-  }
-
-  i {
-    font-size: 1.4rem;
-    animation: ${float} 1.5s ease-in-out infinite; // Apply the float animation
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-    padding: 0.8rem 1.6rem;
-  }
-`;
 
 const AboutMe = () => {
   const { t } = useTranslation();
@@ -158,12 +131,9 @@ const AboutMe = () => {
   // State to track the active image index
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Array of image paths
+  // Array of image paths-- can add more pictures in array if client wants to 
   const images = [
-    "/img/resources/coach111.jpeg",
-    "/img/resources/coach2.jpeg",
-    "/img/resources/coach3.jpeg",
-    "/img/resources/coach1.jpeg"
+    "/img/resources/coach.jpeg",
   ];
 
   // Function to handle image rotation
