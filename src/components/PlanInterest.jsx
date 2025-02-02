@@ -52,7 +52,7 @@ const Subtitle = styled.p`
 const PlanInterest = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  const phoneNumber = "+21629456425"; // Replace with your WhatsApp phone number
+  const phoneNumber = "+33624405611"; // Replace with your WhatsApp phone number
   const navigate = useNavigate();
   const { plan, currency } = location.state || {};
 

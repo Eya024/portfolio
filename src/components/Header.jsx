@@ -176,7 +176,7 @@ const Header = () => {
     navigate('/');
   };
 
-  const whatsappNumber = '+21629456425'; // Replace with your phone number
+  const whatsappNumber = '+33624405611'; // Replace with your phone number
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   return (
